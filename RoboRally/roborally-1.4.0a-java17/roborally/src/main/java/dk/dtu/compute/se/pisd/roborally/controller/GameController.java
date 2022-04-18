@@ -106,6 +106,10 @@ public class GameController {
     public void executeStep() {
     }
 
+    public void startProgrammingPhase() {
+
+    }
+
     class ImpossibleMoveException extends Exception {
 
         private Player player;
