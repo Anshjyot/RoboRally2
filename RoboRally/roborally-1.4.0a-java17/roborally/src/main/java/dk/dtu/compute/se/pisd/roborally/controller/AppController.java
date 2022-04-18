@@ -3,6 +3,8 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 
 import java.util.Arrays;
@@ -24,7 +26,21 @@ public class AppController {
     // TODO most methods missing here!
 
     public void exit() {
-        // TODO needs to be implemented
+
+        if (gameController != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Exit RoboRally?");
+            alert.setContentText("Are you sure you want to exit RoboRally?");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isEmpty() || result.get() != ButtonType.OK) {
+                return; // return without exiting the application
+            }
+            else{
+                System.exit(0);
+            }
+            // TODO needs to be implemented
+        }
     }
 
 
@@ -80,6 +96,11 @@ public class AppController {
     }
 
     public void loadGame() {
+        // XXX needs to be implememted eventually
+        // for now, we just create a new game
+        if (gameController == null) {
+            newGame();
+        }
     }
 
     public boolean isGameRunning() {
