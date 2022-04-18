@@ -40,7 +40,22 @@ public class GameController {
 
     // TODO lot of stuff missing here
 
+    /**
+     * This is just some dummy controller operation to make a simple move to see something
+     * happening on the board. This method should eventually be deleted!
+     *
+     * @param space the space to which the current player should move
+     */
+    public void moveCurrentPlayerToSpace(@NotNull Space space)  {
+        // TODO Assignment V1: method should be implemented by the students:
+        //   - the current player should be moved to the given space
+        //     (if it is free()
+        //   - and the current player should be set to the player
+        //     following the current player
+        //   - the counter of moves in the game should be increased by one
+        //     if the player is moved
 
+    }
 
     public void moveForward(@NotNull Player player) {
         if (player.board == board) {
@@ -82,6 +97,15 @@ public class GameController {
         player.setSpace(space);
     }
 
+    public void finishProgrammingPhase() {
+    }
+
+    public void executePrograms() {
+    }
+
+    public void executeStep() {
+    }
+
     class ImpossibleMoveException extends Exception {
 
         private Player player;
@@ -94,6 +118,25 @@ public class GameController {
             this.space = space;
             this.heading = heading;
         }
+    }
+    public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
+        CommandCard sourceCard = source.getCard();
+        CommandCard targetCard = target.getCard();
+        if (sourceCard != null && targetCard == null) {
+            target.setCard(sourceCard);
+            source.setCard(null);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * A method called when no corresponding controller operation is implemented yet. This
+     * should eventually be removed.
+     */
+    public void notImplemented() {
+        // XXX just for now to indicate that the actual method is not yet implemented
+        assert false;
     }
 
 }

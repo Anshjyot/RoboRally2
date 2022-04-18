@@ -209,5 +209,18 @@ public class Board extends Subject {
         }
         return result;
     }
+    public String getStatusMessage() {
+        // This is actually a view aspect, but for making the first task easy for
+        // the students, this method gives a string representation of the current
+        // status of the game
+
+        // TODO Assignment V1: this string could eventually be refined
+        //      The status line should show more information based on
+        //      situation; for now, introduce a counter to the Board,
+        //      which is counted up every time a player makes a move; the
+        //      status line should show the current player and the number
+        //      of the current move!
+        return "Player = " + getCurrentPlayer().getName();
+    }
 
 }
