@@ -65,8 +65,20 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         //sætter midlertidigt checkpoint til at være grøn.
         if(space.isSpaceCheckPoint()){
-            //checkPointView();
-            this.setStyle("-fx-background-color: green;");
+            FileInputStream inputstream = null;
+            try {
+                inputstream = new FileInputStream("C:\\Users\\mathi\\IdeaProjects\\RoboRally2\\RoboRally\\roborally-1.4.0a-java17\\roborally\\src\\main\\resources\\RoboRally CheckPoint 1.jpg");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            System.out.println("billede?");
+            assert inputstream != null;
+            Image image = new Image(inputstream);
+            this.setStyle("-fx-background-image: url('" + image + "'); " +
+                    "-fx-background-position: center center; " +
+                    "-fx-background-repeat: stretch;");
+            //checkPointView(space);
+            //this.setStyle("-fx-background-color: green;");
         }
 
         else if ((space.x + space.y) % 2 == 0) {
@@ -87,16 +99,17 @@ public class SpaceView extends StackPane implements ViewObserver {
     public void checkPointView(){
         FileInputStream inputstream = null;
         try {
-            inputstream = new FileInputStream("C:\\Users\\mathi\\IdeaProjects\\RoboRally2\\RoboRally\\roborally-1.4.0a-java17\\roborally\\src\\main\\resources\\RoboRallyCheckPoint1.jpg");
+            inputstream = new FileInputStream("C:\\Users\\mathi\\IdeaProjects\\RoboRally2\\RoboRally\\roborally-1.4.0a-java17\\roborally\\src\\main\\resources\\RoboRally CheckPoint 1.jpg");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.out.println("billede?");
         assert inputstream != null;
         Image image = new Image(inputstream);
-        this.setStyle("-fx-background-image: url('" + image + "'); " +
-                "-fx-background-position: center center; " +
-                "-fx-background-repeat: stretch;");
+        this.setStyle("-fx-background-image: url('" + image + "'); ");
+                //+
+                //"-fx-background-position: center center; " +
+                //"-fx-background-repeat: stretch;");
 
     }
 
