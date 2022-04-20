@@ -196,9 +196,22 @@ public class GameController {
                 case LEFT:
                     this.turnLeft(player);
                     break;
-                case FAST_FORWARD:
-                    this.fastForward(player);
+                case DOUBLE_FORWARD:
+                    this.doubleForward(player);
                     break;
+                case TRIPLE_FORWARD:
+                    this.tripleForward(player);
+                    break;
+                case U_TURN:
+                    this.uTurn(player);
+                    break;
+                case MOVE_BACK:
+                    this.moveBack(player);
+                    break;
+                case OPTION_LEFT_RIGHT:
+                    break;
+
+
                 default:
                     // DO NOTHING (for now)
             }
@@ -221,7 +234,15 @@ public class GameController {
     }
 
     // TODO: V2
-    public void fastForward(@NotNull Player player) {
+    // Move forward twice in current facing direction
+    public void doubleForward(@NotNull Player player) {
+        moveForward(player);
+        moveForward(player);
+    }
+
+    // Move forward 3 times in current facing direction
+    public void tripleForward(@NotNull Player player) {
+        moveForward(player);
         moveForward(player);
         moveForward(player);
     }
@@ -238,6 +259,23 @@ public class GameController {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().prev());
         }
+    }
+
+    // uTurn using Lambda expressions
+    public void uTurn(@NotNull Player player){
+        switch (player.getHeading()) {
+            case SOUTH -> player.setHeading(Heading.NORTH);
+            case EAST -> player.setHeading(Heading.WEST);
+            case WEST -> player.setHeading(Heading.EAST);
+            case NORTH -> player.setHeading(Heading.SOUTH);
+        }
+    }
+
+    // Player rotates, then moves backwards, then rotates to ensure facing direction is correct
+    public void moveBack(@NotNull Player player){
+        uTurn(player);
+        moveForward(player);
+        uTurn(player);
     }
 
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
