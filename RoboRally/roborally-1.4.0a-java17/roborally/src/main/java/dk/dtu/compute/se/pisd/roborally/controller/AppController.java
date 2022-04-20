@@ -26,21 +26,18 @@ public class AppController {
     // TODO most methods missing here!
 
     public void exit() {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+         alert.setTitle("Exit RoboRally?");
+         alert.setContentText("Are you sure you want to exit RoboRally?");
+         Optional<ButtonType> result = alert.showAndWait();
 
-        if (gameController != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Exit RoboRally?");
-            alert.setContentText("Are you sure you want to exit RoboRally?");
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if (result.isEmpty() || result.get() != ButtonType.OK) {
-                return; // return without exiting the application
-            }
-            else{
-                System.exit(0);
-            }
+         if (result.isEmpty() || result.get() != ButtonType.OK) {
+             return; // return without exiting the application
+         }
+         else{
+             System.exit(0);
+         }
             // TODO needs to be implemented
-        }
     }
 
 
