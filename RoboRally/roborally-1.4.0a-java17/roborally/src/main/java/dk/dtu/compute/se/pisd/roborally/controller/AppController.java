@@ -25,9 +25,17 @@ public class AppController {
 
     // TODO most methods missing here!
 
-    public void exit() {
+    //probably shouldn't be static.
+    static void gameFinished(String winnerName){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(winnerName + " has reached all checkpoints and has WON!");
+        alert.setTitle("Congratulations");
+        alert.setContentText("Press OK to exit the game.");
+        Optional<ButtonType> result = alert.showAndWait();
+        System.exit(0);
+    }
 
-        if (gameController != null) {
+    public void exit() {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Exit RoboRally?");
             alert.setContentText("Are you sure you want to exit RoboRally?");
@@ -39,9 +47,8 @@ public class AppController {
             else{
                 System.exit(0);
             }
-            // TODO needs to be implemented
-        }
     }
+
 
 
     public void newGame() {
@@ -62,7 +69,7 @@ public class AppController {
 
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = new Board(8,8);
+            Board board = new Board(4,4);
             gameController = new GameController(board);
             int no = result.get();
             for (int i = 0; i < no; i++) {

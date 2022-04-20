@@ -166,6 +166,7 @@ public class GameController {
                         board.setStep(step);
                         board.setCurrentPlayer(board.getPlayer(0));
                     } else {
+                        checkpointCheck();
                         startProgrammingPhase();
                     }
                 }
@@ -259,5 +260,22 @@ public class GameController {
     public void notImplemented() {
         // XXX just for now to indicate that the actual method is not yet implemented
         assert false;
+    }
+    public void checkpointCheck(){
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            if(currentPlayer.getSpace().isSpaceCheckPoint()){
+                int checkpointNo = currentPlayer.getSpace().getCheckpointNo();
+
+                if(checkpointNo - 1 == currentPlayer.getNoCheckpointReached()){
+                    currentPlayer.reachedCheckpoint();
+                }
+
+                if (currentPlayer.getNoCheckpointReached() >= board.getNoCheckpoint()){
+                    //there is a winner!
+                    AppController.gameFinished(currentPlayer.getName());
+                }
+            }
+        }
     }
 }

@@ -22,12 +22,20 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.util.Objects;
 
 /**
  * ...
@@ -43,7 +51,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     public final Space space;
 
 
-    public SpaceView(@NotNull Space space) {
+    public SpaceView(@NotNull Space space){
         this.space = space;
 
         // XXX the following styling should better be done with styles
@@ -55,7 +63,13 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-        if ((space.x + space.y) % 2 == 0) {
+        //sætter midlertidigt checkpoint til at være grøn.
+        if(space.isSpaceCheckPoint()){
+            //checkPointView();
+            this.setStyle("-fx-background-color: green;");
+        }
+
+        else if ((space.x + space.y) % 2 == 0) {
             this.setStyle("-fx-background-color: white;");
         } else {
             this.setStyle("-fx-background-color: black;");
@@ -66,6 +80,24 @@ public class SpaceView extends StackPane implements ViewObserver {
         // This space view should listen to changes of the space
         space.attach(this);
         update(space);
+    }
+
+
+    //virker ikke
+    public void checkPointView(){
+        FileInputStream inputstream = null;
+        try {
+            inputstream = new FileInputStream("C:\\Users\\mathi\\IdeaProjects\\RoboRally2\\RoboRally\\roborally-1.4.0a-java17\\roborally\\src\\main\\resources\\RoboRallyCheckPoint1.jpg");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("billede?");
+        assert inputstream != null;
+        Image image = new Image(inputstream);
+        this.setStyle("-fx-background-image: url('" + image + "'); " +
+                "-fx-background-position: center center; " +
+                "-fx-background-repeat: stretch;");
+
     }
 
     private void updatePlayer() {
