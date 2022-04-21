@@ -294,10 +294,10 @@ public class GameController {
     // uTurn using Lambda expressions
     public void uTurn(@NotNull Player player){
         switch (player.getHeading()) {
-            case SOUTH -> player.setHeading(Heading.NORTH);
-            case EAST -> player.setHeading(Heading.WEST);
-            case WEST -> player.setHeading(Heading.EAST);
-            case NORTH -> player.setHeading(Heading.SOUTH);
+            case DOWN -> player.setHeading(Heading.UP);
+            case RIGHT -> player.setHeading(Heading.LEFT);
+            case LEFT -> player.setHeading(Heading.RIGHT);
+            case UP -> player.setHeading(Heading.DOWN);
         }
     }
 
