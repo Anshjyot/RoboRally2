@@ -22,9 +22,12 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.RoboRally;
+import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
+import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -32,18 +35,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.css.Rect;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
 import java.util.Objects;
+
 
 /**
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class SpaceView extends StackPane implements ViewObserver {
 
@@ -52,8 +51,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
     public final Space space;
 
-
-    public SpaceView(@NotNull Space space){
+    public SpaceView(@NotNull Space space) {
         this.space = space;
 
         // XXX the following styling should better be done with styles
@@ -65,27 +63,13 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-        //sætter midlertidigt checkpoint til at være grøn.
-        if(space.isSpaceCheckPoint()){
-            /* FileInputStream inputstream = null;
-            try {
-                inputstream = new FileInputStream("C:\\Users\\mathi\\IdeaProjects\\RoboRally2\\RoboRally\\roborally-1.4.0a-java17\\roborally\\src\\main\\resources\\RoboRally CheckPoint 1.jpg");
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            assert inputstream != null;
-            Image image = new Image(inputstream);
-            this.setStyle("-fx-background-image: url('" + image + "'); " +
-                    "-fx-background-position: center center; " +
-                    "-fx-background-repeat: stretch;"); */
-            //checkPointView(space);
-            this.setStyle("-fx-background-color: green;");
-        }
+        
+        if ((space.x + space.y) % 2 == 0) {
+           this.setStyle("-fx-background-color: white;");
 
-        else if ((space.x + space.y) % 2 == 0) {
-            this.setStyle("-fx-background-color: white;");
         } else {
-            this.setStyle("-fx-background-color: black;");
+
+           this.setStyle("-fx-background-color: black;");
         }
 
         // updatePlayer();
@@ -93,24 +77,8 @@ public class SpaceView extends StackPane implements ViewObserver {
         // This space view should listen to changes of the space
         space.attach(this);
         update(space);
-    }
 
 
-    //virker ikke
-    public void checkPointView(){
-        FileInputStream inputstream = null;
-        try {
-            inputstream = new FileInputStream("C:\\Users\\mathi\\IdeaProjects\\RoboRally2\\RoboRally\\roborally-1.4.0a-java17\\roborally\\src\\main\\resources\\RoboRally CheckPoint 1.jpg");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        System.out.println("billede?");
-        assert inputstream != null;
-        Image image = new Image(inputstream);
-        this.setStyle("-fx-background-image: url('" + image + "'); ");
-                //+
-                //"-fx-background-position: center center; " +
-                //"-fx-background-repeat: stretch;");
     }
 
     private void updatePlayer() {
@@ -120,7 +88,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         if (player != null) {
             Polygon arrow = new Polygon(0.0, 0.0,
                     10.0, 20.0,
-                    20.0, 0.0 );
+                    20.0, 0.0);
             try {
                 arrow.setFill(Color.valueOf(player.getColor()));
             } catch (Exception e) {
@@ -128,15 +96,63 @@ public class SpaceView extends StackPane implements ViewObserver {
             }
 
             arrow.setRotate((90*player.getHeading().ordinal())%360);
+            Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
+            GraphicsContext gc = canvas.getGraphicsContext2D();
+            gc.setStroke(Color.GREEN);
+            gc.setLineWidth(1);
+
+            this.getChildren().add(canvas);
+            gc.setStroke(Color.YELLOW);
+            gc.setLineWidth(1);
             this.getChildren().add(arrow);
         }
-    }
+           /*
+            try {
+                arrow.setFill(Color.valueOf(player.getColor()));
+            } catch (Exception e) {
+                arrow.setFill(Color.MEDIUMPURPLE);
+            }
+
+            arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
+            this.getChildren().add(arrow); */
+        }
+
+
 
     @Override
     public void updateView(Subject subject) {
+        this.getChildren().clear();
         if (subject == this.space) {
+            updateNormalSpace();
+            if(this.space.getStartPoint()){
+                StartpointView.drawStartpoint(this);
+            }
+
+            if(!this.space.getWalls().isEmpty()){
+                WallView.drawWall(this, this.space);
+            }
+
+            for(FieldAction fa : space.getActions()) {
+                if (fa instanceof ConveyorBelt) {
+                    ConveyorBeltView.drawConveyorBeltView(this, fa);
+
+                }
+            }
+
             updatePlayer();
         }
     }
 
+    public void updateNormalSpace(){
+        //Rectangle rect = new Rectangle(50,50);
+        //rect.setFill(Color.GREEN);
+        Image image = new Image("file:space.png", 50, 50, true, true);
+        Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
+        GraphicsContext graphic = canvas.getGraphicsContext2D();
+        graphic.drawImage(image, 0,0);
+        this.getChildren().add(canvas);
+    }
+
+
 }
+

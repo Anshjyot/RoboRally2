@@ -36,6 +36,7 @@ import java.util.List;
 public class Space extends Subject {
 
     private Player player;
+    public boolean startPoint = false;
 
     private List<Heading> walls = new ArrayList<>();
     private List<FieldAction> actions = new ArrayList<>();
@@ -95,6 +96,14 @@ public class Space extends Subject {
 
     public List<FieldAction> getActions() {
         return actions;
+    }
+
+    public void setStartPoint(boolean bool) {
+        this.startPoint = bool;
+    }
+
+    public boolean getStartPoint() {
+        return startPoint;
     }
 
     void playerChanged() {

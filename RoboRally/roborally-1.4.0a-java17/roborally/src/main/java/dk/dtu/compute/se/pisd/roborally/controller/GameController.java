@@ -20,7 +20,6 @@
  *
  */
 package dk.dtu.compute.se.pisd.roborally.controller;
-
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,6 +31,17 @@ import org.jetbrains.annotations.NotNull;
  */
 public class GameController {
 
+    static class ImpossibleMoveException extends Exception {
+        private Player player;
+        private Space space;
+        private Heading heading;
+
+        public ImpossibleMoveException(Player player, Space space, Heading heading) {
+            this.player = player;
+            this.space = space;
+            this.heading = heading;
+        }
+    }
 
     final public Board board;
 
@@ -226,12 +236,31 @@ public class GameController {
             Heading heading = player.getHeading();
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
-                // XXX note that this removes an other player from the space, when there
-                //     is another player on the target. Eventually, this needs to be
-                //     implemented in a way so that other players are pushed away!
-                target.setPlayer(player);
+                try {
+                    moveToSpace(player,target,heading);
+                } catch (ImpossibleMoveException e) {
+
+                }
+                //target.setPlayer(player);
+
             }
         }
+    }
+
+    public void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
+        assert board.getNeighbour(player.getSpace(), heading) == space; // valid move or not
+        Player other = space.getPlayer();
+        if (other != null){
+            Space target = board.getNeighbour(space, heading);
+            if (target != null) {
+                moveToSpace(other, target, heading);
+
+                assert target.getPlayer() == null : target;
+            } else {
+                throw new ImpossibleMoveException(player, space, heading);
+            }
+        }
+        player.setSpace(space);
     }
 
     // TODO: V2
