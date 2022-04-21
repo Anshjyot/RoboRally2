@@ -30,7 +30,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.css.Rect;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -45,8 +47,8 @@ import java.util.Objects;
  */
 public class SpaceView extends StackPane implements ViewObserver {
 
-    final public static int SPACE_HEIGHT = 60; // 75;
-    final public static int SPACE_WIDTH = 60; // 75;
+    final public static int SPACE_HEIGHT = 50; // 75;
+    final public static int SPACE_WIDTH = 50; // 75;
 
     public final Space space;
 
@@ -65,20 +67,19 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         //sætter midlertidigt checkpoint til at være grøn.
         if(space.isSpaceCheckPoint()){
-            FileInputStream inputstream = null;
+            /* FileInputStream inputstream = null;
             try {
                 inputstream = new FileInputStream("C:\\Users\\mathi\\IdeaProjects\\RoboRally2\\RoboRally\\roborally-1.4.0a-java17\\roborally\\src\\main\\resources\\RoboRally CheckPoint 1.jpg");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            System.out.println("billede?");
             assert inputstream != null;
             Image image = new Image(inputstream);
             this.setStyle("-fx-background-image: url('" + image + "'); " +
                     "-fx-background-position: center center; " +
-                    "-fx-background-repeat: stretch;");
+                    "-fx-background-repeat: stretch;"); */
             //checkPointView(space);
-            //this.setStyle("-fx-background-color: green;");
+            this.setStyle("-fx-background-color: green;");
         }
 
         else if ((space.x + space.y) % 2 == 0) {
@@ -110,7 +111,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                 //+
                 //"-fx-background-position: center center; " +
                 //"-fx-background-repeat: stretch;");
-
     }
 
     private void updatePlayer() {
