@@ -299,6 +299,13 @@ public class GameController {
         // XXX just for now to indicate that the actual method is not yet implemented
         assert false;
     }
+
+    /**
+     * @author Mathilde Elia S215811
+     * checkpointCheck() is used when the activation phase has ended
+     * and the system needs to register players who are standing on a (correct) checkpoint.
+     * If a player has reached all checkpoint on the board, then the game finishes.
+     */
     public void checkpointCheck(){
         for(int i = 0; i < board.getPlayersNumber(); i++){
             Player currentPlayer = board.getPlayer(i);

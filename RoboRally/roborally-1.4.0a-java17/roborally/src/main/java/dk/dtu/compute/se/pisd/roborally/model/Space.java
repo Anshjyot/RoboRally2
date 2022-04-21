@@ -75,12 +75,21 @@ public class Space extends Subject {
         }
     }
 
-    //makes space a checkpoint and gives it a number.
+    /**
+     * @author Mathilde Elia S215811
+     * addCheckpoint makes space a checkpoint (isCheckpoint = true) and gives it a number
+     * which is specified in the Board class.
+     */
     public void addCheckPoint(){
         isCheckPoint = true;
         this.checkpointNo = board.getNoCheckpoint();
     }
 
+
+    /**
+     * @author Mathilde Elia S215811
+     * isSpaceCheckPoint() is used to check if a specific space contains a checkpoint.
+     */
     public boolean isSpaceCheckPoint(){
         return isCheckPoint;
     }

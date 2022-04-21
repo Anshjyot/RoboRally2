@@ -65,7 +65,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-        //sætter midlertidigt checkpoint til at være grøn.
+        //checkpoints are temporarily made green until images are added.
         if(space.isSpaceCheckPoint()){
             /* FileInputStream inputstream = null;
             try {
@@ -96,7 +96,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
 
-    //virker ikke
+    //doesn't work
     public void checkPointView(){
         FileInputStream inputstream = null;
         try {
@@ -104,7 +104,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("billede?");
         assert inputstream != null;
         Image image = new Image(inputstream);
         this.setStyle("-fx-background-image: url('" + image + "'); ");
