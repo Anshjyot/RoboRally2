@@ -42,6 +42,9 @@ public class Space extends Subject {
 
     public final Board board;
 
+    private boolean isCheckPoint = false;
+    private int checkpointNo;
+
     public final int x;
     public final int y;
 
@@ -70,6 +73,20 @@ public class Space extends Subject {
             }
             notifyChange();
         }
+    }
+
+    //makes space a checkpoint and gives it a number.
+    public void addCheckPoint(){
+        isCheckPoint = true;
+        this.checkpointNo = board.getNoCheckpoint();
+    }
+
+    public boolean isSpaceCheckPoint(){
+        return isCheckPoint;
+    }
+
+    public int getCheckpointNo(){
+        return this.checkpointNo;
     }
 
     public List<Heading> getWalls() {
