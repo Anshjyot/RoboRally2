@@ -55,7 +55,7 @@ public class Board extends Subject {
 
     private boolean stepMode;
 
-    int[] checkPointXY = {2,2};
+    int[] checkPointXY = {6,6};
 
     private int noCheckpoint = 0;
 
