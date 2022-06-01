@@ -98,7 +98,7 @@ public class RoboRally extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-
+//
         // XXX just in case we need to do something here eventually;
         //     but right now the only way for the user to exit the app
         //     is delegated to the exit() method in the AppController,

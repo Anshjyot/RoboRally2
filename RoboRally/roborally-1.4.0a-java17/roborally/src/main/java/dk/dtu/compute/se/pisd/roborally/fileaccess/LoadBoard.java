@@ -33,6 +33,9 @@ import dk.dtu.compute.se.pisd.roborally.model.Space;
 
 import java.io.*;
 
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.awt.image.ImageObserver.WIDTH;
+
 /**
  * ...
  *
@@ -53,7 +56,7 @@ public class LoadBoard {
         InputStream inputStream = classLoader.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
         if (inputStream == null) {
             // TODO these constants should be defined somewhere
-            return new Board(8,8);
+            return new Board(WIDTH,HEIGHT);
         }
 
 		// In simple cases, we can create a Gson object with new Gson():
