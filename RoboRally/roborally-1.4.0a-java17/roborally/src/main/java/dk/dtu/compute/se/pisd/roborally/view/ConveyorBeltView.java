@@ -17,7 +17,7 @@ import static java.awt.Color.green;
  * @author Anshjyot Singh, s215806
  *
  */
-
+//
 public class ConveyorBeltView {
 
     public static void drawConveyorBeltView(SpaceView spaceView, FieldAction fieldAction) {
