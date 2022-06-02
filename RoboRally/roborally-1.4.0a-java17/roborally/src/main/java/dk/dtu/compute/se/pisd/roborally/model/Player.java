@@ -55,7 +55,6 @@ public class Player extends Subject {
         this.board = board;
         this.name = name;
         this.color = color;
-        this.checkpoints = 0;
 
         this.space = null;
 

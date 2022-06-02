@@ -88,7 +88,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         }
         if(space.isWall()) {
             this.setStyle("-fx-background-color: red;");
-            updateWall();
+            //updateWall();
             //laver en linje - kan måske bruges til laser
             Line line = new Line();
             line.setStartX(200);
@@ -105,10 +105,10 @@ public class SpaceView extends StackPane implements ViewObserver {
             rectangle.setY(20);
             rectangle.setStroke(Color.BLACK);
 
-            Image image = new Image("wall.png");
+           Image image = new Image("wall.png");
             ImageView imageView = new ImageView(image);
-            imageView.setX(400);
-            imageView.setY(400);
+            imageView.setX(20);
+            imageView.setY(20);
 
             this.getChildren().add(rectangle);
             this.getChildren().add(imageView);
@@ -131,6 +131,12 @@ public class SpaceView extends StackPane implements ViewObserver {
                 this.getChildren().remove(i);
             }
 
+        }
+        //fjerner ikke altid...
+        for (int i = 0; i < this.getChildren().size(); i++) {
+            if (this.getChildren().get(i).getClass().getSimpleName().equals("Canvas")) {
+                this.getChildren().remove(i);
+            }
         }
 
         Player player = space.getPlayer();
@@ -170,6 +176,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     /**
      * Draws the walls on the gameboard.
      */
+    /*
     private void updateWall() {
         ImagePattern wall = new ImagePattern(new Image("Pictures/wall.png"));
 
@@ -189,7 +196,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         }
 
     }
-
+        */
 
     @Override
     public void updateView(Subject subject) {
@@ -211,7 +218,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             }
         }
         updatePlayer();
-        updateWall();
+       // updateWall();
     }
 
     public void updateNormalSpace() {
