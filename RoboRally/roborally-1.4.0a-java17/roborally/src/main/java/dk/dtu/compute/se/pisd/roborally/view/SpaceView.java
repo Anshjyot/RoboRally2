@@ -101,16 +101,19 @@ public class SpaceView extends StackPane implements ViewObserver {
                 arrow.setFill(Color.MEDIUMPURPLE);
             }
 
-            arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
+            arrow.setRotate((180 * player.getHeading().ordinal()) % 360);
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.setStroke(Color.GREEN);
             gc.setLineWidth(1);
+            gc.strokeText(String.valueOf(player.getCheckpoints()), SpaceView.SPACE_WIDTH*0.8, SpaceView.SPACE_WIDTH*0.2);
 
             this.getChildren().add(canvas);
             gc.setStroke(Color.YELLOW);
             gc.setLineWidth(1);
+            gc.strokeText(String.valueOf(player.getCheckpoints()), SpaceView.SPACE_WIDTH*0.8, SpaceView.SPACE_WIDTH*0.2);
             this.getChildren().add(arrow);
+
         }
            /*
             try {
@@ -128,7 +131,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     public void updateView(Subject subject) {
         this.getChildren().clear();
         if (subject == this.space) {
-            updateNormalSpace();
+            updateSpace();
             if (this.space.getStartPoint()) {
                 StartpointView.drawStartpoint(this);
             }
@@ -146,7 +149,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         updatePlayer();
     }
 
-    public void updateNormalSpace() {
+    public void updateSpace() {
         this.getChildren().clear();
 
         //Rectangle rect = new Rectangle(50,50);
