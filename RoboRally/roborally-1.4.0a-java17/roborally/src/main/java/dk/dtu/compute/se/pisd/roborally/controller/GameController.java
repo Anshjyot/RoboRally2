@@ -72,7 +72,6 @@ public class GameController {
                 board.setCurrentPlayer(board.getPlayer(playerNumber));
             }
         }
-
     }
 
     // XXX: V2
