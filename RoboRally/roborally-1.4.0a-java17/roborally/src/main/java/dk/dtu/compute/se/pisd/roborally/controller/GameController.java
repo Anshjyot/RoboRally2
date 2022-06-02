@@ -72,7 +72,6 @@ public class GameController {
                 board.setCurrentPlayer(board.getPlayer(playerNumber));
             }
         }
-
     }
 
     // XXX: V2
@@ -176,6 +175,7 @@ public class GameController {
                         board.setStep(step);
                         board.setCurrentPlayer(board.getPlayer(0));
                     } else {
+
                         checkpointCheck();
                         startProgrammingPhase();
                     }
@@ -344,7 +344,6 @@ public class GameController {
                 if(checkpointNo - 1 == currentPlayer.getNoCheckpointReached()){
                     currentPlayer.reachedCheckpoint();
                 }
-
                 if (currentPlayer.getNoCheckpointReached() >= board.getNoCheckpoint()){
                     //there is a winner!
                     AppController.gameFinished(currentPlayer.getName());
