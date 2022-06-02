@@ -29,7 +29,7 @@ package dk.dtu.compute.se.pisd.roborally.model;
  */
 public enum Heading {
 
-    LEFT, UP, DOWN, RIGHT;
+    DOWN, LEFT, UP, RIGHT;
 
     public Heading next() {
         return values()[(this.ordinal() + 1) % values().length];

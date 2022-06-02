@@ -42,7 +42,8 @@ import java.io.FileNotFoundException;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-public class BoardView extends VBox implements ViewObserver {
+public class
+BoardView extends VBox implements ViewObserver {
 
     private Board board;
 
