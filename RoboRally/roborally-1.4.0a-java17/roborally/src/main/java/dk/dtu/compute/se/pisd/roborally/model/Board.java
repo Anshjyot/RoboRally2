@@ -59,6 +59,9 @@ public class Board extends Subject {
 
     private int noCheckpoint = 0;
 
+    int[] getWalls = {5,5};
+    
+
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
@@ -175,7 +178,7 @@ public class Board extends Subject {
         return this.noCheckpoint;
     }
 
-
+    public int[] getWalls() {return this.getWalls;}
     /**
      * Returns the neighbour of the given space of the board in the given heading.
      * The neighbour is returned only, if it can be reached from the given space
