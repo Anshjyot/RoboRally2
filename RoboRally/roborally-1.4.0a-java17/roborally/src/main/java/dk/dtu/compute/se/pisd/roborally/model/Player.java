@@ -41,6 +41,7 @@ public class Player extends Subject {
 
     private String name;
     private String color;
+    private int checkpoints;
 
     private Space space;
     private Heading heading = DOWN;
@@ -54,6 +55,7 @@ public class Player extends Subject {
         this.board = board;
         this.name = name;
         this.color = color;
+        this.checkpoints = 0;
 
         this.space = null;
 
@@ -135,10 +137,16 @@ public class Player extends Subject {
         return cards[i];
     }
 
+    public int getCheckpoints(){
+        return checkpoints;
+    }
+
     public void reachedCheckpoint(){
         noCheckpointReached++;
     }
     public int getNoCheckpointReached(){
         return this.noCheckpointReached;
     }
+
+
 }
