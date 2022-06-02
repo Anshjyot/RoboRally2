@@ -31,6 +31,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+
 /**
  * ...
  *
@@ -81,7 +83,12 @@ public class RoboRally extends Application {
 
         if (gameController != null) {
             // create and add view for new board
-            BoardView boardView = new BoardView(gameController);
+            BoardView boardView = null;
+            try {
+                boardView = new BoardView(gameController);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             boardRoot.setCenter(boardView);
         }
 
@@ -91,7 +98,7 @@ public class RoboRally extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-
+//
         // XXX just in case we need to do something here eventually;
         //     but right now the only way for the user to exit the app
         //     is delegated to the exit() method in the AppController,

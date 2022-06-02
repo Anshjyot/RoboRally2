@@ -176,6 +176,7 @@ public class GameController {
                         board.setStep(step);
                         board.setCurrentPlayer(board.getPlayer(0));
                     } else {
+                        checkpointCheck();
                         startProgrammingPhase();
                     }
                 }
@@ -206,9 +207,22 @@ public class GameController {
                 case LEFT:
                     this.turnLeft(player);
                     break;
-                case FAST_FORWARD:
-                    this.fastForward(player);
+                case DOUBLE_FORWARD:
+                    this.doubleForward(player);
                     break;
+                case TRIPLE_FORWARD:
+                    this.tripleForward(player);
+                    break;
+                case U_TURN:
+                    this.uTurn(player);
+                    break;
+                case MOVE_BACK:
+                    this.moveBack(player);
+                    break;
+                case OPTION_LEFT_RIGHT:
+                    break;
+
+
                 default:
                     // DO NOTHING (for now)
             }
@@ -250,7 +264,15 @@ public class GameController {
     }
 
     // TODO: V2
-    public void fastForward(@NotNull Player player) {
+    // Move forward twice in current facing direction
+    public void doubleForward(@NotNull Player player) {
+        moveForward(player);
+        moveForward(player);
+    }
+
+    // Move forward 3 times in current facing direction
+    public void tripleForward(@NotNull Player player) {
+        moveForward(player);
         moveForward(player);
         moveForward(player);
     }
@@ -267,6 +289,23 @@ public class GameController {
         if (player != null && player.board == board) {
             player.setHeading(player.getHeading().prev());
         }
+    }
+
+    // uTurn using Lambda expressions
+    public void uTurn(@NotNull Player player){
+        switch (player.getHeading()) {
+            case DOWN -> player.setHeading(Heading.UP);
+            case RIGHT -> player.setHeading(Heading.LEFT);
+            case LEFT -> player.setHeading(Heading.RIGHT);
+            case UP -> player.setHeading(Heading.DOWN);
+        }
+    }
+
+    // Player rotates, then moves backwards, then rotates to ensure facing direction is correct
+    public void moveBack(@NotNull Player player){
+        uTurn(player);
+        moveForward(player);
+        uTurn(player);
     }
 
     public boolean moveCards(@NotNull CommandCardField source, @NotNull CommandCardField target) {
@@ -288,5 +327,29 @@ public class GameController {
     public void notImplemented() {
         // XXX just for now to indicate that the actual method is not yet implemented
         assert false;
+    }
+
+    /**
+     * @author Mathilde Elia S215811
+     * checkpointCheck() is used when the activation phase has ended
+     * and the system needs to register players who are standing on a (correct) checkpoint.
+     * If a player has reached all checkpoint on the board, then the game finishes.
+     */
+    public void checkpointCheck(){
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            if(currentPlayer.getSpace().isSpaceCheckPoint()){
+                int checkpointNo = currentPlayer.getSpace().getCheckpointNo();
+
+                if(checkpointNo - 1 == currentPlayer.getNoCheckpointReached()){
+                    currentPlayer.reachedCheckpoint();
+                }
+
+                if (currentPlayer.getNoCheckpointReached() >= board.getNoCheckpoint()){
+                    //there is a winner!
+                    AppController.gameFinished(currentPlayer.getName());
+                }
+            }
+        }
     }
 }

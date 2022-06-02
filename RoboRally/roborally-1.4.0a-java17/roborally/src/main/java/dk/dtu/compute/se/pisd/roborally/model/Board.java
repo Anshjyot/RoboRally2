@@ -55,6 +55,10 @@ public class Board extends Subject {
 
     private boolean stepMode;
 
+    int[] checkPointXY = {6,6};
+
+    private int noCheckpoint = 0;
+
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
@@ -63,6 +67,11 @@ public class Board extends Subject {
             for(int y = 0; y < height; y++) {
                 Space space = new Space(this, x, y);
                 spaces[x][y] = space;
+                if (x == checkPointXY[0] && y == checkPointXY[1]){
+                    noCheckpoint++;
+                    space.addCheckPoint();
+                }
+
             }
         }
         this.stepMode = false;
@@ -161,6 +170,11 @@ public class Board extends Subject {
             return -1;
         }
     }
+
+    public int getNoCheckpoint(){
+        return this.noCheckpoint;
+    }
+
 
     /**
      * Returns the neighbour of the given space of the board in the given heading.

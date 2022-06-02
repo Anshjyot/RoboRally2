@@ -34,6 +34,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileNotFoundException;
+
 /**
  * ...
  *
@@ -53,7 +55,7 @@ public class BoardView extends VBox implements ViewObserver {
 
     private SpaceEventHandler spaceEventHandler;
 
-    public BoardView(@NotNull GameController gameController) {
+    public BoardView(@NotNull GameController gameController) throws FileNotFoundException {
         board = gameController.board;
 
         mainBoardPane = new GridPane();

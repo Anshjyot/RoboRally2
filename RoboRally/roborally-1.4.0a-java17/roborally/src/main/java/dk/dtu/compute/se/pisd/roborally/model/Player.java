@@ -45,6 +45,8 @@ public class Player extends Subject {
     private Space space;
     private Heading heading = DOWN;
 
+    private int noCheckpointReached = 0;
+
     private CommandCardField[] program;
     private CommandCardField[] cards;
 
@@ -133,4 +135,10 @@ public class Player extends Subject {
         return cards[i];
     }
 
+    public void reachedCheckpoint(){
+        noCheckpointReached++;
+    }
+    public int getNoCheckpointReached(){
+        return this.noCheckpointReached;
+    }
 }

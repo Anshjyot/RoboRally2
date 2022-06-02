@@ -32,10 +32,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Objects;
 
 
@@ -63,13 +66,16 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-        
-        if ((space.x + space.y) % 2 == 0) {
-           this.setStyle("-fx-background-color: white;");
+        if (space.isSpaceCheckPoint()) {
+            this.setStyle("-fx-background-color: green;");
+        } else if ((space.x + space.y) % 2 == 0) {
+            this.setStyle("-fx-background-color: white;");
+
 
         } else {
 
-           this.setStyle("-fx-background-color: black;");
+            this.setStyle("-fx-background-color: black;");
+
         }
 
         // updatePlayer();
@@ -95,7 +101,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 arrow.setFill(Color.MEDIUMPURPLE);
             }
 
-            arrow.setRotate((90*player.getHeading().ordinal())%360);
+            arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.setStroke(Color.GREEN);
@@ -115,8 +121,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
             this.getChildren().add(arrow); */
-        }
-
+    }
 
 
     @Override
@@ -124,26 +129,26 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.getChildren().clear();
         if (subject == this.space) {
             updateNormalSpace();
-            if(this.space.getStartPoint()){
+            if (this.space.getStartPoint()) {
                 StartpointView.drawStartpoint(this);
             }
 
-            if(!this.space.getWalls().isEmpty()){
+            if (!this.space.getWalls().isEmpty()) {
                 WallView.drawWall(this, this.space);
             }
-
-            for(FieldAction fa : space.getActions()) {
-                if (fa instanceof ConveyorBelt) {
-                    ConveyorBeltView.drawConveyorBeltView(this, fa);
-
-                }
-            }
-
-            updatePlayer();
         }
+        for (FieldAction fa : space.getActions()) {
+            if (fa instanceof ConveyorBelt) {
+                ConveyorBeltView.drawConveyorBeltView(this, fa);
+
+            }
+        }
+        updatePlayer();
     }
 
-    public void updateNormalSpace(){
+    public void updateNormalSpace() {
+        this.getChildren().clear();
+
         //Rectangle rect = new Rectangle(50,50);
         //rect.setFill(Color.GREEN);
         Image image = new Image("file:space.png", 50, 50, true, true);
@@ -151,6 +156,28 @@ public class SpaceView extends StackPane implements ViewObserver {
         GraphicsContext graphic = canvas.getGraphicsContext2D();
         graphic.drawImage(image, 0,0);
         this.getChildren().add(canvas);
+        // canvas.requestFocus();
+        //System.out.println(canvas.isFocused());
+
+
+        /*
+        Circle circle = new Circle();
+        circle.setCenterX(100.0f);
+        circle.setCenterY(100.0f);
+        circle.setRadius(50.0f);
+        circle.setFill(Color.RED);
+        Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setStroke(Color.YELLOW);
+        gc.setLineWidth(1);
+
+        this.getChildren().add(canvas);
+        gc.setStroke(Color.YELLOW);
+        gc.setLineWidth(1);
+        this.getChildren().add(circle);
+
+*/
+        //System.out.println(canvas.setStyle(graphic.drawImage(file:space.png, 50, 50)));
     }
 
 
