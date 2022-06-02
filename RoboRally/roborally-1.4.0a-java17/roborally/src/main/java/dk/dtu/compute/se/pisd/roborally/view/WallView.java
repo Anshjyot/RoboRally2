@@ -2,10 +2,10 @@ package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
+import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-
 import java.util.List;
 
 /**
@@ -28,8 +28,8 @@ public class WallView {
                 Heading header = walls.get(i);
                 switch (header) {
                     case DOWN -> graphic.drawImage(wallNorthSouth, 0, 44);
-                    case UP -> graphic.drawImage(wallNorthSouth, 0, 0);
                     case LEFT -> graphic.drawImage(wallWestEast, 0, 0);
+                    case UP -> graphic.drawImage(wallNorthSouth, 0, 0);
                     case RIGHT -> graphic.drawImage(wallWestEast, 44, 0);
                 }
             }
