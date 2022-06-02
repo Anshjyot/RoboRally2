@@ -43,7 +43,7 @@ public class Player extends Subject {
     private String color;
 
     private Space space;
-    private Heading heading = UP;
+    private Heading heading = DOWN;
 
     private int noCheckpointReached = 0;
 
