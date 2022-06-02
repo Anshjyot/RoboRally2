@@ -175,8 +175,8 @@ public class GameController {
                         board.setStep(step);
                         board.setCurrentPlayer(board.getPlayer(0));
                     } else {
-
-                        checkpointCheck();
+                        activateFieldAction();
+                        //checkpointCheck();
                         startProgrammingPhase();
                     }
                 }
@@ -187,6 +187,16 @@ public class GameController {
         } else {
             // this should not happen
             assert false;
+        }
+    }
+
+    private void activateFieldAction(){
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            Space currentSpace = currentPlayer.getSpace();
+            for(FieldAction fa : currentSpace.getActions()){
+                fa.doAction(this, currentSpace);
+            }
         }
     }
 
@@ -335,6 +345,7 @@ public class GameController {
      * and the system needs to register players who are standing on a (correct) checkpoint.
      * If a player has reached all checkpoint on the board, then the game finishes.
      */
+    /*
     public void checkpointCheck(){
         for(int i = 0; i < board.getPlayersNumber(); i++){
             Player currentPlayer = board.getPlayer(i);
@@ -350,5 +361,5 @@ public class GameController {
                 }
             }
         }
-    }
+    } */
 }

@@ -22,6 +22,7 @@
 package dk.dtu.compute.se.pisd.roborally.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
+import dk.dtu.compute.se.pisd.roborally.controller.CheckpointController;
 import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
 
 import java.util.ArrayList;
@@ -43,9 +44,6 @@ public class Space extends Subject {
 
     public final Board board;
 
-    private boolean isCheckPoint = false;
-    private int checkpointNo;
-
     public final int x;
     public final int y;
 
@@ -53,6 +51,13 @@ public class Space extends Subject {
         this.board = board;
         this.x = x;
         this.y = y;
+
+        if(x == 3 && y ==5){
+            CheckpointController checkPoint = new CheckpointController();
+            checkPoint.setCheckpointNo(1);
+            this.getActions().add(checkPoint);
+            System.out.print("space 3, 5");
+        }
         player = null;
     }
 
@@ -74,29 +79,6 @@ public class Space extends Subject {
             }
             notifyChange();
         }
-    }
-
-    /**
-     * @author Mathilde Elia S215811
-     * addCheckpoint makes space a checkpoint (isCheckpoint = true) and gives it a number
-     * which is specified in the Board class.
-     */
-    public void addCheckPoint(){
-        isCheckPoint = true;
-        this.checkpointNo = board.getNoCheckpoint();
-    }
-
-
-    /**
-     * @author Mathilde Elia S215811
-     * isSpaceCheckPoint() is used to check if a specific space contains a checkpoint.
-     */
-    public boolean isSpaceCheckPoint(){
-        return isCheckPoint;
-    }
-
-    public int getCheckpointNo(){
-        return this.checkpointNo;
     }
 
     public List<Heading> getWalls() {

@@ -55,9 +55,7 @@ public class Board extends Subject {
 
     private boolean stepMode;
 
-    int[] checkPointXY = {6,6};
-
-    private int noCheckpoint = 0;
+    private int noOfCheckpoints = 1;
 
     int[] getWalls = {5,5};
     
@@ -70,11 +68,6 @@ public class Board extends Subject {
             for(int y = 0; y < height; y++) {
                 Space space = new Space(this, x, y);
                 spaces[x][y] = space;
-                if (x == checkPointXY[0] && y == checkPointXY[1]){
-                    noCheckpoint++;
-                    space.addCheckPoint();
-                }
-
             }
         }
         this.stepMode = false;
@@ -174,8 +167,9 @@ public class Board extends Subject {
         }
     }
 
-    public int getNoCheckpoint(){
-        return this.noCheckpoint;
+
+    public int getNoOfCheckpoints(){
+        return this.noOfCheckpoints;
     }
 
     public int[] getWalls() {return this.getWalls;}
