@@ -71,6 +71,9 @@ public class Board extends Subject {
                     noCheckpoint++;
                     space.addCheckPoint();
                 }
+                if(x==4 && y==6){
+                    space.addWall();
+                }
 
             }
         }

@@ -46,6 +46,8 @@ public class Space extends Subject {
     private boolean isCheckPoint = false;
     private int checkpointNo;
 
+    private boolean isWall = false;
+
     public final int x;
     public final int y;
 
@@ -101,6 +103,13 @@ public class Space extends Subject {
 
     public List<Heading> getWalls() {
         return walls;
+    }
+    public void addWall(){
+        isWall=true;
+    }
+
+    public boolean isWall() {
+        return isWall;
     }
 
     public List<FieldAction> getActions() {
