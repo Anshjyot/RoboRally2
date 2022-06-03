@@ -28,10 +28,13 @@ import dk.dtu.compute.se.pisd.roborally.model.Phase;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.FileNotFoundException;
 
 /**
  * ...
@@ -39,7 +42,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-public class BoardView extends VBox implements ViewObserver {
+public class
+BoardView extends VBox implements ViewObserver {
 
     private Board board;
 
@@ -52,7 +56,7 @@ public class BoardView extends VBox implements ViewObserver {
 
     private SpaceEventHandler spaceEventHandler;
 
-    public BoardView(@NotNull GameController gameController) {
+    public BoardView(@NotNull GameController gameController) throws FileNotFoundException {
         board = gameController.board;
 
         mainBoardPane = new GridPane();

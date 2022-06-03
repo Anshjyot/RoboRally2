@@ -55,6 +55,13 @@ public class Board extends Subject {
 
     private boolean stepMode;
 
+    int[] checkPointXY = {6,6};
+
+    private int noCheckpoint = 0;
+
+    int[] getWalls = {5,5};
+    
+
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
@@ -63,6 +70,14 @@ public class Board extends Subject {
             for(int y = 0; y < height; y++) {
                 Space space = new Space(this, x, y);
                 spaces[x][y] = space;
+                if (x == checkPointXY[0] && y == checkPointXY[1]){
+                    noCheckpoint++;
+                    space.addCheckPoint();
+                }
+                if(x==4 && y==6){
+                    space.addWall();
+                }
+
             }
         }
         this.stepMode = false;
@@ -162,6 +177,11 @@ public class Board extends Subject {
         }
     }
 
+    public int getNoCheckpoint(){
+        return this.noCheckpoint;
+    }
+
+    public int[] getWalls() {return this.getWalls;}
     /**
      * Returns the neighbour of the given space of the board in the given heading.
      * The neighbour is returned only, if it can be reached from the given space
@@ -187,16 +207,16 @@ public class Board extends Subject {
         int x = space.x;
         int y = space.y;
         switch (heading) {
-            case SOUTH:
+            case DOWN:
                 y = (y + 1) % height;
                 break;
-            case WEST:
+            case LEFT:
                 x = (x + width - 1) % width;
                 break;
-            case NORTH:
+            case UP:
                 y = (y + height - 1) % height;
                 break;
-            case EAST:
+            case RIGHT:
                 x = (x + 1) % width;
                 break;
         }

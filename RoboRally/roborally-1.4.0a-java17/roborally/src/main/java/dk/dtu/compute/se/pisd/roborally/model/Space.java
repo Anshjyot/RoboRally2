@@ -36,11 +36,17 @@ import java.util.List;
 public class Space extends Subject {
 
     private Player player;
+    public boolean startPoint = false;
 
     private List<Heading> walls = new ArrayList<>();
     private List<FieldAction> actions = new ArrayList<>();
 
     public final Board board;
+
+    private boolean isCheckPoint = false;
+    private int checkpointNo;
+
+    private boolean isWall = false;
 
     public final int x;
     public final int y;
@@ -72,12 +78,50 @@ public class Space extends Subject {
         }
     }
 
+    /**
+     * @author Mathilde Elia S215811
+     * addCheckpoint makes space a checkpoint (isCheckpoint = true) and gives it a number
+     * which is specified in the Board class.
+     */
+    public void addCheckPoint(){
+        isCheckPoint = true;
+        this.checkpointNo = board.getNoCheckpoint();
+    }
+
+
+    /**
+     * @author Mathilde Elia S215811
+     * isSpaceCheckPoint() is used to check if a specific space contains a checkpoint.
+     */
+    public boolean isSpaceCheckPoint(){
+        return isCheckPoint;
+    }
+
+    public int getCheckpointNo(){
+        return this.checkpointNo;
+    }
+
     public List<Heading> getWalls() {
         return walls;
+    }
+    public void addWall(){
+        isWall=true;
+    }
+
+    public boolean isWall() {
+        return isWall;
     }
 
     public List<FieldAction> getActions() {
         return actions;
+    }
+
+    public void setStartPoint(boolean bool) {
+        this.startPoint = bool;
+    }
+
+    public boolean getStartPoint() {
+        return startPoint;
     }
 
     void playerChanged() {

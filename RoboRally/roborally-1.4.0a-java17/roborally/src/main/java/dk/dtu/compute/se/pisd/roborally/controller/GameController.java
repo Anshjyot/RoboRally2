@@ -20,7 +20,6 @@
  *
  */
 package dk.dtu.compute.se.pisd.roborally.controller;
-
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -32,6 +31,17 @@ import org.jetbrains.annotations.NotNull;
  */
 public class GameController {
 
+    static class ImpossibleMoveException extends Exception {
+        private Player player;
+        private Space space;
+        private Heading heading;
+
+        public ImpossibleMoveException(Player player, Space space, Heading heading) {
+            this.player = player;
+            this.space = space;
+            this.heading = heading;
+        }
+    }
 
     final public Board board;
 
@@ -62,7 +72,6 @@ public class GameController {
                 board.setCurrentPlayer(board.getPlayer(playerNumber));
             }
         }
-
     }
 
     // XXX: V2
@@ -166,6 +175,7 @@ public class GameController {
                         board.setStep(step);
                         board.setCurrentPlayer(board.getPlayer(0));
                     } else {
+                        checkpointCheck();
                         startProgrammingPhase();
                     }
                 }
@@ -225,12 +235,31 @@ public class GameController {
             Heading heading = player.getHeading();
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
-                // XXX note that this removes an other player from the space, when there
-                //     is another player on the target. Eventually, this needs to be
-                //     implemented in a way so that other players are pushed away!
-                target.setPlayer(player);
+                try {
+                    moveToSpace(player,target,heading);
+                } catch (ImpossibleMoveException e) {
+
+                }
+                //target.setPlayer(player);
+
             }
         }
+    }
+
+    public void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
+        assert board.getNeighbour(player.getSpace(), heading) == space; // valid move or not
+        Player other = space.getPlayer();
+        if (other != null){
+            Space target = board.getNeighbour(space, heading);
+            if (target != null) {
+                moveToSpace(other, target, heading);
+
+                assert target.getPlayer() == null : target;
+            } else {
+                throw new ImpossibleMoveException(player, space, heading);
+            }
+        }
+        player.setSpace(space);
     }
 
     // TODO: V2
@@ -264,10 +293,10 @@ public class GameController {
     // uTurn using Lambda expressions
     public void uTurn(@NotNull Player player){
         switch (player.getHeading()) {
-            case SOUTH -> player.setHeading(Heading.NORTH);
-            case EAST -> player.setHeading(Heading.WEST);
-            case WEST -> player.setHeading(Heading.EAST);
-            case NORTH -> player.setHeading(Heading.SOUTH);
+            case DOWN -> player.setHeading(Heading.UP);
+            case RIGHT -> player.setHeading(Heading.LEFT);
+            case LEFT -> player.setHeading(Heading.RIGHT);
+            case UP -> player.setHeading(Heading.DOWN);
         }
     }
 
@@ -297,5 +326,29 @@ public class GameController {
     public void notImplemented() {
         // XXX just for now to indicate that the actual method is not yet implemented
         assert false;
+    }
+
+    /**
+     * @author Mathilde Elia S215811
+     * checkpointCheck() is used when the activation phase has ended
+     * and the system needs to register players who are standing on a (correct) checkpoint.
+     * If a player has reached all checkpoint on the board, then the game finishes.
+     */
+    public void checkpointCheck(){
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            if(currentPlayer.getSpace().isSpaceCheckPoint()){
+                int checkpointNo = currentPlayer.getSpace().getCheckpointNo();
+
+                if(checkpointNo - 1 == currentPlayer.getNoCheckpointReached()){
+                    currentPlayer.reachedCheckpoint();
+                }
+
+                if (currentPlayer.getNoCheckpointReached() >= board.getNoCheckpoint()){
+                    //there is a winner!
+                    AppController.gameFinished(currentPlayer.getName());
+                }
+            }
+        }
     }
 }
