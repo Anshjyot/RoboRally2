@@ -68,7 +68,14 @@ public class Board extends Subject {
             for(int y = 0; y < height; y++) {
                 Space space = new Space(this, x, y);
                 spaces[x][y] = space;
+                if (x == checkPointXY[0] && y == checkPointXY[1]){
+                    noCheckpoint++;
+                    space.addCheckPoint();
+                }
                 if(x==4 && y==6){
+                    space.addWall();
+                }
+                if(x==7 && y==2){
                     space.addWall();
                 }
             }
