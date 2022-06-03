@@ -33,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class GameController {
 
-    static class ImpossibleMoveException extends Exception {
+    public class ImpossibleMoveException extends Exception {
         private Player player;
         private Space space;
         private Heading heading;
@@ -266,7 +266,6 @@ public class GameController {
 
                 }
                 //target.setPlayer(player);
-
             }
         }
     }
