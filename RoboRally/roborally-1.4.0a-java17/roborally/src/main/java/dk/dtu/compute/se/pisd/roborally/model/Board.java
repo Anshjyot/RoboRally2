@@ -77,7 +77,9 @@ public class Board extends Subject {
                 if(x==4 && y==6){
                     space.addWall();
                 }
-
+                if(x==7 && y==2){
+                    space.addWall();
+                }
             }
         }
         this.stepMode = false;
