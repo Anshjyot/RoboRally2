@@ -17,8 +17,7 @@ public class CheckpointController extends FieldAction {
 
     @Override
     public boolean doAction(GameController gameController, Space space) {
-        for (int i = 0; i < gameController.board.getPlayersNumber(); i++) {
-            Player currentPlayer = gameController.board.getPlayer(i);
+            Player currentPlayer = space.getPlayer();
 
             if (checkpointNo - 1 == currentPlayer.getNoCheckpointReached()) {
                 currentPlayer.reachedCheckpoint();
@@ -27,7 +26,6 @@ public class CheckpointController extends FieldAction {
                 //there is a winner!
                 AppController.gameFinished(currentPlayer.getName());
             }
-        }
         return true;
     }
 }

@@ -72,7 +72,6 @@ public class Board extends Subject {
                     space.addWall();
                 }
             }
-
         }
         this.stepMode = false;
     }
