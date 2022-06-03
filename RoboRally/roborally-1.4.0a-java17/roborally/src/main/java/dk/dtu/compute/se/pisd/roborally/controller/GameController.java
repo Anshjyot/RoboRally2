@@ -195,7 +195,19 @@ public class GameController {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
             for(FieldAction fa : currentSpace.getActions()){
+                if(!(fa instanceof CheckpointController)){
+                    fa.doAction(this, currentSpace);
+                }
+            }
+        }
+        //der må være en bedre måde at gøre det på, kigger på det senere :)
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            Space currentSpace = currentPlayer.getSpace();
+            for(FieldAction fa : currentSpace.getActions()){
+                if(fa instanceof CheckpointController){
                 fa.doAction(this, currentSpace);
+                }
             }
         }
     }

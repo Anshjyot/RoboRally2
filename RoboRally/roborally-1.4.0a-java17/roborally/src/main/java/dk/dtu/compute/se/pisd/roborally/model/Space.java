@@ -56,7 +56,6 @@ public class Space extends Subject {
             CheckpointController checkPoint = new CheckpointController();
             checkPoint.setCheckpointNo(1);
             this.getActions().add(checkPoint);
-            System.out.print("space 3, 5");
         }
         player = null;
     }
