@@ -47,6 +47,9 @@ public class LoadBoard {
     private static final String DEFAULTBOARD = "defaultboard";
     private static final String JSON_EXT = "json";
 
+    private static final int WIDTH = 8;
+    private static final int HEIGHT = 8;
+
     public static Board loadBoard(String boardname) {
         if (boardname == null) {
             boardname = DEFAULTBOARD;
@@ -55,7 +58,6 @@ public class LoadBoard {
         ClassLoader classLoader = LoadBoard.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
         if (inputStream == null) {
-            // TODO these constants should be defined somewhere
             return new Board(WIDTH,HEIGHT);
         }
 
