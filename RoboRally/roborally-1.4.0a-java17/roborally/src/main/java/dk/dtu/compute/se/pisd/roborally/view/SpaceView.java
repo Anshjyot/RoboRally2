@@ -122,9 +122,14 @@ public class SpaceView extends StackPane implements ViewObserver {
     }
 
     private void updatePlayer() {
-        //this.getChildren().clear();
+        if (this.getShape() instanceof Polygon){
+            this.getChildren().clear();}
+
+        if (this.getStyleableNode() instanceof Canvas){
+            this.getChildren().clear();}
 
         //removes player from previous space
+            /*
         for (int i = 0; i < this.getChildren().size(); i++) {
             if(this.getChildren().get(i).getClass().getSimpleName().equals("Polygon")){
                 this.getChildren().remove(i);
@@ -137,6 +142,8 @@ public class SpaceView extends StackPane implements ViewObserver {
                 this.getChildren().remove(i);
             }
         }
+
+             */
 
         Player player = space.getPlayer();
         if (player != null) {
@@ -218,13 +225,15 @@ public class SpaceView extends StackPane implements ViewObserver {
 
     @Override
     public void updateView(Subject subject) {
-        //this.getChildren().clear();
+        this.getChildren().clear();
+
         if (subject == this.space) {
             updateNormalSpace();
             if (this.space.getStartPoint()) {
                 StartpointView.drawStartpoint(this);
             }
 
+            //skal tjekke for fieldaction
             if (!this.space.getWalls().isEmpty()) {
                 WallView.drawWall(this, this.space);
             }
