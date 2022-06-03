@@ -1,6 +1,7 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
+import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import javafx.scene.control.Alert;
@@ -58,6 +59,7 @@ public class AppController {
         dialog.setHeaderText("Select number of players");
         Optional<Integer> result = dialog.showAndWait();
 
+
         if (result.isPresent()) {
             if (gameController != null) {
                 // The UI should not allow this, but in case this happens anyway.
@@ -69,13 +71,15 @@ public class AppController {
 
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            Board board = new Board(8,8);
-            gameController = new GameController(board);
+            gameController = new GameController(LoadBoard.loadBoard("defaultboard"));
+            if(gameController.board==null){
+                System.out.println("Cant load board");
+            }
             int no = result.get();
             for (int i = 0; i < no; i++) {
-                Player player = new Player(board, PLAYER_COLORS.get(i), "Player " + (i + 1));
-                board.addPlayer(player);
-                player.setSpace(board.getSpace(i % board.width, i));
+                Player player = new Player(gameController.board, PLAYER_COLORS.get(i), "Player " + (i + 1));
+                gameController.board.addPlayer(player);
+                player.setSpace(gameController.board.getSpace(i % gameController.board.width, i));
             }
 
             // XXX: V2

@@ -1,15 +1,13 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
-import dk.dtu.compute.se.pisd.roborally.controller.ConveyorBelt;
-import dk.dtu.compute.se.pisd.roborally.controller.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-
-import static java.awt.Color.green;
 
 
 /**

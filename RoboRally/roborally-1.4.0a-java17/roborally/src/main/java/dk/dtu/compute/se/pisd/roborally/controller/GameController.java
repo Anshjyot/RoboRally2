@@ -21,6 +21,8 @@
  */
 package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.roborally.model.*;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.Checkpoint;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -176,7 +178,7 @@ public class GameController {
                         board.setCurrentPlayer(board.getPlayer(0));
                     } else {
                         activateFieldAction();
-                        //checkpointCheck();
+                        winnerCheck();
                         startProgrammingPhase();
                     }
                 }
@@ -195,7 +197,7 @@ public class GameController {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
             for(FieldAction fa : currentSpace.getActions()){
-                if(!(fa instanceof CheckpointController)){
+                if(!(fa instanceof Checkpoint)){
                     fa.doAction(this, currentSpace);
                 }
             }
@@ -205,7 +207,7 @@ public class GameController {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
             for(FieldAction fa : currentSpace.getActions()){
-                if(fa instanceof CheckpointController){
+                if(fa instanceof Checkpoint){
                 fa.doAction(this, currentSpace);
                 }
             }
@@ -357,21 +359,15 @@ public class GameController {
      * and the system needs to register players who are standing on a (correct) checkpoint.
      * If a player has reached all checkpoint on the board, then the game finishes.
      */
-    /*
-    public void checkpointCheck(){
+
+    public void winnerCheck(){
         for(int i = 0; i < board.getPlayersNumber(); i++){
             Player currentPlayer = board.getPlayer(i);
-            if(currentPlayer.getSpace().isSpaceCheckPoint()){
-                int checkpointNo = currentPlayer.getSpace().getCheckpointNo();
 
-                if(checkpointNo - 1 == currentPlayer.getNoCheckpointReached()){
-                    currentPlayer.reachedCheckpoint();
-                }
-                if (currentPlayer.getNoCheckpointReached() >= board.getNoCheckpoint()){
+            if (currentPlayer.getNoCheckpointReached() >= board.getNoOfCheckpoints()){
                     //there is a winner!
                     AppController.gameFinished(currentPlayer.getName());
                 }
             }
         }
-    } */
-}
+    }
