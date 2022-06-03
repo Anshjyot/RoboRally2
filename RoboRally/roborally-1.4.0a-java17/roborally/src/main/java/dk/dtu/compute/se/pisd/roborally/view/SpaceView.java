@@ -71,7 +71,7 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMaxHeight(SPACE_HEIGHT);
 
         int i = 1;
-        if (space.isSpaceCheckPoint()) {
+        if (space.x == 3 && space.y == 5) {
             this.setStyle("-fx-background-color: green;");
             //sætte nr. checkpoint 1-4
             Text text = new Text();
@@ -105,7 +105,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             rectangle.setY(20);
             rectangle.setStroke(Color.BLACK);
 
-           Image image = new Image("wall.png");
+           Image image = new Image("wall.png",10,50,false,false);
             ImageView imageView = new ImageView(image);
             imageView.setX(20);
             imageView.setY(20);
@@ -274,7 +274,5 @@ public class SpaceView extends StackPane implements ViewObserver {
         }
     }
 */
-
-
 }
 
