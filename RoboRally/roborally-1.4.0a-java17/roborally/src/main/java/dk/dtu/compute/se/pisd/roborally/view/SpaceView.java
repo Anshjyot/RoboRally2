@@ -74,11 +74,12 @@ public class SpaceView extends StackPane implements ViewObserver {
             text.setFill(Color.LIME);
             this.getChildren().add(text);
         }
+        /*
         else if ((space.x + space.y) % 2 == 0) {
             this.setStyle("-fx-background-color: white;");
         } else {
             this.setStyle("-fx-background-color: black;");
-        }
+        } */
         if(space.isWall()) {
             this.setStyle("-fx-background-color: red;");
             //updateWall();
@@ -117,7 +118,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
     private void updatePlayer() {
         //this.getChildren().clear();
-
+        /*
         //removes player from previous space
         for (int i = 0; i < this.getChildren().size(); i++) {
             if(this.getChildren().get(i).getClass().getSimpleName().equals("Polygon")){
@@ -130,7 +131,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             if (this.getChildren().get(i).getClass().getSimpleName().equals("Canvas")) {
                 this.getChildren().remove(i);
             }
-        }
+        } */
 
         Player player = space.getPlayer();
         if (player != null) {
@@ -195,7 +196,7 @@ public class SpaceView extends StackPane implements ViewObserver {
     public void updateView(Subject subject) {
         //this.getChildren().clear();
         if (subject == this.space) {
-            updateNormalSpace();
+            //updateNormalSpace();
             if (this.space.getStartPoint()) {
                 StartpointView.drawStartpoint(this);
             }
@@ -203,13 +204,13 @@ public class SpaceView extends StackPane implements ViewObserver {
             if (!this.space.getWalls().isEmpty()) {
                 WallView.drawWall(this, this.space);
             }
-        }
-        for (FieldAction fa : space.getActions()) {
-            if (fa instanceof ConveyorBelt) {
-                ConveyorBeltView.drawConveyorBeltView(this, fa);
-
+            for (FieldAction fa : space.getActions()) {
+                if (fa instanceof ConveyorBelt) {
+                    ConveyorBeltView.drawConveyorBeltView(this, fa);
+                }
             }
         }
+
         updatePlayer();
        // updateWall();
     }
