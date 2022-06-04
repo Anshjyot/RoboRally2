@@ -173,12 +173,14 @@ public class GameController {
                 } else {
                     step++;
                     if (step < Player.NO_REGISTERS) {
+                        //after each register, board-elements activate.
+                        activateFieldAction();
+                        winnerCheck();
+
                         makeProgramFieldsVisible(step);
                         board.setStep(step);
                         board.setCurrentPlayer(board.getPlayer(0));
                     } else {
-                        activateFieldAction();
-                        winnerCheck();
                         startProgrammingPhase();
                     }
                 }
