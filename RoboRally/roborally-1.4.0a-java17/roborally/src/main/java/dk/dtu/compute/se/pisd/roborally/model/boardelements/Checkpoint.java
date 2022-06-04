@@ -1,9 +1,12 @@
-package dk.dtu.compute.se.pisd.roborally.controller;
+package dk.dtu.compute.se.pisd.roborally.model.boardelements;
 
+import dk.dtu.compute.se.pisd.roborally.controller.AppController;
+import dk.dtu.compute.se.pisd.roborally.controller.GameController;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 
-public class CheckpointController extends FieldAction {
+public class Checkpoint extends FieldAction {
 
     private int checkpointNo;
 
@@ -17,17 +20,11 @@ public class CheckpointController extends FieldAction {
 
     @Override
     public boolean doAction(GameController gameController, Space space) {
-        for (int i = 0; i < gameController.board.getPlayersNumber(); i++) {
-            Player currentPlayer = gameController.board.getPlayer(i);
+            Player currentPlayer = space.getPlayer();
 
             if (checkpointNo - 1 == currentPlayer.getNoCheckpointReached()) {
                 currentPlayer.reachedCheckpoint();
             }
-            if (currentPlayer.getNoCheckpointReached() >= gameController.board.getNoOfCheckpoints()) {
-                //there is a winner!
-                AppController.gameFinished(currentPlayer.getName());
-            }
-        }
         return true;
     }
 }
