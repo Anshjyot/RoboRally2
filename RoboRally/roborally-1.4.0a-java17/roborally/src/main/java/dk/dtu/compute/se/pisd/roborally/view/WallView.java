@@ -19,18 +19,20 @@ public class WallView {
     public static void drawWall(SpaceView spaceView, Space space) {
         try {
             List<Heading> walls = space.getWalls();
+
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
             GraphicsContext graphic = canvas.getGraphicsContext2D();
-            Image wallNorthSouth = new Image("file:wall.png", 50, 50, true, true);
-            Image wallWestEast = new Image("file:wall.png", 50, 50, true, true);
+
+            Image wallNorthSouth = new Image("file:wall.png", 60, 60, true, true);
+            Image wallWestEast = new Image("file:wall.png", 60, 60, true, true);
 
             for (int i = 0; i < walls.size(); i++) {
                 Heading header = walls.get(i);
                 switch (header) {
-                    case DOWN -> graphic.drawImage(wallNorthSouth, 0, 44);
+                    case DOWN -> graphic.drawImage(wallNorthSouth, 0, 50);
                     case LEFT -> graphic.drawImage(wallWestEast, 0, 0);
                     case UP -> graphic.drawImage(wallNorthSouth, 0, 0);
-                    case RIGHT -> graphic.drawImage(wallWestEast, 44, 0);
+                    case RIGHT -> graphic.drawImage(wallWestEast, 50, 0);
                 }
             }
             spaceView.getChildren().add(canvas);

@@ -40,11 +40,13 @@ public class Space extends Subject {
     public boolean startPoint = false;
 
     private List<Heading> walls = new ArrayList<>();
+    private List<Heading> laser = new ArrayList<>();
     private List<FieldAction> actions = new ArrayList<>();
 
     public final Board board;
 
     private boolean isWall = false;
+    private boolean isLaser = false;
 
     public final int x;
     public final int y;
@@ -92,6 +94,19 @@ public class Space extends Subject {
     public boolean isWall() {
         return isWall;
     }
+
+    public List<Heading> getLaser() {
+        return laser;
+    }
+
+    public void addLaser(){
+        isLaser=true;
+    }
+
+    public boolean isLaser() {
+        return isLaser;
+    }
+
 
     public List<FieldAction> getActions() {
         return actions;
