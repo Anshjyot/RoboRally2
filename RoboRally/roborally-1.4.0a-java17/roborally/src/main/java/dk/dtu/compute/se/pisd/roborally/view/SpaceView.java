@@ -135,7 +135,6 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             //resizing directly on loading:
             Image image = new Image("wall.png", 10, 50, false, false);
-            ImageView imageView_vertical = new ImageView(image);
             ImageView imageView_horizontal = new ImageView(image);
             imageView_horizontal.setRotate(90);
 
@@ -143,16 +142,28 @@ public class SpaceView extends StackPane implements ViewObserver {
                 Heading header = walls.get(i);
                 switch (header) {
 
-                    case DOWN -> gc.drawImage(image, 0, 0);
-                    case LEFT -> gc.drawImage(image, 44, 0);
-                    case UP -> gc.drawImage(image, 0, 0);
-                    case RIGHT -> gc.drawImage(image, 0, 44);
+                    case DOWN:
+                        canvas.setRotate(270);
+                        gc.drawImage(image, 0, 0);
+                        break;
+                    case LEFT:
+                        gc.drawImage(image, 0, 0);
+                        break;
+                    case UP:
+                        canvas.setRotate(90);
+                        gc.drawImage(image, 0, 0);
+                        break;
+                    case RIGHT:
+                        gc.drawImage(image, 40, 0);
+                        break;
                 }
+                this.getChildren().add(canvas);
             }
+            /*
             if (space.isWall()) {
                 this.getChildren().add(imageView_vertical);
                 this.getChildren().add(imageView_horizontal);
-            }
+            } */
         }
 
         @Override
