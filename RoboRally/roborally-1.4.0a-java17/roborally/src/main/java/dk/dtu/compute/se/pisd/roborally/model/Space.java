@@ -90,23 +90,19 @@ public class Space extends Subject {
     public void addWall(){
         isWall=true;
     }
-
     public boolean isWall() {
         return isWall;
     }
 
     public List<Heading> getLaser() {
-        return laser;
+        return walls;
     }
-
     public void addLaser(){
         isLaser=true;
     }
-
     public boolean isLaser() {
         return isLaser;
     }
-
 
     public List<FieldAction> getActions() {
         return actions;

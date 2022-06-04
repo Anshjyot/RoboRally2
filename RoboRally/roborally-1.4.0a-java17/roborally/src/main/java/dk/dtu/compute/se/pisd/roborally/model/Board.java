@@ -184,9 +184,11 @@ public class Board extends Subject {
         }
     }
 
-
     public int getNoOfCheckpoints(){
         return this.noOfCheckpoints;
+    }
+    public void setNoOfCheckpoints(int number){
+        this.noOfCheckpoints = number;
     }
 
     public int[] getWalls() {return this.getWalls;}
