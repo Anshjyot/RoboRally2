@@ -135,8 +135,9 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             //resizing directly on loading:
             Image image = new Image("wall.png", 10, 50, false, false);
+            /*ImageView imageView_vertical = new ImageView(image);
             ImageView imageView_horizontal = new ImageView(image);
-            imageView_horizontal.setRotate(90);
+            imageView_horizontal.setRotate(90);*/
 
             for (int i = 0; i < walls.size(); i++) {
                 Heading header = walls.get(i);
