@@ -53,12 +53,12 @@ public class Space extends Subject {
         this.board = board;
         this.x = x;
         this.y = y;
-
+        /*
         if(x == 3 && y ==5){
             Checkpoint checkPoint = new Checkpoint();
             checkPoint.setCheckpointNo(1);
             this.getActions().add(checkPoint);
-        }
+        } */
         player = null;
     }
 

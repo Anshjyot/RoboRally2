@@ -70,7 +70,7 @@ public class AppController {
 
             // XXX the board should eventually be created programmatically or loaded from a file
             //     here we just create an empty board with the required number of players.
-            gameController = new GameController(LoadBoard.loadBoard("defaultboard"));
+            gameController = new GameController(LoadBoard.loadBoard("startercourse"));
             if(gameController.board==null){
                 System.out.println("Cant load board");
             }

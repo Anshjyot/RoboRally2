@@ -22,19 +22,26 @@ public class ConveyorBeltView {
         Heading heading = conveyorBelt.getHeading();
         //spaceView.getChildren().clear();
         try {
-            Image right = new Image("ArrowRight.png", 50, 50, true, true);
-            Image left = new Image("ArrowLeft.png", 50, 50, true, true);
-            Image Up = new Image("ArrowUp.png", 50, 50, true, true);
-            Image Down = new Image("ArrowDown.png", 50, 50, true, true);
-
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
             GraphicsContext graphic = canvas.getGraphicsContext2D();
 
             switch (heading) {
-                case UP -> graphic.drawImage(Up, 0, 0);
-                case DOWN -> graphic.drawImage(Down, 0, 0);
-                case LEFT -> graphic.drawImage(left, 0, 0);
-                case RIGHT -> graphic.drawImage(right, 0, 0);
+                case UP:
+                    Image Up = new Image("ArrowUp.png", 50, 50, true, true);
+                    graphic.drawImage(Up, 0, 0);
+                    break;
+                case DOWN:
+                    Image Down = new Image("ArrowDown.png", 50, 50, true, true);
+                    graphic.drawImage(Down, 0, 0);
+                    break;
+                case LEFT:
+                    Image left = new Image("ArrowLeft.png", 50, 50, true, true);
+                    graphic.drawImage(left, 0, 0);
+                    break;
+                case RIGHT:
+                    Image right = new Image("ArrowRight.png", 50, 50, true, true);
+                    graphic.drawImage(right, 0, 0);
+                    break;
             }
 
             spaceView.getChildren().add(canvas);

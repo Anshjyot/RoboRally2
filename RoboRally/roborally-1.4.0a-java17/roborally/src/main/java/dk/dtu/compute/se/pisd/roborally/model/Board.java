@@ -55,7 +55,7 @@ public class Board extends Subject {
 
     private boolean stepMode;
 
-    private int noOfCheckpoints = 1;
+    private int noOfCheckpoints = 0;
 
     int[] getWalls = {5,5};
     
@@ -180,9 +180,11 @@ public class Board extends Subject {
         }
     }
 
-
     public int getNoOfCheckpoints(){
         return this.noOfCheckpoints;
+    }
+    public void setNoOfCheckpoints(int number){
+        this.noOfCheckpoints = number;
     }
 
     public int[] getWalls() {return this.getWalls;}

@@ -1,0 +1,35 @@
+{
+  "width": 8,
+  "height": 8,
+  "noOfCheckpoints": 2,
+  "spaces": [
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Checkpoint",
+          "INSTANCE": {
+            "checkpointNo": "1"
+          }
+        }
+      ],
+      "x": 5,
+      "y": 3
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Checkpoint",
+          "INSTANCE": {
+            "checkpointNo": "2"
+          }
+        }
+      ],
+      "x": 2,
+      "y": 7
+    }
+  ]
+}

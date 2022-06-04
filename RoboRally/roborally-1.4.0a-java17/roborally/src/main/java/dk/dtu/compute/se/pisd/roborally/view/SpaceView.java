@@ -23,6 +23,7 @@ package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.Checkpoint;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
@@ -35,14 +36,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 import javafx.scene.text.*;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Objects;
 
 
 /**
@@ -80,23 +76,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             text.setFill(Color.LIME);
             this.getChildren().add(text);
         }
-/*
-        /*
-        else if ((space.x + space.y) % 2 == 0) {
-            this.setStyle("-fx-background-color: white;");
-        } else {
-            this.setStyle("-fx-background-color: black;");
-        }
-
- */
-
-        /* if(space.isWall()) {
-        } */
-        /*
-        if (space.isWall()) {
-            this.setStyle("-fx-background-color: red;");
-            updateWall(); */
-
             //laver en linje - kan måske bruges til laser
             Line line = new Line();
             line.setStartX(200);
@@ -104,16 +83,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             line.setRotate(90);
 
             this.getChildren().add(line);
-
-
-            /*
-            Image image = new Image("wall.png", 10, 50, false, false);
-            ImageView imageView = new ImageView(image);
-
-            this.getChildren().add(imageView);
-
-            */
-            // updatePlayer();
 
             // This space view should listen to changes of the space
             space.attach(this);
@@ -128,23 +97,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             if (this.getStyleableNode() instanceof Canvas) {
                 this.getChildren().clear();
             }
-
-            //removes player from previous space
-            /*
-        for (int i = 0; i < this.getChildren().size(); i++) {
-            if(this.getChildren().get(i).getClass().getSimpleName().equals("Polygon")){
-                this.getChildren().remove(i);
-            }
-
-        }
-        //fjerner ikke altid...
-        for (int i = 0; i < this.getChildren().size(); i++) {
-            if (this.getChildren().get(i).getClass().getSimpleName().equals("Canvas")) {
-                this.getChildren().remove(i);
-            }
-        }
-
-             */
 
             Player player = space.getPlayer();
             if (player != null) {
@@ -169,15 +121,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                 gc.setLineWidth(1);
                 this.getChildren().add(arrow);
             }
-           /*
-            try {
-                arrow.setFill(Color.valueOf(player.getColor()));
-            } catch (Exception e) {
-                arrow.setFill(Color.MEDIUMPURPLE);
-            }
-
-            arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
-            this.getChildren().add(arrow); */
         }
 
         /**
@@ -190,18 +133,11 @@ public class SpaceView extends StackPane implements ViewObserver {
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
             GraphicsContext gc = canvas.getGraphicsContext2D();
 
-            // ImagePattern wall = new ImagePattern(new Image("Pictures/wall.png", 50, 50, false, false));
-
             //resizing directly on loading:
             Image image = new Image("wall.png", 10, 50, false, false);
             ImageView imageView_vertical = new ImageView(image);
             ImageView imageView_horizontal = new ImageView(image);
             imageView_horizontal.setRotate(90);
-
-        /* for (Heading wallHeading : this.space.getWalls()) {
-            Rectangle rectangle = new Rectangle(0.0, 0.0, SPACE_WIDTH, SPACE_HEIGHT);
-            rectangle.setFill(wall);
-         */
 
             for (int i = 0; i < walls.size(); i++) {
                 Heading header = walls.get(i);
@@ -212,12 +148,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                     case UP -> gc.drawImage(image, 0, 0);
                     case RIGHT -> gc.drawImage(image, 0, 44);
                 }
-                ;
-            /*
-                rectangle.setRotate(angle - this.tileAngle);
-            rectangle.toFront();
-            this.getChildren().add(rectangle);
-             */
             }
             if (space.isWall()) {
                 this.getChildren().add(imageView_vertical);
@@ -243,45 +173,21 @@ public class SpaceView extends StackPane implements ViewObserver {
                     if (fa instanceof ConveyorBelt) {
                         ConveyorBeltView.drawConveyorBeltView(this, fa);
                     }
+                    if(fa instanceof Checkpoint){
+                        CheckpointView.drawCheckpointView(this,fa);
+                    }
                 }
             }
-
             updatePlayer();
             drawWall();
         }
 
         public void updateNormalSpace () {
-            //this.getChildren().clear();
-
-            //Rectangle rect = new Rectangle(50,50);
-            //rect.setFill(Color.GREEN);
             Image image = new Image("space.png", 50, 50, true, true);
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
             GraphicsContext graphic = canvas.getGraphicsContext2D();
             graphic.drawImage(image, 0, 0);
             this.getChildren().add(canvas);
-
-            // canvas.requestFocus();
-            //System.out.println(canvas.isFocused());
-
-        /*
-        Circle circle = new Circle();
-        circle.setCenterX(100.0f);
-        circle.setCenterY(100.0f);
-        circle.setRadius(50.0f);
-        circle.setFill(Color.RED);
-        Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setStroke(Color.YELLOW);
-        gc.setLineWidth(1);
-
-        this.getChildren().add(canvas);
-        gc.setStroke(Color.YELLOW);
-        gc.setLineWidth(1);
-        this.getChildren().add(circle);
-
-*/
-            //System.out.println(canvas.setStyle(graphic.drawImage(file:space.png, 50, 50)));
     }
 }
 
