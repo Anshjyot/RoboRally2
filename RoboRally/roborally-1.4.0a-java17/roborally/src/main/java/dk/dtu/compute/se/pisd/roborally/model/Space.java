@@ -94,15 +94,6 @@ public class Space extends Subject {
         return isWall;
     }
 
-    public List<Heading> getLaser() {
-        return walls;
-    }
-    public void addLaser(){
-        isLaser=true;
-    }
-    public boolean isLaser() {
-        return isLaser;
-    }
 
     public List<FieldAction> getActions() {
         return actions;

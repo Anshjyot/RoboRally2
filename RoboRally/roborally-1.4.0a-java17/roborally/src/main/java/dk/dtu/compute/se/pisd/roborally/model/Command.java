@@ -42,7 +42,9 @@ public enum Command {
     TRIPLE_FORWARD("Triple Forward"),
     U_TURN("U-Turn"),
     MOVE_BACK("Move Back"),
+    SPAM("SPAM"),
     OPTION_LEFT_RIGHT("Left OR Right", LEFT, RIGHT);
+
 
     final public String displayName;
 
