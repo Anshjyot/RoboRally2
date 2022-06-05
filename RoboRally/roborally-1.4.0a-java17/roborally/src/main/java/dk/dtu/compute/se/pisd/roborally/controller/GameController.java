@@ -93,7 +93,12 @@ public class GameController {
                 }
                 for (int j = 0; j < Player.NO_CARDS; j++) {
                     CommandCardField field = player.getCardField(j);
-                    field.setCard(generateRandomCommandCard());
+                    if(!player.getDamagecards().isEmpty() && player.getDamagecards().size() > j){
+                        field.setCard(new CommandCard(player.getDamagecards().get(j)));
+                    }
+                    else{
+                        field.setCard(generateRandomCommandCard());
+                    }
                     field.setVisible(true);
                 }
             }
@@ -102,8 +107,9 @@ public class GameController {
 
     // XXX: V2
     private CommandCard generateRandomCommandCard() {
+        //damagecards skal ikke være med her
         Command[] commands = Command.values();
-        int random = (int) (Math.random() * commands.length);
+        int random = (int) (Math.random() * (commands.length - 4));
         return new CommandCard(commands[random]);
     }
 
@@ -254,6 +260,17 @@ public class GameController {
                     break;
                 case SPAM:
                     this.spam(player);
+                    break;
+                case TROJANHORSE:
+                    this.trojanhorse(player);
+                    break;
+                    /*
+                case WORM:
+                    this.worm(player);
+                    break;
+                case VIRUS:
+                    this.virus(player);
+                    break; */
 
 
                 default:
@@ -359,7 +376,19 @@ public class GameController {
     public void spam(Player player){
         player.getDamagecards().remove(Command.SPAM);
         CommandCard card = generateRandomCommandCard();
+
         executeCommand(player,card.command);
+    }
+
+    public void trojanhorse(Player player){
+        player.setDamagecards(Command.SPAM);
+        player.setDamagecards(Command.SPAM);
+    }
+    public void worm(Player player){
+
+    }
+    public void virus(Player player){
+
     }
 
     /**
