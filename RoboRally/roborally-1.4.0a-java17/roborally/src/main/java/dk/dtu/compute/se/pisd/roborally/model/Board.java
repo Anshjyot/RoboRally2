@@ -55,7 +55,7 @@ public class Board extends Subject {
 
     private boolean stepMode;
 
-    private int noOfCheckpoints = 0;
+    private int noOfCheckpoints = 1;
 
     int[] getWalls = {5,5};
     
@@ -76,6 +76,7 @@ public class Board extends Subject {
                     space.addWall();
                 }
             }
+
         }
         this.stepMode = false;
     }

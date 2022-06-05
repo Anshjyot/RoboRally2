@@ -8,12 +8,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 
-/**
- *  Designs our ConyeyorBelt
- *
- * @author Anshjyot Singh, s215806
- *
- */
 //
 public class ConveyorBeltView {
 

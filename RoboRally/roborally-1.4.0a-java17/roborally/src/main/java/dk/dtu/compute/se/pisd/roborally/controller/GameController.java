@@ -23,6 +23,7 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.Checkpoint;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -212,6 +213,10 @@ public class GameController {
                 if(fa instanceof Checkpoint){
                 fa.doAction(this, currentSpace);
                 }
+                /*
+                if(fa instanceof Laser){
+                    fa.doAction(this, currentSpace);
+                }*/
             }
         }
     }
@@ -247,6 +252,8 @@ public class GameController {
                     break;
                 case OPTION_LEFT_RIGHT:
                     break;
+                case SPAM:
+                    this.spam(player);
 
 
                 default:
@@ -343,6 +350,16 @@ public class GameController {
         } else {
             return false;
         }
+    }
+    /**
+     * @author Anshjyot Singh S215806
+     * spam() is used when a player hits the lasers
+     * The number of spam cards that is given depends on the number of lasers hit
+     */
+    public void spam(Player player){
+        player.getDamagecards().remove(Command.SPAM);
+        CommandCard card = generateRandomCommandCard();
+        executeCommand(player,card.command);
     }
 
     /**

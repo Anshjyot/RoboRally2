@@ -28,6 +28,7 @@ import dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -164,6 +165,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             } */
         }
 
+
         @Override
         public void updateView (Subject subject){
             this.getChildren().clear();
@@ -184,6 +186,9 @@ public class SpaceView extends StackPane implements ViewObserver {
                     }
                     if(fa instanceof Checkpoint){
                         CheckpointView.drawCheckpointView(this,fa);
+                    }
+                    else if(fa instanceof Laser){
+                        LaserView.drawLaserView(this,fa);
                     }
                 }
             }
