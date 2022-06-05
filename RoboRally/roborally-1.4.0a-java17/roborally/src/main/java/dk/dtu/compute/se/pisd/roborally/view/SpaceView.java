@@ -65,17 +65,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-        int i = 1;
-        if (space.x == 3 && space.y == 5) {
-            this.setStyle("-fx-background-color: green;");
-            //sætte nr. checkpoint 1-4
-            Text text = new Text();
-            text.setText("1");
-            text.setX(50);
-            text.setY(50);
-            text.setFill(Color.LIME);
-            this.getChildren().add(text);
-        }
             //laver en linje - kan måske bruges til laser
             Line line = new Line();
             line.setStartX(200);
@@ -114,7 +103,8 @@ public class SpaceView extends StackPane implements ViewObserver {
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 gc.setStroke(Color.BLUEVIOLET);
                 gc.setLineWidth(1);
-                gc.strokeText(String.valueOf(player.getCheckpoints()), SpaceView.SPACE_WIDTH * 0.8, SpaceView.SPACE_WIDTH * 0.8);
+                gc.strokeText(String.valueOf(player.getNoCheckpointReached()),
+                        SpaceView.SPACE_WIDTH * 0.8, SpaceView.SPACE_WIDTH * 0.8);
 
                 this.getChildren().add(canvas);
                 gc.setStroke(Color.YELLOW);
