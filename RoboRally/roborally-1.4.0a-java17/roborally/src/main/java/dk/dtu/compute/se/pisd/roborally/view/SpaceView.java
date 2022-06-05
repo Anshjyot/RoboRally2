@@ -65,17 +65,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-        int i = 1;
-        if (space.x == 3 && space.y == 5) {
-            this.setStyle("-fx-background-color: green;");
-            //sætte nr. checkpoint 1-4
-            Text text = new Text();
-            text.setText("1");
-            text.setX(50);
-            text.setY(50);
-            text.setFill(Color.LIME);
-            this.getChildren().add(text);
-        }
             //laver en linje - kan måske bruges til laser
             Line line = new Line();
             line.setStartX(200);
@@ -114,7 +103,8 @@ public class SpaceView extends StackPane implements ViewObserver {
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 gc.setStroke(Color.BLUEVIOLET);
                 gc.setLineWidth(1);
-                gc.strokeText(String.valueOf(player.getCheckpoints()), SpaceView.SPACE_WIDTH * 0.8, SpaceView.SPACE_WIDTH * 0.8);
+                gc.strokeText(String.valueOf(player.getNoCheckpointReached()),
+                        SpaceView.SPACE_WIDTH * 0.8, SpaceView.SPACE_WIDTH * 0.8);
 
                 this.getChildren().add(canvas);
                 gc.setStroke(Color.YELLOW);
@@ -135,24 +125,36 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             //resizing directly on loading:
             Image image = new Image("wall.png", 10, 50, false, false);
-            ImageView imageView_vertical = new ImageView(image);
+            /*ImageView imageView_vertical = new ImageView(image);
             ImageView imageView_horizontal = new ImageView(image);
-            imageView_horizontal.setRotate(90);
+            imageView_horizontal.setRotate(90);*/
 
             for (int i = 0; i < walls.size(); i++) {
                 Heading header = walls.get(i);
                 switch (header) {
 
-                    case DOWN -> gc.drawImage(image, 0, 0);
-                    case LEFT -> gc.drawImage(image, 44, 0);
-                    case UP -> gc.drawImage(image, 0, 0);
-                    case RIGHT -> gc.drawImage(image, 0, 44);
+                    case DOWN:
+                        canvas.setRotate(270);
+                        gc.drawImage(image, 0, 0);
+                        break;
+                    case LEFT:
+                        gc.drawImage(image, 0, 0);
+                        break;
+                    case UP:
+                        canvas.setRotate(90);
+                        gc.drawImage(image, 0, 0);
+                        break;
+                    case RIGHT:
+                        gc.drawImage(image, 40, 0);
+                        break;
                 }
+                this.getChildren().add(canvas);
             }
+            /*
             if (space.isWall()) {
                 this.getChildren().add(imageView_vertical);
                 this.getChildren().add(imageView_horizontal);
-            }
+            } */
         }
 
     private void drawLaser() {
