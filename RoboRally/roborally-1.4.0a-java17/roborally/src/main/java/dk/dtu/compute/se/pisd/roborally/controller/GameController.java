@@ -213,9 +213,10 @@ public class GameController {
                 if(fa instanceof Checkpoint){
                 fa.doAction(this, currentSpace);
                 }
+                /*
                 if(fa instanceof Laser){
                     fa.doAction(this, currentSpace);
-                }
+                }*/
             }
         }
     }
