@@ -43,7 +43,6 @@ public class Player extends Subject {
 
     private String name;
     private String color;
-    private int checkpoints;
     private ArrayList<Command> damagecards;
 
     private Space space;
@@ -137,10 +136,6 @@ public class Player extends Subject {
 
     public CommandCardField getCardField(int i) {
         return cards[i];
-    }
-
-    public int getCheckpoints(){
-        return checkpoints;
     }
 
     public void reachedCheckpoint(){
