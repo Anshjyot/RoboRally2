@@ -81,9 +81,6 @@ public class Board extends Subject {
                 if(x==7 && y==2){
                     space.addWall();
                 }
-                if (x==4 && y==4 ) {
-                    space.addLaser();
-                }
             }
 
         }

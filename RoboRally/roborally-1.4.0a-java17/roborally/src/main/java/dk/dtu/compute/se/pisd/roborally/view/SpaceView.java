@@ -28,6 +28,7 @@ import dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -157,46 +158,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             } */
         }
 
-    private void drawLaser() {
-
-        List<Heading> laser = space.getLaser();
-        Canvas canvas1 = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
-        GraphicsContext gc = canvas1.getGraphicsContext2D();
-
-        // ImagePattern wall = new ImagePattern(new Image("Pictures/wall.png", 50, 50, false, false));
-
-        //resizing directly on loading:
-        Image image2 = new Image("laser.png", 50, 50, false, false);
-        ImageView imageView_vertical = new ImageView(image2);
-        ImageView imageView_horizontal = new ImageView(image2);
-        imageView_horizontal.setRotate(90);
-        gc.drawImage(image2, 0, 0);
-
-        /* for (Heading wallHeading : this.space.getWalls()) {
-            Rectangle rectangle = new Rectangle(0.0, 0.0, SPACE_WIDTH, SPACE_HEIGHT);
-            rectangle.setFill(wall);
-         /
-
-        for (int i = 0; i < laser.size(); i++) {
-            Heading header = laser.get(i);
-            switch(header){
-
-                case DOWN -> gc.drawImage(image2,0,0);
-                case LEFT -> gc.drawImage(image2,44,0);
-                case UP -> gc.drawImage(image2,0,0);
-                case RIGHT-> gc.drawImage(image2,0,44);
-            };
-            /
-                rectangle.setRotate(angle - this.tileAngle);
-            rectangle.toFront();
-            this.getChildren().add(rectangle);
-             */
-
-        if (space.isLaser()) {
-            this.getChildren().add(canvas1);
-            // this.getChildren().add(imageView_horizontal);
-        }
-    }
 
         @Override
         public void updateView (Subject subject){
@@ -219,11 +180,13 @@ public class SpaceView extends StackPane implements ViewObserver {
                     if(fa instanceof Checkpoint){
                         CheckpointView.drawCheckpointView(this,fa);
                     }
+                    else if(fa instanceof Laser){
+                        LaserView.drawLaserView(this,fa);
+                    }
                 }
             }
             updatePlayer();
             drawWall();
-            drawLaser();
         }
 
         public void updateNormalSpace () {
