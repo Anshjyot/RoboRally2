@@ -21,7 +21,7 @@ public class StartpointView {
         GraphicsContext graphic = canvas.getGraphicsContext2D();
 
         try{
-           Image startpoint = new Image("file:start.png", 50,50, true, true);
+           Image startpoint = new Image("Startpoint.png", 50,50, true, true);
            graphic.drawImage(startpoint,50,50);
         }
         catch(Exception e){

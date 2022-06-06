@@ -3,6 +3,13 @@
   "height": 8,
   "noOfCheckpoints": 1,
   "spaces": [
+    {
+      "walls": [
+      ],
+      "startPoint": true,
+      "x": 6,
+      "y": 5
+    },
       {
         "walls": [
         ],
