@@ -326,18 +326,19 @@
     },
     {
       "walls": [
-        "RIGHT"
+
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Reboot",
+
           "INSTANCE": {
-            "heading": "DOWN"
+            "heading": "LEFT"
           }
         }
       ],
-      "x": 10,
-      "y": 10
+      "x": 18,
+      "y": 6
     },
     {
       "walls": [

@@ -190,10 +190,14 @@ public class SpaceView extends StackPane implements ViewObserver {
                     else if (fa instanceof Gear){
                         GearView.drawGearView(this,fa);
                     }
+                    else if (fa instanceof Reboot){
+                        RebootView.drawRebootView(this,fa);
+                    }
                 }
             }
             updatePlayer();
             drawWall();
+
         }
 
         public void updateNormalSpace () {
