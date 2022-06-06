@@ -67,7 +67,7 @@ public class AppController {
                 }
             }
 
-            ChoiceDialog<String> choice = new ChoiceDialog<>("defaultboard","startercourse","lovecourse");
+            ChoiceDialog<String> choice = new ChoiceDialog<>("defaultboard","defaultboard","startercourse","lovecourse","advanced");
             dialog.setTitle("RoboRally Course");
             dialog.setHeaderText("Select the course you want to play on");
             Optional<String> boardChoice = choice.showAndWait();
