@@ -44,7 +44,7 @@ public class AppController {
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isEmpty() || result.get() != ButtonType.OK) {
-                return; // return without exiting the application
+                return; // return without exiting the application.
             }
             else{
                 System.exit(0);
