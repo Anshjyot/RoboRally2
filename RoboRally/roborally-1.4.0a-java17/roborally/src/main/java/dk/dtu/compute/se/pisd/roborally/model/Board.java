@@ -221,6 +221,7 @@ public class Board extends Subject {
                 x = (x + 1) % width;
                 break;
         }
+        //list of the 4 headings
         Heading reverse = Heading.values()[(heading.ordinal() + 2)% Heading.values().length];
         Space result = getSpace(x, y);
         if (result != null) { //tjekker om felt er på board
