@@ -223,8 +223,8 @@ public class Board extends Subject {
         }
         Heading reverse = Heading.values()[(heading.ordinal() + 2)% Heading.values().length];
         Space result = getSpace(x, y);
-        if (result != null) {
-            if (result.getWalls().contains(reverse)) {
+        if (result != null) { //tjekker om felt er på board
+            if (result.getWalls().contains(reverse)) { //tjekker om felt har en væg som spærre
                 return null;
             }
         }
