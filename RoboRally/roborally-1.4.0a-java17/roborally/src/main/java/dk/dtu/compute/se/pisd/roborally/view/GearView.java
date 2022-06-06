@@ -33,9 +33,8 @@ public class GearView {
                     Image left = new Image("GearLeft.png", 50, 50, true, true);
                     graphic.drawImage(left, 0, 0);
                     break;
-
             }
-
+            spaceView.getChildren().add(canvas);
 
         } catch (Exception e) {
             e.printStackTrace();
