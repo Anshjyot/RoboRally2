@@ -108,7 +108,7 @@ public class LaserView {
             spaceView.getChildren().add(canvas);
         }
         catch(Exception e){
-            System.out.println("Image file not found");
+            System.out.println("No Image");
         }
     }
 }
