@@ -1,6 +1,7 @@
 {
   "width": 20,
   "height": 8,
+  "noOfCheckpoints": 3,
   "spaces": [
 
     {
