@@ -51,8 +51,6 @@ public class AppController {
             }
     }
 
-
-
     public void newGame() {
 
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(PLAYER_NUMBER_OPTIONS.get(0), PLAYER_NUMBER_OPTIONS);
@@ -69,24 +67,33 @@ public class AppController {
                 }
             }
 
-            // XXX the board should eventually be created programmatically or loaded from a file
-            //     here we just create an empty board with the required number of players.
-            gameController = new GameController(LoadBoard.loadBoard("startercourse"));
-            if(gameController.board==null){
-                System.out.println("Cant load board");
-            }
-            int no = result.get();
-            for (int i = 0; i < no; i++) {
-                Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i),"Player " + (i + 1));
-                gameController.board.addPlayer(player);
-                player.setSpace(gameController.board.getSpace(i % gameController.board.width, i));
-            }
+            ChoiceDialog<String> choice = new ChoiceDialog<>("defaultboard","startercourse","lovecourse");
+            dialog.setTitle("RoboRally Course");
+            dialog.setHeaderText("Select the course you want to play on");
+            Optional<String> boardChoice = choice.showAndWait();
 
-            // XXX: V2
-            // board.setCurrentPlayer(board.getPlayer(0));
-            gameController.startProgrammingPhase();
+            if(boardChoice.isPresent()) {
+                String boardName = boardChoice.get();
 
-            roboRally.createBoardView(gameController);
+                // XXX the board should eventually be created programmatically or loaded from a file
+                //     here we just create an empty board with the required number of players.
+                gameController = new GameController(LoadBoard.loadBoard(boardName));
+                if (gameController.board == null) {
+                    System.out.println("Cant load board");
+                }
+                int no = result.get();
+                for (int i = 0; i < no; i++) {
+                    Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i), "Player " + (i + 1));
+                    gameController.board.addPlayer(player);
+                    player.setSpace(gameController.board.getSpace(i % gameController.board.width, i));
+                }
+
+                // XXX: V2
+                // board.setCurrentPlayer(board.getPlayer(0));
+                gameController.startProgrammingPhase();
+
+                roboRally.createBoardView(gameController);
+            }
         }
     }
 
