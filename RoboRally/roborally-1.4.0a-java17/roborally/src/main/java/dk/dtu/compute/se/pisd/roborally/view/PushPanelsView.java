@@ -1,19 +1,11 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
-import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
-import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.StrokeLineCap;
-import java.awt.*;
 
 public class PushPanelsView {
 
