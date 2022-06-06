@@ -44,7 +44,7 @@ public class Player extends Subject {
     private String name;
     private String color;
     private int robot;
-    private ArrayList<Command> damagecards;
+    private ArrayList<Command> damageCards = new ArrayList<>();
 
     private Space space;
     private Heading heading = DOWN;
@@ -150,9 +150,9 @@ public class Player extends Subject {
 
 
     public void setDamagecards(Command card){
-        this.damagecards.add(card);
+        this.damageCards.add(card);
     }
     public ArrayList<Command> getDamagecards(){
-        return this.damagecards;
+        return this.damageCards;
     }
 }
