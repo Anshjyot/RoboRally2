@@ -48,6 +48,7 @@ import java.util.List;
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class SpaceView extends StackPane implements ViewObserver {
+    static int robotCounter = 0;
     public int tileAngle = 0;
     final public static int SPACE_HEIGHT = 50; // 75;
     final public static int SPACE_WIDTH = 50; // 75;
@@ -90,16 +91,22 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             Player player = space.getPlayer();
             if (player != null) {
-                Polygon arrow = new Polygon(0.0, 0.0,
+
+                /*Polygon arrow = new Polygon(0.0, 0.0,
                         10.0, 20.0,
                         20.0, 0.0);
                 try {
                     arrow.setFill(Color.valueOf(player.getColor()));
                 } catch (Exception e) {
                     arrow.setFill(Color.MEDIUMPURPLE);
-                }
+                } */
+                //robotCounter++;
+                String imageName = "Robot" + player.getRobot() + ".png";
+                Image robot = new Image(imageName,35,35,true,true);
+                ImageView viewRobot = new ImageView(robot);
 
-                arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
+
+                viewRobot.setRotate((90 * player.getHeading().ordinal()) % 360);
                 Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 gc.setStroke(Color.BLUEVIOLET);
@@ -110,7 +117,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 this.getChildren().add(canvas);
                 gc.setStroke(Color.YELLOW);
                 gc.setLineWidth(1);
-                this.getChildren().add(arrow);
+                this.getChildren().add(viewRobot);
             }
         }
 
