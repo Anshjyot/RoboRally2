@@ -48,7 +48,7 @@ import java.util.List;
  * @author Ekkart Kindler, ekki@dtu.dk
  */
 public class SpaceView extends StackPane implements ViewObserver {
-    private int robotCounter = 0;
+    static int robotCounter = 0;
     public int tileAngle = 0;
     final public static int SPACE_HEIGHT = 50; // 75;
     final public static int SPACE_WIDTH = 50; // 75;
@@ -100,9 +100,9 @@ public class SpaceView extends StackPane implements ViewObserver {
                 } catch (Exception e) {
                     arrow.setFill(Color.MEDIUMPURPLE);
                 } */
-                robotCounter++;
-                String imageName = "Robot" + String.valueOf(robotCounter) + ".jpg";
-                Image robot = new Image(imageName,50,50,true,true);
+                //robotCounter++;
+                String imageName = "Robot" + player.getRobot() + ".png";
+                Image robot = new Image(imageName,35,35,true,true);
                 ImageView viewRobot = new ImageView(robot);
 
 
