@@ -23,7 +23,18 @@ public class GearView {
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
             GraphicsContext graphic = canvas.getGraphicsContext2D();
 
-            switch(heading){}
+            switch(heading){
+                case RIGHT:
+                    Image right = new Image("GearRight.png", 50, 50, true, true);
+                    graphic.drawImage(right, 0, 0);
+                    break;
+
+                case LEFT:
+                    Image left = new Image("GearLeft.png", 50, 50, true, true);
+                    graphic.drawImage(left, 0, 0);
+                    break;
+
+            }
 
 
         } catch (Exception e) {
