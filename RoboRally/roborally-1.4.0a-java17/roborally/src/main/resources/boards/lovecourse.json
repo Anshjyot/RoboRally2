@@ -369,6 +369,62 @@
       "y": 10
     },
     {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "UP"
+          }
+        }
+      ],
+      "x": 3,
+      "y": 4
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "DOWN"
+          }
+        }
+      ],
+      "x": 8,
+      "y": 0
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "LEFT"
+          }
+        }
+      ],
+      "x": 15,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "RIGHT"
+          }
+        }
+      ],
+      "x": 16,
+      "y": 7
+    },
+    {
 
     }
 

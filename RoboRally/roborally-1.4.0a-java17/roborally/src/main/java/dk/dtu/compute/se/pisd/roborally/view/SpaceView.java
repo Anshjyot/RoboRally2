@@ -23,12 +23,9 @@ package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
-import dk.dtu.compute.se.pisd.roborally.model.boardelements.Checkpoint;
-import dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt;
-import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.*;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
-import dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -184,11 +181,14 @@ public class SpaceView extends StackPane implements ViewObserver {
                     if (fa instanceof ConveyorBelt) {
                         ConveyorBeltView.drawConveyorBeltView(this, fa);
                     }
-                    if(fa instanceof Checkpoint){
+                    else if(fa instanceof Checkpoint){
                         CheckpointView.drawCheckpointView(this,fa);
                     }
                     else if(fa instanceof Laser){
                         LaserView.drawLaserView(this,fa);
+                    }
+                    else if (fa instanceof PushPanels) {
+                        PushPanelsView.drawPushPanel(this, fa);
                     }
                 }
             }
