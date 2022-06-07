@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public class AppController {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
-    final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
+    final private List<String> PLAYER_COLORS = Arrays.asList("blue", "orange", "green", "magenta", "cyan", "pink");
     final private List<Integer> PLAYER_ROBOT = Arrays.asList(1,2,3,4,5,6);
 
     private GameController gameController;
