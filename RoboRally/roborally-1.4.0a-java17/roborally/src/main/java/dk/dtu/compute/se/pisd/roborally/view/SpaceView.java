@@ -84,7 +84,6 @@ public class SpaceView extends StackPane implements ViewObserver {
                 Image robot = new Image(imageName,35,35,true,true);
                 ImageView viewRobot = new ImageView(robot);
 
-
                 viewRobot.setRotate((90 * player.getHeading().ordinal()) % 360);
                 Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -143,7 +142,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             if (this.space.getStartPoint()) {
                 StartpointView.drawStartpoint(this);
             }
-            drawWall();
 
             for (FieldAction fa : space.getActions()) {
                 if (fa instanceof ConveyorBelt) {
@@ -166,6 +164,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 }
             }
             updatePlayer();
+            drawWall();
         }
 
         public void updateNormalSpace () {

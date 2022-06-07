@@ -21,10 +21,9 @@
  */
 package dk.dtu.compute.se.pisd.roborally.controller;
 import dk.dtu.compute.se.pisd.roborally.model.*;
-import dk.dtu.compute.se.pisd.roborally.model.boardelements.Checkpoint;
-import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
-import dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.*;
 import org.jetbrains.annotations.NotNull;
+
 
 /**
  * ...
@@ -179,7 +178,11 @@ public class GameController {
                     board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
                 } else {
                     //after each register, board-elements activate.
-                    activateFieldAction();
+                    try {
+                        activateFieldAction();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     winnerCheck();
                     step++;
                     if (step < Player.NO_REGISTERS) {
@@ -200,30 +203,56 @@ public class GameController {
         }
     }
 
-    private void activateFieldAction(){
+    private void activateFieldAction() throws InterruptedException {
         for(int i = 0; i < board.getPlayersNumber(); i++){
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
             for(FieldAction fa : currentSpace.getActions()){
-                if(!(fa instanceof Checkpoint)){
+                if(fa instanceof ConveyorBelt){
+                    fa.doAction(this, currentSpace);
+                }
+            }
+
+        }
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            Space currentSpace = currentPlayer.getSpace();
+            for(FieldAction fa : currentSpace.getActions()){
+                if(fa instanceof PushPanels){
+                    fa.doAction(this, currentSpace);
+                }
+            }
+        }
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            Space currentSpace = currentPlayer.getSpace();
+            for(FieldAction fa : currentSpace.getActions()){
+                if(fa instanceof Gear){
+                    fa.doAction(this, currentSpace);
+                }
+            }
+        }
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            Space currentSpace = currentPlayer.getSpace();
+            for(FieldAction fa : currentSpace.getActions()){
+                if(fa instanceof Laser){
                     fa.doAction(this, currentSpace);
                 }
             }
         }
         //der må være en bedre måde at gøre det på, kigger på det senere :)
         for(int i = 0; i < board.getPlayersNumber(); i++){
-            Player currentPlayer = board.getPlayer(i);
-            Space currentSpace = currentPlayer.getSpace();
+            Space currentSpace = board.getPlayer(i).getSpace();
             for(FieldAction fa : currentSpace.getActions()){
                 if(fa instanceof Checkpoint){
-                fa.doAction(this, currentSpace);
-                }
-                /*
-                if(fa instanceof Laser){
                     fa.doAction(this, currentSpace);
-                }*/
+                }
             }
         }
+
+
+
     }
 
     // XXX: V2
