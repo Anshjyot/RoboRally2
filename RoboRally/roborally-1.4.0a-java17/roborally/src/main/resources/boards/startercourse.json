@@ -413,7 +413,7 @@
       "x": 4,
       "y": 0
     },
-    {
+   /* {
       "walls": [
       ],
       "actions": [
@@ -444,7 +444,7 @@
       ],
       "x": 3,
       "y": 3
-    },
+    },*/
     {
       "walls": [
       ],
@@ -452,7 +452,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "noOfLaser": 3,
+            "noOfLaser": 2,
             "heading": "DOWN",
             "center": true
           }
@@ -468,7 +468,7 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "noOfLaser": 3,
+            "noOfLaser": 2,
             "heading": "UP",
             "center": false
           }

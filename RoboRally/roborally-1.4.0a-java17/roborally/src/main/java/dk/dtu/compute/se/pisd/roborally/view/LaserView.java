@@ -25,6 +25,9 @@ public class LaserView {
             graphic.setLineWidth(2);
 
             switch(heading){
+               // switch() {
+
+
                 case DOWN -> {
                     if(laser.getNoOfLaser() == 1) {
                         graphic.strokeLine(SpaceView.SPACE_WIDTH / 2, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT / 2, 0);
