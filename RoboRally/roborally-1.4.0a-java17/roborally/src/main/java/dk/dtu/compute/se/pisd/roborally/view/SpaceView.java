@@ -143,7 +143,6 @@ public class SpaceView extends StackPane implements ViewObserver {
             if (this.space.getStartPoint()) {
                 StartpointView.drawStartpoint(this);
             }
-            drawWall();
 
             for (FieldAction fa : space.getActions()) {
                 if (fa instanceof ConveyorBelt) {
@@ -166,6 +165,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 }
             }
             updatePlayer();
+            drawWall();
         }
 
         public void updateNormalSpace () {
