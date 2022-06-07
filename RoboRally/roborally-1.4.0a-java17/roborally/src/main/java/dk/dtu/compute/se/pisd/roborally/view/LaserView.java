@@ -43,8 +43,22 @@ public class LaserView {
                         graphic.strokeLine(SpaceView.SPACE_WIDTH*0.65, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.65, 0);
                     }
                     if (!laser.getCenter()) {
-                        Image down = new Image("LaserDown.png",30,30, true, true);
-                        graphic.drawImage(down,SpaceView.SPACE_WIDTH/6,0);
+                        Image down = null;
+                        switch (laser.getNoOfLaser()) {
+                            case 1:
+                                down = new Image("LaserDown.png",30,30, true, true);
+                                graphic.drawImage(down,SpaceView.SPACE_WIDTH/3,SpaceView.SPACE_HEIGHT*0.70);
+                                break;
+                            case 2:
+                                down = new Image("TwoLaserDown.png",50,50, true, true);
+                                graphic.drawImage(down,0,0);
+                                break;
+                            case 3:
+                                down = new Image("ThreeLaserDown.png",40,30, true, true);
+                                graphic.drawImage(down,SpaceView.SPACE_WIDTH/3,SpaceView.SPACE_HEIGHT*0.70);
+                                break;
+                        }
+
                     }
                     break;
                 }
@@ -65,8 +79,19 @@ public class LaserView {
                     }
 
                     if (!laser.getCenter()) {
-                        Image left = new Image("LaserLeft.png",30,30, true, true);
-                        graphic.drawImage(left,SpaceView.SPACE_WIDTH*0.65,SpaceView.SPACE_HEIGHT/5);
+                        Image left = null;
+                        switch (laser.getNoOfLaser()) {
+                            case 1:
+                                left = new Image("LaserLeft.png",30,30, true, true);
+                                break;
+                            case 2:
+                                left = new Image("TwoLaserLeft.png",50,50, true, true);
+                                break;
+                            case 3:
+                                left = new Image("ThreeLaserLeft.png",40,30, true, true);
+                                break;
+                        }
+                        graphic.drawImage(left,SpaceView.SPACE_WIDTH/3,SpaceView.SPACE_HEIGHT*0.70);
                     }
                     break;
                 }
@@ -79,24 +104,26 @@ public class LaserView {
                         graphic.strokeLine(SpaceView.SPACE_WIDTH*0.65, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.65, 0);
                     }
                     else if(laser.getNoOfLaser() == 3) {
-                        graphic.strokeLine(SpaceView.SPACE_WIDTH/2, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT/2, 0);
-                        graphic.strokeLine(SpaceView.SPACE_WIDTH/3, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT/3, 0);
-                        graphic.strokeLine(SpaceView.SPACE_WIDTH*0.65, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.65, 0);
+                        graphic.strokeLine(SpaceView.SPACE_WIDTH*0.18, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.18, 0);
+                        graphic.strokeLine(SpaceView.SPACE_WIDTH*0.49, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.49, 0);
+                        graphic.strokeLine(SpaceView.SPACE_WIDTH*0.82, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.82, 0);
                     }
                     if (!laser.getCenter()) {
                         Image up = null;
                         switch (laser.getNoOfLaser()) {
                             case 1:
                                 up = new Image("LaserUp.png",30,30, true, true);
+                                graphic.drawImage(up,SpaceView.SPACE_WIDTH/3,SpaceView.SPACE_HEIGHT*0.70);
                                 break;
                             case 2:
-                                up = new Image("TwoLaserUp.png",50,50, true, true);
+                                up = new Image("TwoLaserUp.png",30,30, true, true);
+                                graphic.drawImage(up,SpaceView.SPACE_WIDTH/3,SpaceView.SPACE_HEIGHT*0.70);
                                 break;
                             case 3:
-                                up = new Image("ThreeLaserUp.png",40,30, true, true);
+                                up = new Image("ThreeLaserUp.png",SpaceView.SPACE_WIDTH,SpaceView.SPACE_HEIGHT*(120.0/636), true, true);
+                                graphic.drawImage(up,0,SpaceView.SPACE_WIDTH*(1-(120.0/636)));
                                 break;
                         }
-                        graphic.drawImage(up,SpaceView.SPACE_WIDTH/3,SpaceView.SPACE_HEIGHT*0.70);
                     }
                     break;
                 }
@@ -123,11 +150,10 @@ public class LaserView {
                                 right = new Image("TwoLaserRight.png",30,30, true, true);
                                 break;
                             case 3:
-                                right = new Image("ThreeLaserRight.png",30,30, true, true);
+                                right = new Image("ThreeLaserRight.png",SpaceView.SPACE_HEIGHT*(120.0/636),SpaceView.SPACE_HEIGHT, true, true);
                                 break;
                         }
-
-                        graphic.drawImage(right,0,SpaceView.SPACE_HEIGHT/6);
+                        graphic.drawImage(right,0,SpaceView.SPACE_WIDTH*(0));
                     }
                     break;
                 }
