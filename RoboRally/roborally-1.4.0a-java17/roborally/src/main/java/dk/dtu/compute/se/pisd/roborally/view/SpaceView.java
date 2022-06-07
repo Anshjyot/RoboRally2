@@ -26,6 +26,7 @@ import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.*;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
+import dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -63,14 +64,6 @@ public class SpaceView extends StackPane implements ViewObserver {
         this.setMinHeight(SPACE_HEIGHT);
         this.setMaxHeight(SPACE_HEIGHT);
 
-            //laver en linje - kan måske bruges til laser
-            Line line = new Line();
-            line.setStartX(200);
-            line.setStartY(200);
-            line.setRotate(90);
-
-            this.getChildren().add(line);
-
             // This space view should listen to changes of the space
             space.attach(this);
             update(space);
@@ -87,16 +80,12 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             Player player = space.getPlayer();
             if (player != null) {
-                Polygon arrow = new Polygon(0.0, 0.0,
-                        10.0, 20.0,
-                        20.0, 0.0);
-                try {
-                    arrow.setFill(Color.valueOf(player.getColor()));
-                } catch (Exception e) {
-                    arrow.setFill(Color.MEDIUMPURPLE);
-                }
+                String imageName = "Robot" + player.getRobot() + ".png";
+                Image robot = new Image(imageName,35,35,true,true);
+                ImageView viewRobot = new ImageView(robot);
 
-                arrow.setRotate((90 * player.getHeading().ordinal()) % 360);
+
+                viewRobot.setRotate((90 * player.getHeading().ordinal()) % 360);
                 Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 gc.setStroke(Color.BLUEVIOLET);
@@ -107,7 +96,7 @@ public class SpaceView extends StackPane implements ViewObserver {
                 this.getChildren().add(canvas);
                 gc.setStroke(Color.YELLOW);
                 gc.setLineWidth(1);
-                this.getChildren().add(arrow);
+                this.getChildren().add(viewRobot);
             }
         }
 
@@ -123,9 +112,6 @@ public class SpaceView extends StackPane implements ViewObserver {
 
             //resizing directly on loading:
             Image image = new Image("wall.png", 10, 50, false, false);
-            /*ImageView imageView_vertical = new ImageView(image);
-            ImageView imageView_horizontal = new ImageView(image);
-            imageView_horizontal.setRotate(90);*/
 
             for (int i = 0; i < walls.size(); i++) {
                 Heading header = walls.get(i);
@@ -148,51 +134,38 @@ public class SpaceView extends StackPane implements ViewObserver {
                 }
                 this.getChildren().add(canvas);
             }
-            /*
-            if (space.isWall()) {
-                this.getChildren().add(imageView_vertical);
-                this.getChildren().add(imageView_horizontal);
-            } */
         }
 
         @Override
         public void updateView (Subject subject){
             this.getChildren().clear();
+            updateNormalSpace();
+            if (this.space.getStartPoint()) {
+                StartpointView.drawStartpoint(this);
+            }
+            drawWall();
 
-            if (subject == this.space) {
-                updateNormalSpace();
-                if (this.space.getStartPoint()) {
-                    StartpointView.drawStartpoint(this);
+            for (FieldAction fa : space.getActions()) {
+                if (fa instanceof ConveyorBelt) {
+                    ConveyorBeltView.drawConveyorBeltView(this, fa);
                 }
-
-                //skal tjekke for fieldaction
-                if (!this.space.getWalls().isEmpty()) {
-                    WallView.drawWall(this, this.space);
+                else if(fa instanceof Checkpoint){
+                    CheckpointView.drawCheckpointView(this,fa);
                 }
-                for (FieldAction fa : space.getActions()) {
-                    if (fa instanceof ConveyorBelt) {
-                        ConveyorBeltView.drawConveyorBeltView(this, fa);
-                    }
-                    else if(fa instanceof Checkpoint){
-                        CheckpointView.drawCheckpointView(this,fa);
-                    }
-                    else if(fa instanceof Laser){
-                        LaserView.drawLaserView(this,fa);
-                    }
-                    else if (fa instanceof Gear){
-                        GearView.drawGearView(this,fa);
-                    }
-                    else if (fa instanceof PushPanels) {
-                        PushPanelsView.drawPushPanel(this, fa);
-                    }
-                    else if (fa instanceof Reboot){
-                        RebootView.drawRebootView(this,fa);
-                    }
+                else if(fa instanceof Laser){
+                    LaserView.drawLaserView(this,fa);
+                }
+                else if (fa instanceof Gear){
+                    GearView.drawGearView(this,fa);
+                }
+                else if (fa instanceof PushPanels) {
+                    PushPanelsView.drawPushPanel(this, fa);
+                }
+                else if (fa instanceof Reboot){
+                    RebootView.drawRebootView(this,fa);
                 }
             }
             updatePlayer();
-            drawWall();
-
         }
 
         public void updateNormalSpace () {

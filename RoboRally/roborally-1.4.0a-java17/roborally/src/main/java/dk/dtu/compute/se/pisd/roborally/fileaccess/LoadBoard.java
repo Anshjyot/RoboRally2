@@ -46,6 +46,7 @@ public class LoadBoard {
 
     private static final int WIDTH = 8;
     private static final int HEIGHT = 8;
+    private static int startpointCount = 0;
 
     public static Board loadBoard(String boardname) {
         if (boardname == null) {
@@ -80,6 +81,10 @@ public class LoadBoard {
                     space.setStartPoint(spaceTemplate.startPoint);
                     space.getActions().addAll(spaceTemplate.actions);
                     space.getWalls().addAll(spaceTemplate.walls);
+                    if(space.getStartPoint()){
+                        result.setStartpoints(space, startpointCount);
+                        startpointCount++;
+                    }
                 }
             }
 			reader.close();

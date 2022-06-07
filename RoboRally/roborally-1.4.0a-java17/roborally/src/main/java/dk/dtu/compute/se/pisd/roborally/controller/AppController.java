@@ -85,7 +85,7 @@ public class AppController {
                 for (int i = 0; i < no; i++) {
                     Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i), "Player " + (i + 1));
                     gameController.board.addPlayer(player);
-                    player.setSpace(gameController.board.getSpace(i % gameController.board.width, i));
+                    player.setSpace(gameController.board.getStartpoints()[i]);
                 }
 
                 // XXX: V2

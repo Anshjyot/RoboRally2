@@ -57,8 +57,7 @@ public class Board extends Subject {
 
     private int noOfCheckpoints = 1;
 
-    int[] getWalls = {5,5};
-    
+    private Space[] startpoints = new Space[6];
 
     public Board(int width, int height) {
         this.width = width;
@@ -68,15 +67,7 @@ public class Board extends Subject {
             for(int y = 0; y < height; y++) {
                 Space space = new Space(this, x, y);
                 spaces[x][y] = space;
-
-                if(x==4 && y==6){
-                    space.addWall();
-                }
-                if(x==7 && y==2){
-                    space.addWall();
-                }
             }
-
         }
         this.stepMode = false;
     }
@@ -182,7 +173,13 @@ public class Board extends Subject {
         this.noOfCheckpoints = number;
     }
 
-    public int[] getWalls() {return this.getWalls;}
+    public Space[] getStartpoints(){
+        return this.startpoints;
+    }
+    public void setStartpoints(Space space, int i){
+        startpoints[i] = space;
+    }
+
     /**
      * Returns the neighbour of the given space of the board in the given heading.
      * The neighbour is returned only, if it can be reached from the given space

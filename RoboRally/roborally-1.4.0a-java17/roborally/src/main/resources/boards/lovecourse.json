@@ -3,7 +3,48 @@
   "height": 8,
   "noOfCheckpoints": 3,
   "spaces": [
-
+    {
+      "walls": [
+      ],
+      "startPoint": true,
+      "x": 1,
+      "y": 4
+    },
+    {
+      "walls": [
+      ],
+      "startPoint": true,
+      "x": 1,
+      "y": 0
+    },
+    {
+      "walls": [
+      ],
+      "startPoint": true,
+      "x": 0,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "startPoint": true,
+      "x": 0,
+      "y": 7
+    },
+    {
+      "walls": [
+      ],
+      "startPoint": true,
+      "x": 2,
+      "y": 1
+    },
+    {
+      "walls": [
+      ],
+      "startPoint": true,
+      "x": 2,
+      "y": 6
+    },
     {
       "walls": [
 
