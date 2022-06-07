@@ -2,15 +2,16 @@ package dk.dtu.compute.se.pisd.roborally.controller;
 
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
-import dk.dtu.compute.se.pisd.roborally.model.Board;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextInputDialog;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
 
 public class AppController {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
@@ -112,6 +113,17 @@ public class AppController {
     }
 
     public void saveGame() {
+        TextInputDialog saveName = new TextInputDialog("");
+        saveName.setHeaderText("Type name for your saved game");
+        saveName.setContentText("Enter name");
+        saveName.setTitle("Save Game");
+
+        Optional<String> input = saveName.showAndWait();
+
+        if(input.isPresent()) {
+            String saveFileName = saveName.getResult();
+            LoadBoard.saveBoard(gameController.board, saveFileName);
+        }
     }
 
     public void loadGame() {
