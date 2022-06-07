@@ -44,7 +44,6 @@ public class GameController {
             this.heading = heading;
         }
     }
-
     final public Board board;
 
     public GameController(@NotNull Board board) {
