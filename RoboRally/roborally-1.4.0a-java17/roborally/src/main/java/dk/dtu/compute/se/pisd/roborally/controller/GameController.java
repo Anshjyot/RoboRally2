@@ -178,12 +178,11 @@ public class GameController {
                 if (nextPlayerNumber < board.getPlayersNumber()) {
                     board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
                 } else {
+                    //after each register, board-elements activate.
+                    activateFieldAction();
+                    winnerCheck();
                     step++;
                     if (step < Player.NO_REGISTERS) {
-                        //after each register, board-elements activate.
-                        activateFieldAction();
-                        winnerCheck();
-
                         makeProgramFieldsVisible(step);
                         board.setStep(step);
                         board.setCurrentPlayer(board.getPlayer(0));

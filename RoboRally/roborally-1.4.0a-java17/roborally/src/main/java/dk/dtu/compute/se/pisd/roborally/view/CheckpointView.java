@@ -16,7 +16,7 @@ public class CheckpointView {
         try {
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
             GraphicsContext graphic = canvas.getGraphicsContext2D();
-            String imageName = "Checkpoint " + String.valueOf(checkNo) + ".jpg";
+            String imageName = "Checkpoint " + checkNo + ".jpg";
             Image checkpointImage = new Image(imageName,50,50,true,true);
             graphic.drawImage(checkpointImage, 0, 0);
             /*

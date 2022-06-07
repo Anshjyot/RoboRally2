@@ -55,12 +55,6 @@ public class Space extends Subject {
         this.board = board;
         this.x = x;
         this.y = y;
-        /*
-        if(x == 3 && y ==5){
-            Checkpoint checkPoint = new Checkpoint();
-            checkPoint.setCheckpointNo(1);
-            this.getActions().add(checkPoint);
-        } */
         player = null;
     }
 
@@ -87,13 +81,6 @@ public class Space extends Subject {
     public List<Heading> getWalls() {
         return walls;
     }
-    public void addWall(){
-        isWall=true;
-    }
-    public boolean isWall() {
-        return isWall;
-    }
-
 
     public List<FieldAction> getActions() {
         return actions;

@@ -43,12 +43,20 @@ public class Gear extends FieldAction {
 
     @Override
     public boolean doAction(GameController gameController, Space space) {
+        Heading heading = getHeading();
         Player currentPlayer = space.getPlayer();
         if (currentPlayer != null) {
-                gameController.turnRight(currentPlayer);
-                return true;
+            switch (heading) {
+                case RIGHT:
+                    gameController.turnRight(currentPlayer);
+                    break;
+
+                case LEFT:
+                    gameController.turnLeft(currentPlayer);
+                    break;
             }
-        else
             return false;
+        }
+        return false;
     }
 }

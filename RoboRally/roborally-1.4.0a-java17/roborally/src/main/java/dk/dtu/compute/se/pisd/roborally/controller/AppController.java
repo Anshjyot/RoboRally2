@@ -14,8 +14,9 @@ import java.util.Optional;
 
 public class AppController {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
-    final private List<String> PLAYER_COLORS = Arrays.asList("red", "green", "blue", "orange", "grey", "magenta");
+    final private List<String> PLAYER_COLORS = Arrays.asList("blue", "orange", "green", "magenta", "cyan", "pink");
     final private List<Integer> PLAYER_ROBOT = Arrays.asList(1,2,3,4,5,6);
+    final private List<String> PLAYER_NAMES = Arrays.asList("blueToaster", "orangeStomper", "greenBulldozer", "magentaOister", "cyanUFO", "pinkNigiri");
 
     private GameController gameController;
 
@@ -67,7 +68,7 @@ public class AppController {
                 }
             }
 
-            ChoiceDialog<String> choice = new ChoiceDialog<>("defaultboard","startercourse","lovecourse");
+            ChoiceDialog<String> choice = new ChoiceDialog<>("defaultboard","defaultboard","startercourse","lovecourse","advanced");
             dialog.setTitle("RoboRally Course");
             dialog.setHeaderText("Select the course you want to play on");
             Optional<String> boardChoice = choice.showAndWait();
@@ -83,9 +84,9 @@ public class AppController {
                 }
                 int no = result.get();
                 for (int i = 0; i < no; i++) {
-                    Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i), "Player " + (i + 1));
+                    Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i),PLAYER_NAMES.get(i));
                     gameController.board.addPlayer(player);
-                    player.setSpace(gameController.board.getSpace(i % gameController.board.width, i));
+                    player.setSpace(gameController.board.getStartpoints()[i]);
                 }
 
                 // XXX: V2
