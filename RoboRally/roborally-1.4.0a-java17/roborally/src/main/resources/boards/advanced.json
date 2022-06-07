@@ -1,5 +1,38 @@
 {
-  "width": 20,
+  "width": 23,
   "height": 8,
-  "noOfCheckpoints": 3
+  "noOfCheckpoints": 6,
+  "spaces": [
+    {
+      "walls": [
+
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "RIGHT"
+          }
+        }
+      ],
+      "x": 16,
+      "y": 7
+    },
+    {
+      "walls": [
+       "DOWN"
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt",
+          "INSTANCE": {
+            "heading": "RIGHT"
+          }
+        }
+      ],
+      "x": 17,
+      "y": 7
     }
+  ]
+}
+
