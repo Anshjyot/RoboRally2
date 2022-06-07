@@ -6,6 +6,8 @@ import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+
+import static javafx.scene.paint.Color.BLUE;
 import static javafx.scene.paint.Color.RED;
 
 /**
@@ -19,14 +21,13 @@ public class LaserView {
         Heading heading = laser.getHeading();
 
         try {
-            Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
+            Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
             GraphicsContext graphic = canvas.getGraphicsContext2D();
             graphic.setStroke(RED);
             graphic.setLineWidth(2);
 
             switch(heading){
                // switch() {
-
 
                 case DOWN -> {
                     if(laser.getNoOfLaser() == 1) {
@@ -83,8 +84,19 @@ public class LaserView {
                         graphic.strokeLine(SpaceView.SPACE_WIDTH*0.65, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.65, 0);
                     }
                     if (!laser.getCenter()) {
-                        Image up = new Image("LaserUp.png",30,30, true, true);
-                        graphic.drawImage(up,SpaceView.SPACE_WIDTH/6,SpaceView.SPACE_HEIGHT*0.70);
+                        Image up = null;
+                        switch (laser.getNoOfLaser()) {
+                            case 1:
+                                up = new Image("LaserUp.png",30,30, true, true);
+                                break;
+                            case 2:
+                                up = new Image("TwoLaserUp.png",50,50, true, true);
+                                break;
+                            case 3:
+                                up = new Image("ThreeLaserUp.png",40,30, true, true);
+                                break;
+                        }
+                        graphic.drawImage(up,SpaceView.SPACE_WIDTH/3,SpaceView.SPACE_HEIGHT*0.70);
                     }
                     break;
                 }
@@ -102,7 +114,19 @@ public class LaserView {
                         graphic.strokeLine(0, SpaceView.SPACE_WIDTH*0.65, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT*0.65);
                     }
                     if (!laser.getCenter()) {
-                        Image right = new Image("LaserRight.png",30,30, true, true);
+                        Image right = null;
+                        switch (laser.getNoOfLaser()) {
+                            case 1:
+                                right = new Image("LaserRight.png",30,30, true, true);
+                                break;
+                            case 2:
+                                right = new Image("TwoLaserRight.png",30,30, true, true);
+                                break;
+                            case 3:
+                                right = new Image("ThreeLaserRight.png",30,30, true, true);
+                                break;
+                        }
+
                         graphic.drawImage(right,0,SpaceView.SPACE_HEIGHT/6);
                     }
                     break;

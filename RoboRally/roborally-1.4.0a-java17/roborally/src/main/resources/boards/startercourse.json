@@ -413,7 +413,7 @@
       "x": 4,
       "y": 0
     },
-   /* {
+    {
       "walls": [
       ],
       "actions": [
@@ -421,8 +421,8 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
             "noOfLaser": 1,
-            "heading": "LEFT",
-            "center": false
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
@@ -434,17 +434,17 @@
       ],
       "actions": [
         {
-          "CLASSNAME":"dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "noOfLaser": 3,
-            "heading": "DOWN",
-            "center": false
+            "noOfLaser": 1,
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
-      "x": 3,
-      "y": 3
-    },*/
+      "x": 6,
+      "y": 0
+    },
     {
       "walls": [
       ],
@@ -452,8 +452,40 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "noOfLaser": 2,
-            "heading": "DOWN",
+            "noOfLaser": 1,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 7,
+      "y": 0
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "UP",
+            "center": false
+          }
+        }
+      ],
+      "x": 3,
+      "y": 5
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "UP",
             "center": true
           }
         }
@@ -468,14 +500,30 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "noOfLaser": 2,
+            "noOfLaser": 3,
             "heading": "UP",
-            "center": false
+            "center": true
           }
         }
       ],
       "x": 3,
-      "y": 5
+      "y": 3
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "UP",
+            "center": true
+          }
+        }
+      ],
+      "x": 3,
+      "y": 2
     }
   ]
 }

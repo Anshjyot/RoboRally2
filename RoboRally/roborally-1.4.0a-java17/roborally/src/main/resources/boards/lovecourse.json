@@ -279,22 +279,6 @@
     },
     {
       "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
-          "INSTANCE": {
-            "noOfLaser": 1,
-            "heading": "RIGHT",
-            "center": false
-          }
-        }
-      ],
-      "x": 13,
-      "y": 7
-    },
-    {
-      "walls": [
         "RIGHT"
       ],
       "actions": [
@@ -321,8 +305,232 @@
           }
         }
       ],
+      "x": 13,
+      "y": 7
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 1,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
       "x": 14,
       "y": 7
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 1,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 15,
+      "y": 7
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": false
+          }
+        }
+      ],
+      "x": 4,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 5,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 6,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 7,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 8,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 9,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 10,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 11,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 12,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 13,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 14,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 15,
+      "y": 2
     },
     {
       "walls": [
