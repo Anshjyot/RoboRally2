@@ -7,13 +7,6 @@ import javafx.scene.shape.Circle;
 
 import static java.awt.Color.green;
 
-/**
- *   Designs our Startpoint
- *
- * @author Anshjyot Singh, s215806
- *
- */
-
 public class StartpointView {
 
     public static void drawStartpoint(SpaceView spaceView){
@@ -22,11 +15,11 @@ public class StartpointView {
 
         try{
            Image startpoint = new Image("Startpoint.png", 50,50, true, true);
-           graphic.drawImage(startpoint,50,50);
+           graphic.drawImage(startpoint,0,0);
+           spaceView.getChildren().add(canvas);
         }
         catch(Exception e){
             System.out.print("No image");
         }
-        spaceView.getChildren().add(canvas);
     }
 }
