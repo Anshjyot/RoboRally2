@@ -21,6 +21,7 @@
  */
 package dk.dtu.compute.se.pisd.roborally.fileaccess.model;
 
+import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
 
@@ -41,4 +42,6 @@ public class SpaceTemplate {
     public int x;
     public int y;
     public boolean startPoint;
+    public int playerNo;
+
 }

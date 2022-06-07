@@ -127,11 +127,38 @@ public class AppController {
     }
 
     public void loadGame() {
+        ChoiceDialog<String> choice = new ChoiceDialog<>("Saved game","Saved Game");
+        choice.setTitle("RoboRally Course");
+        choice.setHeaderText("Select the course you want to play on");
+        Optional<String> boardChoice = choice.showAndWait();
+
+        if(boardChoice.isPresent()) {
+            String boardName = boardChoice.get();
+
+            // XXX the board should eventually be created programmatically or loaded from a file
+            //     here we just create an empty board with the required number of players.
+            gameController = new GameController(LoadBoard.loadBoard(boardName));
+            if (gameController.board == null) {
+                System.out.println("Cant load board");
+            }
+            int no = gameController.board.getPositions().length;
+            for (int i = 0; i < no; i++) {
+                Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i),PLAYER_NAMES.get(i));
+                gameController.board.addPlayer(player);
+                player.setSpace(gameController.board.getPositions()[i]);
+            }
+
+            // XXX: V2
+            // board.setCurrentPlayer(board.getPlayer(0));
+            gameController.startProgrammingPhase();
+
+            roboRally.createBoardView(gameController);
+        }
         // XXX needs to be implememted eventually
         // for now, we just create a new game
-        if (gameController == null) {
+        /*if (gameController == null) {
             newGame();
-        }
+        } */
     }
 
     public boolean isGameRunning() {

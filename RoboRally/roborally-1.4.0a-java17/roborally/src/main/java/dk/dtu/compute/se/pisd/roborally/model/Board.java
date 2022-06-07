@@ -58,6 +58,7 @@ public class Board extends Subject {
     private int noOfCheckpoints = 1;
 
     private Space[] startpoints = new Space[6];
+    private Space[] positions = new Space[6];
 
     public Board(int width, int height) {
         this.width = width;
@@ -179,6 +180,11 @@ public class Board extends Subject {
     public void setStartpoints(Space space, int i){
         startpoints[i] = space;
     }
+
+    public Space[] getPositions(){
+        return this.positions;
+    }
+    public void setPositions(Space space, int i) { positions[i] = space; }
 
     /**
      * Returns the neighbour of the given space of the board in the given heading.
