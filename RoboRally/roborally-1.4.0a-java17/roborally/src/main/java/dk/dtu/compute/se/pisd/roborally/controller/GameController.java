@@ -429,8 +429,7 @@ public class GameController {
 
     /**
      * @author Mathilde Elia S215811
-     * checkpointCheck() is used when the activation phase has ended
-     * and the system needs to register players who are standing on a (correct) checkpoint.
+     * winnerCheck() is used when each register has ended.
      * If a player has reached all checkpoint on the board, then the game finishes.
      */
 
