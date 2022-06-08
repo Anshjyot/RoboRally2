@@ -53,6 +53,8 @@ public class Board extends Subject {
 
     private int step = 0;
 
+    private int[] rebootXY = new int[2];
+
     private boolean stepMode;
     private boolean isOutOfBoard = false;
 
@@ -196,6 +198,11 @@ public class Board extends Subject {
     public boolean isOutOfBoard(){return isOutOfBoard;}
     public void resetOutOfBoard(){isOutOfBoard = false;}
 
+    public void setRebootXY(int x, int y){
+        rebootXY[0] = x; rebootXY[1]=y;
+    }
+    public int[] getRebootXY(){return this.rebootXY;}
+
     /**
      * Returns the neighbour of the given space of the board in the given heading.
      * The neighbour is returned only, if it can be reached from the given space
@@ -238,7 +245,7 @@ public class Board extends Subject {
         //list of the 4 headings
         Heading reverse = Heading.values()[(heading.ordinal() + 2)% Heading.values().length];
         Space result = getSpace(x, y);
-        if(x>= width || y>= height){
+        if(x>= width || y>= height || x<0 || y<0){
             isOutOfBoard = true;
         }
 

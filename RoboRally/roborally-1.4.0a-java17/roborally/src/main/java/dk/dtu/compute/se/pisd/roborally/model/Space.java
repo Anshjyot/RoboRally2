@@ -45,9 +45,6 @@ public class Space extends Subject {
 
     public final Board board;
 
-    private boolean isWall = false;
-    private boolean isLaser = false;
-
     public final int x;
     public final int y;
 

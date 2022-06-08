@@ -142,6 +142,11 @@ public class Player extends Subject {
         return cards[i];
     }
 
+    public void clearProgram(int i){
+        program[i].setCard(null);
+        program[i].setVisible(true);
+    }
+
     public void reachedCheckpoint(){
         noCheckpointReached++;
         //playerChanged is added to update the checkpointReached number

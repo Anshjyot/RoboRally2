@@ -84,6 +84,7 @@ public class GameController {
 
         for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player player = board.getPlayer(i);
+            player.setRebooting(false);
             if (player != null) {
                 for (int j = 0; j < Player.NO_REGISTERS; j++) {
                     CommandCardField field = player.getProgramField(j);
@@ -210,11 +211,19 @@ public class GameController {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
             for(FieldAction fa : currentSpace.getActions()){
+                if(fa instanceof Reboot){
+                    fa.doAction(this, currentSpace);
+                }
+            }
+        }
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            Space currentSpace = currentPlayer.getSpace();
+            for(FieldAction fa : currentSpace.getActions()){
                 if(fa instanceof ConveyorBelt){
                     fa.doAction(this, currentSpace);
                 }
             }
-
         }
         for(int i = 0; i < board.getPlayersNumber(); i++){
             Player currentPlayer = board.getPlayer(i);
@@ -312,7 +321,7 @@ public class GameController {
     // TODO: V2
     public void moveForward(@NotNull Player player) {
         Space space = player.getSpace();
-        if (player != null && player.board == board && space != null) {
+        if (player != null && player.board == board && space != null && !player.isRebooting()) {
             Heading heading = player.getHeading();
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
@@ -326,6 +335,7 @@ public class GameController {
             //if player falls out of the board, they should reboot.
             if (board.isOutOfBoard()){
                 player.setRebooting(true);
+                player.setSpace(board.getSpace(board.getRebootXY()[0],board.getRebootXY()[1]));
                 board.resetOutOfBoard();
             }
         }
