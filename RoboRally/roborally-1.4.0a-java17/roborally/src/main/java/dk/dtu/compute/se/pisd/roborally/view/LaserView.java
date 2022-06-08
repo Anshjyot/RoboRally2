@@ -34,8 +34,8 @@ public class LaserView {
                         graphic.strokeLine(SpaceView.SPACE_WIDTH / 2, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT / 2, 0);
                     }
                     if(laser.getNoOfLaser() == 2){
-                        graphic.strokeLine(SpaceView.SPACE_WIDTH/3, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT/3, 0);
-                        graphic.strokeLine(SpaceView.SPACE_WIDTH*0.65, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.65, 0);
+                        graphic.strokeLine(SpaceView.SPACE_WIDTH*0.23, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.23, 0);
+                        graphic.strokeLine(SpaceView.SPACE_WIDTH*0.80, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.80, 0);
                     }
                     else if(laser.getNoOfLaser() == 3) {
                         graphic.strokeLine(SpaceView.SPACE_WIDTH/2, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT/2, 0);
@@ -132,22 +132,22 @@ public class LaserView {
                         graphic.strokeLine(0, SpaceView.SPACE_WIDTH / 2, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT / 2);
                     }
                      if(laser.getNoOfLaser() == 2){
-                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH/3, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT/3);
-                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH*0.65, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT*0.65);
+                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH*0.23, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT*0.23);
+                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH*0.80, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT*0.80);
                     }
                     else if(laser.getNoOfLaser() == 3) {
-                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH/2, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT/2);
-                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH/3, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT/3);
-                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH*0.65, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT*0.65);
+                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH*0.18, SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT*0.18);
+                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH*0.49, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT*0.49);
+                        graphic.strokeLine(0, SpaceView.SPACE_WIDTH*0.82, SpaceView.SPACE_HEIGHT, SpaceView.SPACE_HEIGHT*0.82);
                     }
                     if (!laser.getCenter()) {
                         Image right = null;
                         switch (laser.getNoOfLaser()) {
                             case 1:
-                                right = new Image("LaserRight.png",30,30, true, true);
+                                right = new Image("LaserRight.png",0,SpaceView.SPACE_HEIGHT, true, true);
                                 break;
                             case 2:
-                                right = new Image("TwoLaserRight.png",30,30, true, true);
+                                right = new Image("TwoLaserRight.png",30,SpaceView.SPACE_HEIGHT, true, true);
                                 break;
                             case 3:
                                 right = new Image("ThreeLaserRight.png",SpaceView.SPACE_HEIGHT*(120.0/636),SpaceView.SPACE_HEIGHT, true, true);

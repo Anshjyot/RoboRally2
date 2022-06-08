@@ -423,38 +423,6 @@
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
-          "INSTANCE": {
-            "noOfLaser": 2,
-            "heading": "DOWN",
-            "center": false
-          }
-        }
-      ],
-      "x": 14,
-      "y": 3
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
-          "INSTANCE": {
-            "noOfLaser": 2,
-            "heading": "UP",
-            "center": false
-          }
-        }
-      ],
-      "x": 14,
-      "y": 4
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt",
           "INSTANCE": {
             "heading": "RIGHT"
