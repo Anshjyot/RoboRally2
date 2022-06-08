@@ -40,5 +40,6 @@ public class BoardTemplate {
 
     public List<SpaceTemplate> spaces = new ArrayList<>();
     public SpaceTemplate[] positions = new SpaceTemplate[6];
+    public int[] checkpointsReached = new int[6];
 
 }

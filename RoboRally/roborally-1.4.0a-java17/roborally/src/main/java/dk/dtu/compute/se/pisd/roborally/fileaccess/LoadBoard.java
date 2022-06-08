@@ -83,7 +83,9 @@ public class LoadBoard {
                     space.getActions().addAll(spaceTemplate.actions);
                     space.getWalls().addAll(spaceTemplate.walls);
                     if(spaceTemplate.playerNo != 0){
-                        result.setPositions(space, spaceTemplate.playerNo);
+                        int playerNo = spaceTemplate.playerNo;
+                        result.setPositions(space, playerNo-1);
+                        result.setCheckpoints(template.checkpointsReached[playerNo-1],playerNo-1);
                     }
                     if(space.getStartPoint()){
                         result.setStartpoints(space, startpointCount);
@@ -120,15 +122,19 @@ public class LoadBoard {
             for (int j=0; j<board.height; j++) {
                 Space space = board.getSpace(i,j);
 
-                if (!space.getWalls().isEmpty() || !space.getActions().isEmpty() || space.getPlayer() != null) {
+                if (!space.getWalls().isEmpty() || !space.getActions().isEmpty()
+                        || space.getStartPoint() || space.getPlayer() != null) {
                     SpaceTemplate spaceTemplate = new SpaceTemplate();
+                    spaceTemplate.startPoint = space.startPoint;
                     spaceTemplate.x = space.x;
                     spaceTemplate.y = space.y;
                     spaceTemplate.actions.addAll(space.getActions());
                     spaceTemplate.walls.addAll(space.getWalls());
                     if (space.getPlayer() != null){
                     spaceTemplate.playerNo = space.getPlayer().getRobot();
-                    template.positions[spaceTemplate.playerNo-1] = spaceTemplate;}
+                    template.positions[spaceTemplate.playerNo-1] = spaceTemplate;
+                    template.checkpointsReached[spaceTemplate.playerNo-1] = space.getPlayer().getNoCheckpointReached();
+                    }
 
                     template.spaces.add(spaceTemplate);
                 }

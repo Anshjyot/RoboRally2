@@ -143,9 +143,15 @@ public class AppController {
             }
             int no = gameController.board.getPositions().length;
             for (int i = 0; i < no; i++) {
+                if(gameController.board.getPositions()[i] == null){
+                    break;
+                }
                 Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i),PLAYER_NAMES.get(i));
                 gameController.board.addPlayer(player);
                 player.setSpace(gameController.board.getPositions()[i]);
+                for(int j=0; j < gameController.board.getCheckpoints()[i]; j++){
+                    player.reachedCheckpoint();
+                }
             }
 
             // XXX: V2
