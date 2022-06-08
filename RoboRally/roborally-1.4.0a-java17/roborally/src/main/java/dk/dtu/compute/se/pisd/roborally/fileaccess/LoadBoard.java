@@ -41,6 +41,8 @@ import java.io.*;
 public class LoadBoard {
 
     private static final String BOARDSFOLDER = "boards";
+    private static final String SAVEDBOARDSFOLDER = "saved";
+
     private static final String DEFAULTBOARD = "defaultboard";
     private static final String JSON_EXT = "json";
 
@@ -48,15 +50,23 @@ public class LoadBoard {
     private static final int HEIGHT = 8;
     private static int startpointCount = 0;
 
-    public static Board loadBoard(String boardname) {
+    public static Board loadBoard(String boardname, boolean isSaved) {
         if (boardname == null) {
             boardname = DEFAULTBOARD;
         }
-
+        InputStream inputStream;
         ClassLoader classLoader = LoadBoard.class.getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
+        if (!isSaved) {
+            inputStream = classLoader.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
         if (inputStream == null) {
-            return new Board(WIDTH,HEIGHT);
+            return new Board(WIDTH, HEIGHT);
+        }
+    }
+        else{
+            inputStream = classLoader.getResourceAsStream(SAVEDBOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
+            if (inputStream == null) {
+                return new Board(WIDTH, HEIGHT);
+            }
         }
 
 		// In simple cases, we can create a Gson object with new Gson():
@@ -73,6 +83,7 @@ public class LoadBoard {
 			BoardTemplate template = gson.fromJson(reader, BoardTemplate.class);
 			result = new Board(template.width, template.height);
             result.setNoOfCheckpoints(template.noOfCheckpoints);
+            result.setStep(template.step);
 
             //indsæt result.boardname = boardname hvis det bliver relevant
 			for (SpaceTemplate spaceTemplate: template.spaces) {
@@ -81,6 +92,11 @@ public class LoadBoard {
                     space.setStartPoint(spaceTemplate.startPoint);
                     space.getActions().addAll(spaceTemplate.actions);
                     space.getWalls().addAll(spaceTemplate.walls);
+                    if(spaceTemplate.playerNo != 0){
+                        int playerNo = spaceTemplate.playerNo;
+                        result.setPositions(space, playerNo-1);
+                        result.setCheckpoints(template.checkpointsReached[playerNo-1],playerNo-1);
+                    }
                     if(space.getStartPoint()){
                         result.setStartpoints(space, startpointCount);
                         startpointCount++;
@@ -109,16 +125,27 @@ public class LoadBoard {
         BoardTemplate template = new BoardTemplate();
         template.width = board.width;
         template.height = board.height;
+        template.step = board.getStep();
+        template.noOfCheckpoints = board.getNoOfCheckpoints();
 
         for (int i=0; i<board.width; i++) {
             for (int j=0; j<board.height; j++) {
                 Space space = board.getSpace(i,j);
-                if (!space.getWalls().isEmpty() || !space.getActions().isEmpty()) {
+
+                if (!space.getWalls().isEmpty() || !space.getActions().isEmpty()
+                        || space.getStartPoint() || space.getPlayer() != null) {
                     SpaceTemplate spaceTemplate = new SpaceTemplate();
+                    spaceTemplate.startPoint = space.startPoint;
                     spaceTemplate.x = space.x;
                     spaceTemplate.y = space.y;
                     spaceTemplate.actions.addAll(space.getActions());
                     spaceTemplate.walls.addAll(space.getWalls());
+                    if (space.getPlayer() != null){
+                    spaceTemplate.playerNo = space.getPlayer().getRobot();
+                    template.positions[spaceTemplate.playerNo-1] = spaceTemplate;
+                    template.checkpointsReached[spaceTemplate.playerNo-1] = space.getPlayer().getNoCheckpointReached();
+                    }
+
                     template.spaces.add(spaceTemplate);
                 }
             }
@@ -129,7 +156,7 @@ public class LoadBoard {
         //       when the folder "resources" does not exist! But, it does not need
         //       the file "simpleCards.json" to exist!
         String filename =
-                classLoader.getResource(BOARDSFOLDER).getPath() + "/" + name + "." + JSON_EXT;
+                "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/saved" + "/" + name + "." + JSON_EXT;
 
         // In simple cases, we can create a Gson object with new:
         //

@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class AppController {
     final private List<Integer> PLAYER_NUMBER_OPTIONS = Arrays.asList(2, 3, 4, 5, 6);
     final private List<String> PLAYER_COLORS = Arrays.asList("blue", "orange", "green", "magenta", "cyan", "pink");
-    final private List<Integer> PLAYER_ROBOT = Arrays.asList(1,2,3,4,5,6);
+    final private List<Integer> PLAYER_ROBOT = Arrays.asList(1, 2, 3, 4, 5, 6);
     final private List<String> PLAYER_NAMES = Arrays.asList("blueToaster", "orangeStomper", "greenBulldozer", "magentaOister", "cyanUFO", "pinkNigiri");
 
     private GameController gameController;
@@ -30,7 +31,7 @@ public class AppController {
     // TODO most methods missing here!
 
     //probably shouldn't be static.
-    static void gameFinished(String winnerName){
+    static void gameFinished(String winnerName) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(winnerName + " has reached all checkpoints and has WON!");
         alert.setTitle("Congratulations");
@@ -40,17 +41,16 @@ public class AppController {
     }
 
     public void exit() {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Exit RoboRally?");
-            alert.setContentText("Are you sure you want to exit RoboRally?");
-            Optional<ButtonType> result = alert.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit RoboRally?");
+        alert.setContentText("Are you sure you want to exit RoboRally?");
+        Optional<ButtonType> result = alert.showAndWait();
 
-            if (result.isEmpty() || result.get() != ButtonType.OK) {
-                return; // return without exiting the application.
-            }
-            else{
-                System.exit(0);
-            }
+        if (result.isEmpty() || result.get() != ButtonType.OK) {
+            return; // return without exiting the application.
+        } else {
+            System.exit(0);
+        }
     }
 
     public void newGame() {
@@ -69,23 +69,23 @@ public class AppController {
                 }
             }
 
-            ChoiceDialog<String> choice = new ChoiceDialog<>("defaultboard","defaultboard","startercourse","lovecourse","advanced");
+            ChoiceDialog<String> choice = new ChoiceDialog<>("defaultboard", "defaultboard", "startercourse", "lovecourse", "advanced");
             dialog.setTitle("RoboRally Course");
             dialog.setHeaderText("Select the course you want to play on");
             Optional<String> boardChoice = choice.showAndWait();
 
-            if(boardChoice.isPresent()) {
+            if (boardChoice.isPresent()) {
                 String boardName = boardChoice.get();
 
                 // XXX the board should eventually be created programmatically or loaded from a file
                 //     here we just create an empty board with the required number of players.
-                gameController = new GameController(LoadBoard.loadBoard(boardName));
+                gameController = new GameController(LoadBoard.loadBoard(boardName,false));
                 if (gameController.board == null) {
                     System.out.println("Cant load board");
                 }
                 int no = result.get();
                 for (int i = 0; i < no; i++) {
-                    Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i),PLAYER_NAMES.get(i));
+                    Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i), PLAYER_NAMES.get(i));
                     gameController.board.addPlayer(player);
                     player.setSpace(gameController.board.getStartpoints()[i]);
                 }
@@ -120,21 +120,66 @@ public class AppController {
 
         Optional<String> input = saveName.showAndWait();
 
-        if(input.isPresent()) {
+        if (input.isPresent()) {
             String saveFileName = saveName.getResult();
             LoadBoard.saveBoard(gameController.board, saveFileName);
         }
     }
 
     public void loadGame() {
-        // XXX needs to be implememted eventually
-        // for now, we just create a new game
-        if (gameController == null) {
+        try {
+            String RESSOURCEFOLDER = "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/saved";
+            File f = new File(RESSOURCEFOLDER);
+            String[] savedGames = f.list();
+            for (int i = 0; i < savedGames.length; i++) {
+                savedGames[i] = savedGames[i].substring(0, savedGames[i].length() - 5);
+            }
+
+                ChoiceDialog<String> choice = new ChoiceDialog<>(savedGames[0], savedGames);
+                choice.setTitle("RoboRally Course");
+                choice.setHeaderText("Select the course you want to play on");
+                Optional<String> boardChoice = choice.showAndWait();
+
+                if (boardChoice.isPresent()) {
+                    String boardName = boardChoice.get();
+
+                    // XXX the board should eventually be created programmatically or loaded from a file
+                    //     here we just create an empty board with the required number of players.
+                    gameController = new GameController(LoadBoard.loadBoard(boardName,true));
+                    if (gameController.board == null) {
+                        System.out.println("Cant load board");
+                    }
+                    int no = gameController.board.getPositions().length;
+                    for (int i = 0; i < no; i++) {
+                        if (gameController.board.getPositions()[i] == null) {
+                            break;
+                        }
+                        Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i), PLAYER_NAMES.get(i));
+                        gameController.board.addPlayer(player);
+                        player.setSpace(gameController.board.getPositions()[i]);
+                        for (int j = 0; j < gameController.board.getCheckpoints()[i]; j++) {
+                            player.reachedCheckpoint();
+                        }
+                    }
+
+                    // XXX: V2
+                    // board.setCurrentPlayer(board.getPlayer(0));
+                    gameController.startProgrammingPhase();
+
+                    roboRally.createBoardView(gameController);
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            }
+
+            // XXX needs to be implememted eventually
+            // for now, we just create a new game
+        /*if (gameController == null) {
             newGame();
+        } */
+
+        public boolean isGameRunning () {
+            return gameController != null;
         }
     }
-
-    public boolean isGameRunning() {
-        return gameController != null;
-    }
-}

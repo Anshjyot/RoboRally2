@@ -20,6 +20,7 @@
  *
  */
 package dk.dtu.compute.se.pisd.roborally.controller;
+import dk.dtu.compute.se.pisd.roborally.RESTfulAPI.Web;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.*;
 import org.jetbrains.annotations.NotNull;
@@ -171,6 +172,8 @@ public class GameController {
                 if (card != null) {
                     Command command = card.command;
                     executeCommand(currentPlayer, command);
+                    Web web = new Web();
+                    web.transferBoard(board, "test");
                 }
                 int nextPlayerNumber = board.getPlayerNumber(currentPlayer) + 1;
                 if (nextPlayerNumber < board.getPlayersNumber()) {
@@ -323,10 +326,12 @@ public class GameController {
         }
     }
 
+   // getWalls = null // ingen vægge
+
     public void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         assert board.getNeighbour(player.getSpace(), heading) == space; // valid move or not
         Player other = space.getPlayer();
-        if (other != null){
+        if (other != null) {
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
                 moveToSpace(other, target, heading);
@@ -429,8 +434,7 @@ public class GameController {
 
     /**
      * @author Mathilde Elia S215811
-     * checkpointCheck() is used when the activation phase has ended
-     * and the system needs to register players who are standing on a (correct) checkpoint.
+     * winnerCheck() is used when each register has ended.
      * If a player has reached all checkpoint on the board, then the game finishes.
      */
 
