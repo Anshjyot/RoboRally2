@@ -165,7 +165,7 @@ public class GameController {
     // XXX: V2
     private void executeNextStep() {
         Player currentPlayer = board.getCurrentPlayer();
-        if (board.getPhase() == Phase.ACTIVATION && currentPlayer != null) {
+        if (board.getPhase() == Phase.ACTIVATION && currentPlayer != null && !currentPlayer.isRebooting()) {
             int step = board.getStep();
             if (step >= 0 && step < Player.NO_REGISTERS) {
                 CommandCard card = currentPlayer.getProgramField(step).getCard();
@@ -322,6 +322,11 @@ public class GameController {
 
                 }
                 //target.setPlayer(player);
+            }
+            //if player falls out of the board, they should reboot.
+            if (board.isOutOfBoard()){
+                player.setRebooting(true);
+                board.resetOutOfBoard();
             }
         }
     }

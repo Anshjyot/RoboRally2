@@ -54,6 +54,7 @@ public class Board extends Subject {
     private int step = 0;
 
     private boolean stepMode;
+    private boolean isOutOfBoard = false;
 
     private int noOfCheckpoints = 1;
 
@@ -192,6 +193,9 @@ public class Board extends Subject {
         checkpoints[i] = reached;
     }
 
+    public boolean isOutOfBoard(){return isOutOfBoard;}
+    public void resetOutOfBoard(){isOutOfBoard = false;}
+
     /**
      * Returns the neighbour of the given space of the board in the given heading.
      * The neighbour is returned only, if it can be reached from the given space
@@ -228,12 +232,16 @@ public class Board extends Subject {
                 y = (y - 1) ;
                 break;
             case RIGHT:
-                x = (x + 1) % width;
+                x = (x + 1);
                 break;
         }
         //list of the 4 headings
         Heading reverse = Heading.values()[(heading.ordinal() + 2)% Heading.values().length];
         Space result = getSpace(x, y);
+        if(x>= width || y>= height){
+            isOutOfBoard = true;
+        }
+
         if (result != null) { //tjekker om felt er på board
             if (result.getWalls().contains(reverse)) { //tjekker om felt har en væg som spærre
                 return null;

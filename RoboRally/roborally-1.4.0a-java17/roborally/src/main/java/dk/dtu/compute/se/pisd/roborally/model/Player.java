@@ -45,6 +45,7 @@ public class Player extends Subject {
     private String color;
     private int robot;
     private ArrayList<Command> damageCards = new ArrayList<>();
+    private boolean isRebooting = false;
 
     private Space space;
     private Heading heading = DOWN;
@@ -151,6 +152,8 @@ public class Player extends Subject {
         return this.noCheckpointReached;
     }
 
+    public boolean isRebooting (){return isRebooting;}
+    public void setRebooting(boolean reboot){isRebooting = reboot;}
 
     public void setDamagecards(Command card){
         this.damageCards.add(card);
