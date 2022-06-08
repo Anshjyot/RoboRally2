@@ -146,7 +146,7 @@ public class LoadBoard {
         //       when the folder "resources" does not exist! But, it does not need
         //       the file "simpleCards.json" to exist!
         String filename =
-                classLoader.getResource(BOARDSFOLDER).getPath() + "/" + name + "." + JSON_EXT;
+                "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/boards" + "/" + name + "." + JSON_EXT;
 
         // In simple cases, we can create a Gson object with new:
         //
