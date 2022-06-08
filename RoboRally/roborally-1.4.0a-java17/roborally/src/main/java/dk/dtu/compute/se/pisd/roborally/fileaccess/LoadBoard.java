@@ -41,6 +41,8 @@ import java.io.*;
 public class LoadBoard {
 
     private static final String BOARDSFOLDER = "boards";
+    private static final String SAVEDBOARDSFOLDER = "saved";
+
     private static final String DEFAULTBOARD = "defaultboard";
     private static final String JSON_EXT = "json";
 
@@ -48,15 +50,23 @@ public class LoadBoard {
     private static final int HEIGHT = 8;
     private static int startpointCount = 0;
 
-    public static Board loadBoard(String boardname) {
+    public static Board loadBoard(String boardname, boolean isSaved) {
         if (boardname == null) {
             boardname = DEFAULTBOARD;
         }
-
+        InputStream inputStream;
         ClassLoader classLoader = LoadBoard.class.getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
+        if (!isSaved) {
+            inputStream = classLoader.getResourceAsStream(BOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
         if (inputStream == null) {
-            return new Board(WIDTH,HEIGHT);
+            return new Board(WIDTH, HEIGHT);
+        }
+    }
+        else{
+            inputStream = classLoader.getResourceAsStream(SAVEDBOARDSFOLDER + "/" + boardname + "." + JSON_EXT);
+            if (inputStream == null) {
+                return new Board(WIDTH, HEIGHT);
+            }
         }
 
 		// In simple cases, we can create a Gson object with new Gson():
@@ -146,7 +156,7 @@ public class LoadBoard {
         //       when the folder "resources" does not exist! But, it does not need
         //       the file "simpleCards.json" to exist!
         String filename =
-                "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/boards" + "/" + name + "." + JSON_EXT;
+                "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/saved" + "/" + name + "." + JSON_EXT;
 
         // In simple cases, we can create a Gson object with new:
         //
