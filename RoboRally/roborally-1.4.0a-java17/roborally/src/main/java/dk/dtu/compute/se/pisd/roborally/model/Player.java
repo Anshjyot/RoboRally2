@@ -143,6 +143,9 @@ public class Player extends Subject {
 
     public void reachedCheckpoint(){
         noCheckpointReached++;
+        //playerChanged is added to update the checkpointReached number
+        //visually as soon as the checkpoint is claimed.
+        space.playerChanged();
     }
     public int getNoCheckpointReached(){
         return this.noCheckpointReached;
