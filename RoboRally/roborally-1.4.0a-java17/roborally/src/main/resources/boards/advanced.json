@@ -990,6 +990,176 @@
       ],
       "x": 13,
       "y": 6
+    },
+    {
+      "walls": [
+        "DOWN"
+      ],
+      "x": 6,
+      "y": 1
+    },
+    {
+      "walls": [
+        "LEFT"
+      ],
+      "x": 7,
+      "y": 4
+    },
+    {
+      "walls": [
+        "RIGHT"
+      ],
+      "x": 4,
+      "y": 5
+    },
+    {
+      "walls": [
+        "DOWN"
+      ],
+      "x": 9,
+      "y": 5
+    },
+    {
+      "walls": [
+        "LEFT"
+      ],
+      "x": 11,
+      "y": 2
+    },
+    {
+      "walls": [
+        "UP"
+      ],
+      "x": 19,
+      "y": 7
+    }
+  ,
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "DOWN"
+          }
+        }
+      ],
+      "x": 4,
+      "y": 1
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "RIGHT"
+          }
+        }
+      ],
+      "x": 5,
+      "y": 2
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "RIGHT"
+          }
+        }
+      ],
+      "x": 4,
+      "y": 6
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "RIGHT"
+          }
+        }
+      ],
+      "x": 9,
+      "y": 3
+    }
+  ,
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "DOWN"
+          }
+        }
+      ],
+      "x": 10,
+      "y": 1
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "LEFT"
+          }
+        }
+      ],
+      "x": 11,
+      "y": 0
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "LEFT"
+          }
+        }
+      ],
+      "x": 8,
+      "y": 5
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "LEFT"
+          }
+        }
+      ],
+      "x": 14,
+      "y": 3
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "INSTANCE": {
+            "heading": "RIGHT"
+          }
+        }
+      ],
+      "x": 19,
+      "y": 4
     }
   ]
 }
