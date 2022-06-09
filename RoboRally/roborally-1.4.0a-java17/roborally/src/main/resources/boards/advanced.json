@@ -410,45 +410,13 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
             "noOfLaser": 1,
-            "heading": "LEFT",
-            "center": false
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
       "x": 22,
       "y": 5
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
-          "INSTANCE": {
-            "noOfLaser": 2,
-            "heading": "DOWN",
-            "center": false
-          }
-        }
-      ],
-      "x": 14,
-      "y": 3
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
-          "INSTANCE": {
-            "noOfLaser": 2,
-            "heading": "UP",
-            "center": false
-          }
-        }
-      ],
-      "x": 14,
-      "y": 4
     },
     {
       "walls": [
@@ -839,13 +807,13 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
             "noOfLaser": 3,
-            "heading": "DOWN",
+            "heading": "RIGHT",
             "center": false
           }
         }
       ],
-      "x": 17,
-      "y": 0
+      "x": 7,
+      "y": 6
     },
     {
       "walls": [
@@ -855,164 +823,40 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
             "noOfLaser": 3,
-            "heading": "UP",
-            "center": false
-          }
-        }
-      ],
-      "x": 17,
-      "y": 1
-    },
-    {
-      "walls": [
-        "DOWN"
-      ],
-      "x": 6,
-      "y": 1
-    },
-    {
-      "walls": [
-        "LEFT"
-      ],
-      "x": 7,
-      "y": 4
-    },
-    {
-      "walls": [
-        "RIGHT"
-      ],
-      "x": 4,
-      "y": 5
-    },
-    {
-      "walls": [
-        "UP"
-      ],
-      "x": 9,
-      "y": 6
-    },
-    {
-      "walls": [
-        "LEFT"
-      ],
-      "x": 11,
-      "y": 2
-    },
-    {
-      "walls": [
-        "UP"
-      ],
-      "x": 19,
-      "y": 7
-    }
-  ,
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
-          "INSTANCE": {
-            "heading": "DOWN"
-          }
-        }
-      ],
-      "x": 4,
-      "y": 1
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
-          "INSTANCE": {
-            "heading": "RIGHT"
-          }
-        }
-      ],
-      "x": 5,
-      "y": 2
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
-          "INSTANCE": {
-            "heading": "RIGHT"
-          }
-        }
-      ],
-      "x": 4,
-      "y": 6
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
-          "INSTANCE": {
-            "heading": "RIGHT"
-          }
-        }
-      ],
-      "x": 9,
-      "y": 3
-    }
-  ,
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
-          "INSTANCE": {
-            "heading": "DOWN"
-          }
-        }
-      ],
-      "x": 10,
-      "y": 1
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
-          "INSTANCE": {
-            "heading": "LEFT"
-          }
-        }
-      ],
-      "x": 11,
-      "y": 0
-    },
-    {
-      "walls": [
-      ],
-      "actions": [
-        {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
-          "INSTANCE": {
-            "heading": "LEFT"
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
       "x": 8,
-      "y": 5
+      "y": 6
     },
     {
       "walls": [
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "heading": "LEFT"
+            "noOfLaser": 3,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 9,
+      "y": 6
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
@@ -1024,9 +868,43 @@
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "heading": "UP"
+            "noOfLaser": 3,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 9,
+      "y": 6
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 10,
+      "y": 6
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
@@ -1038,28 +916,80 @@
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "heading": "LEFT"
+            "noOfLaser": 3,
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
-      "x": 15,
-      "y": 3
+      "x": 12,
+      "y": 6
     },
     {
       "walls": [
       ],
       "actions": [
         {
-          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels",
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "heading": "RIGHT"
+            "noOfLaser": 2,
+            "heading": "DOWN",
+            "center": false
           }
         }
       ],
-      "x": 19,
-      "y": 4
+      "x": 13,
+      "y": 5
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "DOWN",
+            "center": true
+          }
+        }
+      ],
+      "x": 13,
+      "y": 6
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 2,
+            "heading": "DOWN",
+            "center": true
+          }
+        }
+      ],
+      "x": 13,
+      "y": 7
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "RIGHT",
+            "center": true
+          }
+        }
+      ],
+      "x": 13,
+      "y": 6
     }
   ]
 }

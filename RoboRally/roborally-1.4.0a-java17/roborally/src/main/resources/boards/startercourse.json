@@ -463,8 +463,8 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
             "noOfLaser": 1,
-            "heading": "LEFT",
-            "center": false
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
@@ -478,14 +478,14 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "noOfLaser": 3,
-            "heading": "DOWN",
-            "center": false
+            "noOfLaser": 1,
+            "heading": "RIGHT",
+            "center": true
           }
         }
       ],
-      "x": 3,
-      "y": 3
+      "x": 6,
+      "y": 0
     },
     {
       "walls": [
@@ -494,14 +494,14 @@
         {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
           "INSTANCE": {
-            "noOfLaser": 3,
-            "heading": "DOWN",
+            "noOfLaser": 1,
+            "heading": "RIGHT",
             "center": true
           }
         }
       ],
-      "x": 3,
-      "y": 4
+      "x": 7,
+      "y": 0
     },
     {
       "walls": [
@@ -518,6 +518,54 @@
       ],
       "x": 3,
       "y": 5
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "UP",
+            "center": true
+          }
+        }
+      ],
+      "x": 3,
+      "y": 4
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "UP",
+            "center": true
+          }
+        }
+      ],
+      "x": 3,
+      "y": 3
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser",
+          "INSTANCE": {
+            "noOfLaser": 3,
+            "heading": "UP",
+            "center": true
+          }
+        }
+      ],
+      "x": 3,
+      "y": 2
     }
   ]
 }
