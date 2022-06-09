@@ -10,10 +10,6 @@ public class Checkpoint extends FieldAction {
 
     private int checkpointNo;
 
-    public void setCheckpointNo(int number) {
-        checkpointNo = number;
-    }
-
     public int getCheckpointNo() {
         return checkpointNo;
     }
