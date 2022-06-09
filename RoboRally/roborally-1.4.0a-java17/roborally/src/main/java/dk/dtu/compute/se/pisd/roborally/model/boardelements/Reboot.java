@@ -27,7 +27,7 @@ public class Reboot extends FieldAction {
                 currentPlayer.clearProgram(i);
             }
         }
-        currentPlayer.setRebooting(false);
+        //currentPlayer.setRebooting(false);
         return false;
     }
 }

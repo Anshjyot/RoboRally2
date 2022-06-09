@@ -166,7 +166,7 @@ public class GameController {
     // XXX: V2
     private void executeNextStep() {
         Player currentPlayer = board.getCurrentPlayer();
-        if (board.getPhase() == Phase.ACTIVATION && currentPlayer != null && !currentPlayer.isRebooting()) {
+        if (board.getPhase() == Phase.ACTIVATION && currentPlayer != null) {
             int step = board.getStep();
             if (step >= 0 && step < Player.NO_REGISTERS) {
                 CommandCard card = currentPlayer.getProgramField(step).getCard();
@@ -207,15 +207,7 @@ public class GameController {
     }
 
     private void activateFieldAction() throws InterruptedException {
-        for(int i = 0; i < board.getPlayersNumber(); i++){
-            Player currentPlayer = board.getPlayer(i);
-            Space currentSpace = currentPlayer.getSpace();
-            for(FieldAction fa : currentSpace.getActions()){
-                if(fa instanceof Reboot){
-                    fa.doAction(this, currentSpace);
-                }
-            }
-        }
+
         for(int i = 0; i < board.getPlayersNumber(); i++){
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
@@ -261,9 +253,29 @@ public class GameController {
                 }
             }
         }
+    }
+    private void reboot(Space rebootSpace){
+        for(FieldAction fa : rebootSpace.getActions()){
+            if(fa instanceof Reboot){
+                fa.doAction(this, rebootSpace);
+            }
+        }
+    }
 
-
-
+    private void fallOut(Player player){
+        player.setRebooting(true);
+        Space rebootSpace = board.getSpace(board.getRebootXY()[0],board.getRebootXY()[1]);
+        if (rebootSpace.getPlayer() != null){
+            Space target = board.getNeighbour(rebootSpace,rebootSpace.getPlayer().getHeading());
+            try {
+                moveToSpace(rebootSpace.getPlayer(),target,rebootSpace.getPlayer().getHeading());
+            } catch (ImpossibleMoveException e) {
+                e.printStackTrace();
+            }
+        }
+        player.setSpace(rebootSpace);
+        reboot(rebootSpace);
+        board.resetOutOfBoard();
     }
 
     // XXX: V2
@@ -334,9 +346,7 @@ public class GameController {
             }
             //if player falls out of the board, they should reboot.
             if (board.isOutOfBoard()){
-                player.setRebooting(true);
-                player.setSpace(board.getSpace(board.getRebootXY()[0],board.getRebootXY()[1]));
-                board.resetOutOfBoard();
+                fallOut(player);
             }
         }
     }
