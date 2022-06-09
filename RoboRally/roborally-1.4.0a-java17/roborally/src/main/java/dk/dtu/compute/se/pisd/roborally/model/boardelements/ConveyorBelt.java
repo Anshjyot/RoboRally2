@@ -36,6 +36,9 @@ import org.jetbrains.annotations.NotNull;
 public class ConveyorBelt extends FieldAction {
 
     private Heading heading;
+    private int speed;
+
+    public int getSpeed(){return speed;}
 
     public Heading getHeading() {
         return heading;
@@ -49,14 +52,17 @@ public class ConveyorBelt extends FieldAction {
 
     @Override
     public boolean doAction(@NotNull GameController gameController, @NotNull Space space) {
-        Space target = gameController.board.getNeighbour(space, this.heading);
-        if (target != null) {
-            try {
-                gameController.moveToSpace(space.getPlayer(), target, heading);
-            } catch (GameController.ImpossibleMoveException e) {
+            for (int i = 0; speed>=i; i++) {
+                Space target = gameController.board.getNeighbour(space, this.heading);
+                if (target != null) {
+                    try {
+                        gameController.moveToSpace(space.getPlayer(), target, heading);
+                    } catch (GameController.ImpossibleMoveException e) {
 
+                    }
+                }
             }
-        }
+
         return true;
     }
 }

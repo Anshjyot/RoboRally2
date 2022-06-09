@@ -85,6 +85,7 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt",
           "INSTANCE": {
             "heading": "DOWN"
+
           }
         }
       ],
@@ -98,6 +99,7 @@
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt",
           "INSTANCE": {
             "heading": "UP"
+
           }
         }
       ],

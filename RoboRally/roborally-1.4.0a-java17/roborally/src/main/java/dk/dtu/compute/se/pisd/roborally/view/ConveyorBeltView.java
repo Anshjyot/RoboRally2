@@ -7,6 +7,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.util.List;
+
 
 //
 public class ConveyorBeltView {
@@ -21,26 +23,50 @@ public class ConveyorBeltView {
 
             switch (heading) {
                 case UP:
-                    Image Up = new Image("ArrowUp.png", 50, 50, true, true);
-                    graphic.drawImage(Up, 0, 0);
+                    if (conveyorBelt.getSpeed() == 1) {
+                        Image Up = new Image("ArrowUp.png", 50, 50, true, true);
+                        graphic.drawImage(Up, 0, 0);
+                    }
+                    else {
+                        Image Up2 = new Image("ArrowUpBlue.png", 50, 50, true, true);
+                        graphic.drawImage(Up2, 0, 0);
+                    }
+
                     break;
                 case DOWN:
-                    Image Down = new Image("ArrowDown.png", 50, 50, true, true);
-                    graphic.drawImage(Down, 0, 0);
+                    if (conveyorBelt.getSpeed() == 1) {
+                        Image Down = new Image("ArrowDown.png", 50, 50, true, true);
+                        graphic.drawImage(Down, 0, 0);
+                    }
+                    else {
+                        Image Down2 = new Image("ArrowDownBlue.png", 50, 50, true, true);
+                        graphic.drawImage(Down2, 0, 0);
+                    }
                     break;
                 case LEFT:
-                    Image left = new Image("ArrowLeft.png", 50, 50, true, true);
-                    graphic.drawImage(left, 0, 0);
+                    if (conveyorBelt.getSpeed() == 1) {
+                        Image left = new Image("ArrowLeft.png", 50, 50, true, true);
+                        graphic.drawImage(left, 0, 0);
+                    }
+                    else {
+                        Image left2 = new Image("ArrowLeftBlue.png", 50, 50, true, true);
+                        graphic.drawImage(left2, 0, 0);
+                    }
                     break;
                 case RIGHT:
-                    Image right = new Image("ArrowRight.png", 50, 50, true, true);
-                    graphic.drawImage(right, 0, 0);
+                    if (conveyorBelt.getSpeed() == 1) {
+                        Image Right = new Image("ArrowRight.png", 50, 50, true, true);
+                        graphic.drawImage(Right, 0, 0);
+                    }
+                    else {
+                        Image Right2 = new Image("ArrowRightBlue.png", 50, 50, true, true);
+                        graphic.drawImage(Right2, 0, 0);
+                    }
                     break;
             }
 
             spaceView.getChildren().add(canvas);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.print("No Image");
         }
     }
