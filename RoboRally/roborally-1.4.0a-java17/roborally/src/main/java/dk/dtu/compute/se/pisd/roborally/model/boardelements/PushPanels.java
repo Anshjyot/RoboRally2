@@ -6,7 +6,6 @@ import dk.dtu.compute.se.pisd.roborally.model.Space;
 
 public class PushPanels extends FieldAction {
     private Heading heading;
-    private Player player;
     public Heading getHeading(){
         return heading;
     }
