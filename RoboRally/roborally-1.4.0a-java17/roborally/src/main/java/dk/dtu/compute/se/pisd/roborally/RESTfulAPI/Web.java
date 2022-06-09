@@ -43,4 +43,16 @@ public class Web {
                 httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
     }
+    public void loadBoard() {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:8081/loadBoard"))
+                .setHeader("User-Agent", "Roborally Client")
+                .header("Content-Type", "application/json")
+                .build();
+
+        CompletableFuture<HttpResponse<String>> response =
+                httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+        response.thenApply(HttpResponse::body);
+    }
 }
