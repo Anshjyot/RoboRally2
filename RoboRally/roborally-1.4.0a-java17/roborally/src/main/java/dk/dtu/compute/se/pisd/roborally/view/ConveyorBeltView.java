@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import java.util.List;
 
 
-//
+//g
 public class ConveyorBeltView {
 
     public static void drawConveyorBeltView(SpaceView spaceView, FieldAction fieldAction) {
