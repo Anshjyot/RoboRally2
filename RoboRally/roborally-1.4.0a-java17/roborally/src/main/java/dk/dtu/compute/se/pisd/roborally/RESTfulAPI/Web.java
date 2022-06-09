@@ -11,6 +11,11 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * API
+ * Author = Sofie Dige
+ */
+
 public class Web {
     String string = "savedgame";
     private static final HttpClient httpClient = HttpClient.newBuilder()
@@ -28,8 +33,8 @@ public class Web {
 
         CompletableFuture<HttpResponse<String>> response =
                 httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-
     }
+
     public void saveBoard(Board board) {
         System.out.println(board.getPhase());
         HttpRequest request = HttpRequest.newBuilder()
@@ -41,6 +46,17 @@ public class Web {
 
         CompletableFuture<HttpResponse<String>> response =
                 httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-
     }
-}
+    public void loadBoard() {
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:8081/loadBoard"))
+                .setHeader("User-Agent", "Roborally Client")
+                .header("Content-Type", "application/json")
+                .build();
+
+            CompletableFuture<HttpResponse<String>> response =
+                    httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+            response.thenApply(HttpResponse::body);
+        }
+    }

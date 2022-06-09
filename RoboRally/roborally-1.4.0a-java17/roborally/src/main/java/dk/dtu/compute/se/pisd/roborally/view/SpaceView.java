@@ -101,6 +101,7 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         /**
          * Draws the walls on the gameboard.
+         * Author = Sofie Dige
          */
 
         private void drawWall () {
