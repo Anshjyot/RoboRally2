@@ -193,5 +193,37 @@ public class LoadBoard {
             }
         }
     }
+    public static String saveBoardToJson(Board board) {
+        BoardTemplate template = new BoardTemplate();
+        template.width = board.width;
+        template.height = board.height;
+        template.step = board.getStep();
+        template.noOfCheckpoints = board.getNoOfCheckpoints();
+
+        for (int i=0; i<board.width; i++) {
+            for (int j=0; j<board.height; j++) {
+                Space space = board.getSpace(i,j);
+
+                if (!space.getWalls().isEmpty() || !space.getActions().isEmpty()
+                        || space.getStartPoint() || space.getPlayer() != null) {
+                    SpaceTemplate spaceTemplate = new SpaceTemplate();
+                    spaceTemplate.startPoint = space.startPoint;
+                    spaceTemplate.x = space.x;
+                    spaceTemplate.y = space.y;
+                    spaceTemplate.actions.addAll(space.getActions());
+                    spaceTemplate.walls.addAll(space.getWalls());
+                    if (space.getPlayer() != null){
+                        spaceTemplate.playerNo = space.getPlayer().getRobot();
+                        template.positions[spaceTemplate.playerNo-1] = spaceTemplate;
+                        template.checkpointsReached[spaceTemplate.playerNo-1] = space.getPlayer().getNoCheckpointReached();
+                    }
+
+                    template.spaces.add(spaceTemplate);
+                }
+            }
+        }
+        Gson gson = new Gson();
+        return gson.toJson(template);
+    }
 
 }

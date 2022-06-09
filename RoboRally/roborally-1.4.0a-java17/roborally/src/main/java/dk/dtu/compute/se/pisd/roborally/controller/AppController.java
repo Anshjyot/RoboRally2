@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.roborally.controller;
 
+import dk.dtu.compute.se.pisd.roborally.RESTfulAPI.Web;
 import dk.dtu.compute.se.pisd.roborally.RoboRally;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.LoadBoard;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
@@ -123,6 +124,8 @@ public class AppController {
         if (input.isPresent()) {
             String saveFileName = saveName.getResult();
             LoadBoard.saveBoard(gameController.board, saveFileName);
+            Web web = new Web();
+            web.saveBoard(gameController.board);
         }
     }
 
