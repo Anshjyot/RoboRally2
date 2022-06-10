@@ -89,10 +89,15 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         }
 
+    /**
+     *  @author Anshjyot Singh, s215806
+     *  Updates the view of the different board elements throughout the game. The instanceof operator
+     *  is used to determine whether the object is an instance of the specific class.
+     */
         @Override
         public void updateView (Subject subject){
             this.getChildren().clear();
-            updateNormalSpace();
+            updateSpace();
             if (this.space.getStartPoint()) {
                 StartpointView.drawStartpoint(this);
             }
@@ -121,7 +126,11 @@ public class SpaceView extends StackPane implements ViewObserver {
             WallView.drawWall(this,space);
         }
 
-        public void updateNormalSpace () {
+    /**
+     *  @author Anshjyot Singh, s215806
+     *  Updates the normal space on the board (the floor)
+     */
+        public void updateSpace () {
             Image image = new Image("space.png", 50, 50, true, true);
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
             GraphicsContext graphic = canvas.getGraphicsContext2D();

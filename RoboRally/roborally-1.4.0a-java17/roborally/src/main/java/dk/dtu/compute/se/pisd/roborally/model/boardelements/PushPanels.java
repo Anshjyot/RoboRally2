@@ -4,6 +4,13 @@ import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 
+
+/**
+ *  @author Anshjyot Singh, s215806
+ *  Designs the logic regarding the PushPanels, pushes the robot a space field in the direction of the push panel
+ *  - when landing on that space
+ */
+
 public class PushPanels extends FieldAction {
     private Heading heading;
     public Heading getHeading(){
@@ -13,6 +20,7 @@ public class PushPanels extends FieldAction {
     @Override
     public boolean doAction(GameController gameController, Space space) {
         Heading push = this.heading;
+
         Space neighbour = gameController.board.getNeighbour(space, push);
         try {
             switch (push) {

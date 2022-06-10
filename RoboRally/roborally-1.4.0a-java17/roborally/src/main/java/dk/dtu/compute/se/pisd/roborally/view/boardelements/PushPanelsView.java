@@ -8,6 +8,12 @@ import javafx.scene.image.Image;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 
+/**
+ *  @author Anshjyot Singh, s215806
+ *  This class displays the view of a pushpanel
+ * @param fa takes the FieldAction object to determine heading.
+ */
+
 public class PushPanelsView {
 
     public static void drawPushPanel(SpaceView spaceView, FieldAction fa) {

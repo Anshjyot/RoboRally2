@@ -13,7 +13,7 @@ import static javafx.scene.paint.Color.RED;
 
 /**
  * @author Anshjyot Singh S215806
- * Designs the lasers
+ * Creates the view for the lasers which is differentiated by the different directions and the number of laser-radiations
  */
 public class LaserView {
 
