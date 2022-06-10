@@ -131,6 +131,9 @@ public class AppController {
 
     public void loadGame() {
         try {
+            Web web = new Web();
+            web.loadBoard();
+
             String RESSOURCEFOLDER = "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/saved";
             File f = new File(RESSOURCEFOLDER);
             String[] savedGames = f.list();
