@@ -441,8 +441,6 @@ public class GameController {
         player.getDamagecards().remove(Command.WORM);
         moveToRebootToken(player);
     }
-    public void virus(Player player){
-    }
 
     /**
      * A method called when no corresponding controller operation is implemented yet. This
