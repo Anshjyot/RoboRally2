@@ -11,7 +11,12 @@ import javafx.scene.image.Image;
 import java.util.List;
 
 
-//g
+/**
+ * @author Anshjyot Singh, s215806 & Marco Miljkov Hansen @s194302
+ * Creates the view for the conveyorBelts, which is differentiated by the different directions
+ * and the two different conveyor belts (Green and Blue)
+ */
+
 public class ConveyorBeltView {
 
     public static void drawConveyorBeltView(SpaceView spaceView, FieldAction fieldAction) {
