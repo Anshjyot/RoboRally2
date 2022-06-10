@@ -40,7 +40,6 @@ public enum Command {
     TRIPLE_FORWARD("Triple Forward"),
     U_TURN("U-Turn"),
     MOVE_BACK("Move Back"),
-    OPTION_LEFT_RIGHT("Left OR Right", LEFT, RIGHT),
     SPAM("SPAM"),
     TROJANHORSE("TROJANHORSE"),
     VIRUS("VIRUS"),

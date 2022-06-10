@@ -299,8 +299,6 @@ public class GameController {
                 case MOVE_BACK:
                     this.moveBack(player);
                     break;
-                case OPTION_LEFT_RIGHT:
-                    break;
                 case SPAM:
                     this.spam(player);
                     break;
