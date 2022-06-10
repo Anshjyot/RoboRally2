@@ -1,7 +1,6 @@
 package dk.dtu.compute.se.pisd.roborally.view.boardelements;
 
 import dk.dtu.compute.se.pisd.roborally.model.Player;
-import dk.dtu.compute.se.pisd.roborally.model.Space;
 import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,8 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 public class RobotView {
-    public static void drawRobot(SpaceView spaceView, Space space){
-        Player player = space.getPlayer();
+    public static void drawRobot(SpaceView spaceView, Player player){
+
         if (player != null) {
             String imageName = "Robot" + player.getRobot() + ".png";
             Image robot = new Image(imageName,35,35,true,true);
