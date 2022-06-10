@@ -13,10 +13,14 @@ import static javafx.scene.paint.Color.RED;
 
 /**
  * @author Anshjyot Singh S215806
- * Creates the view for the lasers which is differentiated by the different directions and the number of laser-radiations
  */
 public class LaserView {
-
+    /**
+     * Creates the view for the conveyorBelts, which is differentiated by the different directions
+     * and the two different conveyor belts (Green and Blue)
+     * @param spaceView is SpaceView object and updates the view for the specific space
+     * @param fa takes the FieldAction object to determine the heading, which is also later used in Space-view
+     */
     public static void drawLaserView(SpaceView spaceView, FieldAction fa){
         Laser laser = (Laser) fa;
         Heading heading = laser.getHeading();
