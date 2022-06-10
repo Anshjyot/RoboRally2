@@ -29,7 +29,10 @@ public class AppController {
         this.roboRally = roboRally;
     }
 
-    //probably shouldn't be static.
+    /**
+     * Gives winner message.
+     * @author Mathilde Elia s215811
+     */
     static void gameFinished(String winnerName) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(winnerName + " has reached all checkpoints and has WON!");
@@ -127,6 +130,11 @@ public class AppController {
         }
     }
 
+    /**
+     * Shows all saved games in the saved resource folder
+     * and loads them with the loadBoard method in LoadBoard.
+     * @author Mathilde Elia s215811
+     */
     public void loadGame() {
         try {
             String RESSOURCEFOLDER = "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/saved";
@@ -173,12 +181,6 @@ public class AppController {
             e.printStackTrace();
         }
             }
-
-            // XXX needs to be implememted eventually
-            // for now, we just create a new game
-        /*if (gameController == null) {
-            newGame();
-        } */
 
         public boolean isGameRunning () {
             return gameController != null;
