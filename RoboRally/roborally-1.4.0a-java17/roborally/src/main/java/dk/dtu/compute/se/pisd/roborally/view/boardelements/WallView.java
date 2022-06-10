@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Designs our  Wall
  *
- * @author Anshjyot Singh, s215806
+ * @author Sofie Groth Dige, s211917
  *
  */
 

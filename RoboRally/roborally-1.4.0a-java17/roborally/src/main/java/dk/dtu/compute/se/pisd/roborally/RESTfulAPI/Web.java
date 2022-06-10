@@ -12,6 +12,13 @@ import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Clientconnection to our server
+ *
+ * @author Sofie Groth Dige, s211917
+ *
+ */
+
 public class Web {
     String string;
     private static final HttpClient httpClient = HttpClient.newBuilder()

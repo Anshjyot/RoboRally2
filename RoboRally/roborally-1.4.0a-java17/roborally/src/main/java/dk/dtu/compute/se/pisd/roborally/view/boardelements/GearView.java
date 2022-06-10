@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import static javafx.scene.paint.Color.RED;
 
 /**
- * @author 8
+ * @author Nick Tahmasebi
  *
  */
 

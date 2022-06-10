@@ -28,6 +28,11 @@ import dk.dtu.compute.se.pisd.roborally.model.Space;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ *
+ * @author Nick Tahmasebi
+ *
+ */
 public class Gear extends FieldAction {
 
     private Heading heading;
