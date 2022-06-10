@@ -4,6 +4,8 @@ import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 
+import java.util.ArrayList;
+
 
 /**
  *  @author Anshjyot Singh, s215806
@@ -16,16 +18,21 @@ public class PushPanels extends FieldAction {
     public Heading getHeading(){
         return heading;
     }
+    private int register[];
 
     @Override
     public boolean doAction(GameController gameController, Space space) {
+       /* for(int i = 0; i == register.length; i++) {
+            register != gameController.board.getStep())
+            return false;
+        }*/
         Heading push = this.heading;
 
         Space neighbour = gameController.board.getNeighbour(space, push);
         try {
             switch (push) {
                 case DOWN:
-                    //if(player.NO_REGISTERS == 2 || 5 )
+
 
             }
             gameController.moveToSpace(space.getPlayer(), neighbour, push);
