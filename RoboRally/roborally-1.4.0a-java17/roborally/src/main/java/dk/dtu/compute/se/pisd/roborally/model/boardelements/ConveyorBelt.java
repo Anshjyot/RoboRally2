@@ -28,7 +28,7 @@ import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author Anshjyot Singh, s215806@dtu.dk & Marco Miljkov Hansen @s194302
+ * @author GreenConveyerBelt Mathilde Elia, s215811@dtu.dk & BlueConveyerBelt and Speed Marco Miljkov Hansen, s194302@dtu.dk
  * This is the code-logic regarding a field-action board-element.
  * Conveyor-belt moves the player one or two spaces depending on the type of conveyor-belt
  */

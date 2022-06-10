@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * ...
  *
- * @author Ekkart Kindler, ekki@dtu.dk
+ * @author Ekkart Kindler + Nick Tahmasebi
  *
  */
 public class GameController {

@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * ...
  *
- * @author Ekkart Kindler, ekki@dtu.dk
+ * @author Nick Tahmasebi
  *
  */
 public enum Command {
