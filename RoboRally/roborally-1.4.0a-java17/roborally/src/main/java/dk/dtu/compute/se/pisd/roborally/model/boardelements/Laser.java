@@ -7,7 +7,7 @@ import dk.dtu.compute.se.pisd.roborally.model.Space;
 
 /**
  *  @author Anshjyot Singh, s215806
- *  Designs the logic regarding the Lasers, gives out damageCard if you hit the lasers (SPAM CARDS)
+ *  Designs the logic regarding the Lasers, gives out damageCard if you hit the lasers (SPAM CARDS).
  */
 public class Laser extends FieldAction {
 
