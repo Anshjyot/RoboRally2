@@ -51,12 +51,9 @@ public class GameController {
         this.board = board;
     }
 
-    /**
-     * This is just some dummy controller operation to make a simple move to see something
-     * happening on the board. This method should eventually be deleted!
-     *
-     * @param space the space to which the current player should move
-     */
+    //this method has been made as comment so it can be used, if we want to test
+    //the game in the future.
+    /*
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
         if (space != null && space.board == board) {
             Player currentPlayer = board.getCurrentPlayer();
@@ -66,7 +63,7 @@ public class GameController {
                 board.setCurrentPlayer(board.getPlayer(playerNumber));
             }
         }
-    }
+    }  */
 
     // XXX: V2
     public void startProgrammingPhase() {
