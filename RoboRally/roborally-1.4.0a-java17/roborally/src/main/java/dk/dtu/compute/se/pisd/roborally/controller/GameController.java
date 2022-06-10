@@ -236,6 +236,15 @@ public class GameController {
                 }
             }
         }
+        for(int i = 0; i < board.getPlayersNumber(); i++){
+            Player currentPlayer = board.getPlayer(i);
+            Space currentSpace = currentPlayer.getSpace();
+            for(FieldAction fa : currentSpace.getActions()){
+                if(fa instanceof Pit){
+                    moveToRebootToken(currentPlayer);
+                }
+            }
+        }
         //der må være en bedre måde at gøre det på, kigger på det senere :)
         for(int i = 0; i < board.getPlayersNumber(); i++){
             Space currentSpace = board.getPlayer(i).getSpace();
@@ -251,6 +260,7 @@ public class GameController {
             if(fa instanceof Reboot){
                 fa.doAction(this, rebootSpace);
             }
+
         }
     }
 

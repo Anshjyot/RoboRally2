@@ -1409,6 +1409,19 @@
       ],
       "x": 15,
       "y": 6
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Pit",
+          "INSTANCE": {
+          }
+        }
+      ],
+      "x": 6,
+      "y": 2
     }
 
   ]

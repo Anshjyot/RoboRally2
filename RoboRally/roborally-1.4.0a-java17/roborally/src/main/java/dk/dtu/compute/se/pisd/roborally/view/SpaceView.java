@@ -114,6 +114,9 @@ public class SpaceView extends StackPane implements ViewObserver {
                 else if (fa instanceof Reboot){
                     RebootView.drawRebootView(this,fa);
                 }
+                else if (fa instanceof Pit){
+                    PitView.drawPitView(this,fa);
+                }
             }
             updatePlayer();
             WallView.drawWall(this,space);
