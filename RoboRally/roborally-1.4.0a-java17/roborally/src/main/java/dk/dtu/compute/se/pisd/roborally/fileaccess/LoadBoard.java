@@ -51,6 +51,12 @@ public class LoadBoard {
     private static final int HEIGHT = 8;
     private static int startpointCount = 0;
 
+    /**
+     * Loads a json board given it's name from recources.
+     * boolean isSaved is used to identify wheter loadboard
+     * should load a newGame or a saved file.
+     * @author Mathilde Elia s215811
+     */
     public static Board loadBoard(String boardname, boolean isSaved) {
         if (boardname == null) {
             boardname = DEFAULTBOARD;
@@ -126,6 +132,12 @@ public class LoadBoard {
         return null;
     }
 
+    /**
+     * Saves a board into a json file as the name given into
+     * resource folder "saved". Currently saves board with player
+     * positions and the number of checkpoints reched.
+     * @author Mathilde Elia s215811
+     */
     public static void saveBoard(Board board, String name) {
         BoardTemplate template = new BoardTemplate();
         template.width = board.width;
@@ -156,12 +168,8 @@ public class LoadBoard {
             }
         }
 
-        ClassLoader classLoader = LoadBoard.class.getClassLoader();
-        // TODO: this is not very defensive, and will result in a NullPointerException
-        //       when the folder "resources" does not exist! But, it does not need
-        //       the file "simpleCards.json" to exist!
         String filename =
-                "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/saved" + "/" + name + "." + JSON_EXT;
+                "RoboRally/roborally-1.4.0a-java17/roborally/src/main/resources/saved/" + name + "." + JSON_EXT;
 
         // In simple cases, we can create a Gson object with new:
         //
@@ -198,6 +206,11 @@ public class LoadBoard {
             }
         }
     }
+    /**
+     * Saves a board to json as a string.
+     * This is used to send to server.
+     * @author Mathilde Elia s215811
+     */
 
     public static String saveBoardToJson(Board board) {
         BoardTemplate template = new BoardTemplate();

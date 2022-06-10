@@ -262,7 +262,7 @@ public class GameController {
         }
     }
 
-    private void fallOut(Player player){
+    private void moveToRebootToken(Player player){
         player.setRebooting(true);
         Space rebootSpace = board.getSpace(board.getRebootXY()[0],board.getRebootXY()[1]);
         if (rebootSpace.getPlayer() != null){
@@ -315,10 +315,10 @@ public class GameController {
                 case TROJANHORSE:
                     this.trojanhorse(player);
                     break;
-                    /*
                 case WORM:
                     this.worm(player);
                     break;
+                    /*
                 case VIRUS:
                     this.virus(player);
                     break; */
@@ -346,7 +346,7 @@ public class GameController {
             }
             //if player falls out of the board, they should reboot.
             if (board.isOutOfBoard()){
-                fallOut(player);
+                moveToRebootToken(player);
             }
         }
     }
@@ -442,10 +442,10 @@ public class GameController {
         player.setDamagecards(Command.SPAM);
     }
     public void worm(Player player){
-
+        player.getDamagecards().remove(Command.WORM);
+        moveToRebootToken(player);
     }
     public void virus(Player player){
-
     }
 
     /**

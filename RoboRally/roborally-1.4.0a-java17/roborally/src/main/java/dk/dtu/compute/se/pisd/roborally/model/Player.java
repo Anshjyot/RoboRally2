@@ -147,6 +147,12 @@ public class Player extends Subject {
         program[i].setVisible(true);
     }
 
+    /**
+     * Increments the players reached number of checkpoint.
+     * playerChanged is added to update the checkpointReached
+     * number visually as soon as the checkpoint is claimed.
+     * @author Mathilde Elia s215811
+     */
     public void reachedCheckpoint(){
         noCheckpointReached++;
         //playerChanged is added to update the checkpointReached number
