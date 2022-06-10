@@ -827,6 +827,19 @@
       ],
       "actions": [
         {
+          "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Pit",
+          "INSTANCE": {
+          }
+        }
+      ],
+      "x": 11,
+      "y": 7
+    },
+    {
+      "walls": [
+      ],
+      "actions": [
+        {
           "CLASSNAME": "dk.dtu.compute.se.pisd.roborally.model.boardelements.Gear",
           "INSTANCE": {
             "heading": "RIGHT"
