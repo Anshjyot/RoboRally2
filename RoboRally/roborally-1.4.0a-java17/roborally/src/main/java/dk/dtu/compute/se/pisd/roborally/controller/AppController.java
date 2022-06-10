@@ -31,7 +31,7 @@ public class AppController {
 
     /**
      * Gives winner message.
-     * @author Mathilde Elia s215811
+     * @author Mathilde Elia s215811.
      */
     static void gameFinished(String winnerName) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

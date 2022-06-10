@@ -13,14 +13,17 @@ import java.util.List;
 
 /**
  * @author Anshjyot Singh, s215806 & Marco Miljkov Hansen @s194302
- * Creates the view for the conveyorBelts, which is differentiated by the different directions
- * and the two different conveyor belts (Green and Blue)
  */
 
 public class ConveyorBeltView {
-
-    public static void drawConveyorBeltView(SpaceView spaceView, FieldAction fieldAction) {
-        ConveyorBelt conveyorBelt = (ConveyorBelt) fieldAction;
+    /**
+     * Creates the view for the conveyorBelts, which is differentiated by the different directions
+     * and the two different conveyor belts (Green and Blue)
+     * @param spaceView is SpaceView object and updates the view for the specific space
+     * @param fa takes the FieldAction object to determine the heading, which is also later used in Space-view
+     */
+    public static void drawConveyorBeltView(SpaceView spaceView, FieldAction fa) {
+        ConveyorBelt conveyorBelt = (ConveyorBelt) fa;
         Heading heading = conveyorBelt.getHeading();
         //spaceView.getChildren().clear();
         try {

@@ -10,12 +10,13 @@ import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 
 /**
  *  @author Anshjyot Singh, s215806
- *  This class displays the view of a pushpanel
- * @param fa takes the FieldAction object to determine heading.
  */
-
 public class PushPanelsView {
-
+    /**
+     * This class displays the view of a pushpanel
+     * @param spaceView is SpaceView object and updates the view for the specific space
+     * @param fa takes the FieldAction object to determine the heading, which is also later used in Space-view
+     */
     public static void drawPushPanel(SpaceView spaceView, FieldAction fa) {
         try {
             PushPanels pushPanels = (PushPanels) fa;
