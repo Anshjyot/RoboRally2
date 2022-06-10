@@ -33,8 +33,6 @@ import java.util.List;
  */
 public enum Command {
 
-    // This is a very simplistic way of realizing different commands.
-
     FORWARD("Forward"),
     RIGHT("Turn Right"),
     LEFT("Turn Left"),
@@ -42,7 +40,6 @@ public enum Command {
     TRIPLE_FORWARD("Triple Forward"),
     U_TURN("U-Turn"),
     MOVE_BACK("Move Back"),
-    OPTION_LEFT_RIGHT("Left OR Right", LEFT, RIGHT),
     SPAM("SPAM"),
     TROJANHORSE("TROJANHORSE"),
     VIRUS("VIRUS"),

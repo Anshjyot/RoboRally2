@@ -22,23 +22,16 @@
 package dk.dtu.compute.se.pisd.roborally.view;
 
 import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
-import dk.dtu.compute.se.pisd.roborally.model.Heading;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.*;
-import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser;
+import dk.dtu.compute.se.pisd.roborally.view.boardelements.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import org.jetbrains.annotations.NotNull;
-import javafx.scene.text.*;
-import java.util.List;
-
 
 /**
  * ...
@@ -77,26 +70,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             if (this.getStyleableNode() instanceof Canvas) {
                 this.getChildren().clear();
             }
-
-            Player player = space.getPlayer();
-            if (player != null) {
-                String imageName = "Robot" + player.getRobot() + ".png";
-                Image robot = new Image(imageName,35,35,true,true);
-                ImageView viewRobot = new ImageView(robot);
-
-                viewRobot.setRotate((90 * player.getHeading().ordinal()) % 360);
-                Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
-                GraphicsContext gc = canvas.getGraphicsContext2D();
-                gc.setStroke(Color.BLUEVIOLET);
-                gc.setLineWidth(1);
-                gc.strokeText(String.valueOf(player.getNoCheckpointReached()),
-                        SpaceView.SPACE_WIDTH * 0.8, SpaceView.SPACE_WIDTH * 0.8);
-
-                this.getChildren().add(canvas);
-                gc.setStroke(Color.YELLOW);
-                gc.setLineWidth(1);
-                this.getChildren().add(viewRobot);
-            }
+            RobotView.drawRobot(this,space.getPlayer());
         }
 
         /**
@@ -105,40 +79,18 @@ public class SpaceView extends StackPane implements ViewObserver {
 
         private void drawWall () {
 
-            List<Heading> walls = space.getWalls();
-            Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
-            GraphicsContext gc = canvas.getGraphicsContext2D();
 
-            //resizing directly on loading:
-            Image image = new Image("wall.png", 10, 50, false, false);
-
-            for (int i = 0; i < walls.size(); i++) {
-                Heading header = walls.get(i);
-                switch (header) {
-
-                    case DOWN:
-                        canvas.setRotate(270);
-                        gc.drawImage(image, 0, 0);
-                        break;
-                    case LEFT:
-                        gc.drawImage(image, 0, 0);
-                        break;
-                    case UP:
-                        canvas.setRotate(90);
-                        gc.drawImage(image, 0, 0);
-                        break;
-                    case RIGHT:
-                        gc.drawImage(image, 40, 0);
-                        break;
-                }
-                this.getChildren().add(canvas);
-            }
         }
 
+    /**
+     *  @author Anshjyot Singh, s215806
+     *  Updates the view of the different board elements throughout the game. The instanceof operator
+     *  is used to determine whether the object is an instance of the specific class.
+     */
         @Override
         public void updateView (Subject subject){
             this.getChildren().clear();
-            updateNormalSpace();
+            updateSpace();
             if (this.space.getStartPoint()) {
                 StartpointView.drawStartpoint(this);
             }
@@ -164,10 +116,14 @@ public class SpaceView extends StackPane implements ViewObserver {
                 }
             }
             updatePlayer();
-            drawWall();
+            WallView.drawWall(this,space);
         }
 
-        public void updateNormalSpace () {
+    /**
+     *  @author Anshjyot Singh, s215806
+     *  Updates the normal space on the board (the floor)
+     */
+        public void updateSpace () {
             Image image = new Image("space.png", 50, 50, true, true);
             Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_HEIGHT);
             GraphicsContext graphic = canvas.getGraphicsContext2D();

@@ -58,14 +58,6 @@ public class GameController {
      * @param space the space to which the current player should move
      */
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
-        // TODO Assignment V1: method should be implemented by the students:
-        //   - the current player should be moved to the given space
-        //     (if it is free()
-        //   - and the current player should be set to the player
-        //     following the current player
-        //   - the counter of moves in the game should be increased by one
-        //     if the player is moved
-
         if (space != null && space.board == board) {
             Player currentPlayer = board.getCurrentPlayer();
             if (currentPlayer != null && space.getPlayer() == null) {
@@ -262,7 +254,7 @@ public class GameController {
         }
     }
 
-    private void fallOut(Player player){
+    private void moveToRebootToken(Player player){
         player.setRebooting(true);
         Space rebootSpace = board.getSpace(board.getRebootXY()[0],board.getRebootXY()[1]);
         if (rebootSpace.getPlayer() != null){
@@ -307,18 +299,16 @@ public class GameController {
                 case MOVE_BACK:
                     this.moveBack(player);
                     break;
-                case OPTION_LEFT_RIGHT:
-                    break;
                 case SPAM:
                     this.spam(player);
                     break;
                 case TROJANHORSE:
                     this.trojanhorse(player);
                     break;
-                    /*
                 case WORM:
                     this.worm(player);
                     break;
+                    /*
                 case VIRUS:
                     this.virus(player);
                     break; */
@@ -330,7 +320,6 @@ public class GameController {
         }
     }
 
-    // TODO: V2
     public void moveForward(@NotNull Player player) {
         Space space = player.getSpace();
         if (player != null && player.board == board && space != null && !player.isRebooting()) {
@@ -346,12 +335,10 @@ public class GameController {
             }
             //if player falls out of the board, they should reboot.
             if (board.isOutOfBoard()){
-                fallOut(player);
+                moveToRebootToken(player);
             }
         }
     }
-
-   // getWalls = null // ingen vægge
 
     public void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         assert board.getNeighbour(player.getSpace(), heading) == space; // valid move or not
@@ -369,7 +356,6 @@ public class GameController {
         player.setSpace(space);
     }
 
-    // TODO: V2
     // Move forward twice in current facing direction
     public void doubleForward(@NotNull Player player) {
         moveForward(player);
@@ -442,10 +428,10 @@ public class GameController {
         player.setDamagecards(Command.SPAM);
     }
     public void worm(Player player){
-
+        player.getDamagecards().remove(Command.WORM);
+        moveToRebootToken(player);
     }
     public void virus(Player player){
-
     }
 
     /**

@@ -1,14 +1,22 @@
-package dk.dtu.compute.se.pisd.roborally.view;
+package dk.dtu.compute.se.pisd.roborally.view.boardelements;
 
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
+import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.PushPanels;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 
+/**
+ *  @author Anshjyot Singh, s215806
+ */
 public class PushPanelsView {
-
+    /**
+     * This class displays the view of a pushpanel
+     * @param spaceView is SpaceView object and updates the view for the specific space
+     * @param fa takes the FieldAction object to determine the heading, which is also later used in Space-view
+     */
     public static void drawPushPanel(SpaceView spaceView, FieldAction fa) {
         try {
             PushPanels pushPanels = (PushPanels) fa;
