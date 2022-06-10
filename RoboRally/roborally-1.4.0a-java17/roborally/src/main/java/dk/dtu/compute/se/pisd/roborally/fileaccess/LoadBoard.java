@@ -23,6 +23,7 @@ package dk.dtu.compute.se.pisd.roborally.fileaccess;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import dk.dtu.compute.se.pisd.roborally.fileaccess.model.BoardTemplate;
@@ -113,6 +114,7 @@ public class LoadBoard {
                 }
             }
             reader.close();
+            startpointCount = 0;
             return result;
         } catch (IOException e1) {
             if (reader != null) {
@@ -130,6 +132,48 @@ public class LoadBoard {
             }
         }
         return null;
+    }
+
+    public static Board loadBoardFromJson(String json) {
+        System.out.println(json);
+        GsonBuilder simpleBuilder = new GsonBuilder().
+                registerTypeAdapter(FieldAction.class, new Adapter<FieldAction>()).setPrettyPrinting();
+        Gson gson = simpleBuilder.create();
+        //JsonObject test = gson.fromJson(json, JsonObject.class);
+        //System.out.println(test.get("positions"));
+        JsonReader reader = gson.newJsonReader(new StringReader(json));
+        BoardTemplate template = gson.fromJson(reader, BoardTemplate.class);
+        Board result;
+
+        result = new Board(template.width, template.height);
+        result.setNoOfCheckpoints(template.noOfCheckpoints);
+        result.setStep(template.step);
+
+        //indsæt result.boardname = boardname hvis det bliver relevant
+        for (SpaceTemplate spaceTemplate : template.spaces) {
+            Space space = result.getSpace(spaceTemplate.x, spaceTemplate.y);
+            if (space != null) {
+                space.setStartPoint(spaceTemplate.startPoint);
+                space.getActions().addAll(spaceTemplate.actions);
+                if (!space.getActions().isEmpty() && space.getActions().get(0) instanceof Reboot) {
+                    result.setRebootXY(space.x, space.y);
+                }
+                space.getWalls().addAll(spaceTemplate.walls);
+                if (spaceTemplate.playerNo != 0) {
+                    int playerNo = spaceTemplate.playerNo;
+                    result.setPositions(space, playerNo - 1);
+                    result.setCheckpoints(template.checkpointsReached[playerNo - 1], playerNo - 1);
+                }
+                if (space.getStartPoint()) {
+                    result.setStartpoints(space, startpointCount);
+                    startpointCount++;
+                }
+
+            }
+        }
+        System.out.println("Board er: " + result.getPlayersNumber());
+        startpointCount = 0;
+        return result;
     }
 
     /**
@@ -241,7 +285,11 @@ public class LoadBoard {
                 }
             }
         }
-        Gson gson = new Gson();
+        GsonBuilder simpleBuilder = new GsonBuilder().
+                registerTypeAdapter(FieldAction.class, new Adapter<FieldAction>()).
+                setPrettyPrinting();
+
+        Gson gson = simpleBuilder.create();
         return gson.toJson(template);
     }
 

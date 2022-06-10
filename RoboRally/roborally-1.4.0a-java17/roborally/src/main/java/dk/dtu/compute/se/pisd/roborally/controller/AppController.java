@@ -131,7 +131,29 @@ public class AppController {
     }
     public void loadFromServer(){
         Web web = new Web();
-        web.loadBoard();
+        gameController = new GameController(LoadBoard.loadBoardFromJson(web.loadBoard()));
+
+        if (gameController.board == null) {
+            System.out.println("Cant load board");
+        }
+        int no = gameController.board.getPositions().length;
+        for (int i = 0; i < no; i++) {
+            if (gameController.board.getPositions()[i] == null) {
+                break;
+            }
+            Player player = new Player(gameController.board, PLAYER_COLORS.get(i), PLAYER_ROBOT.get(i), PLAYER_NAMES.get(i));
+            gameController.board.addPlayer(player);
+            player.setSpace(gameController.board.getPositions()[i]);
+            for (int j = 0; j < gameController.board.getCheckpoints()[i]; j++) {
+                player.reachedCheckpoint();
+            }
+        }
+
+        // XXX: V2
+        // board.setCurrentPlayer(board.getPlayer(0));
+        gameController.startProgrammingPhase();
+
+        roboRally.createBoardView(gameController);
     }
 
     /**
@@ -159,6 +181,7 @@ public class AppController {
                     // XXX the board should eventually be created programmatically or loaded from a file
                     //     here we just create an empty board with the required number of players.
                     gameController = new GameController(LoadBoard.loadBoard(boardName,true));
+
                     if (gameController.board == null) {
                         System.out.println("Cant load board");
                     }
