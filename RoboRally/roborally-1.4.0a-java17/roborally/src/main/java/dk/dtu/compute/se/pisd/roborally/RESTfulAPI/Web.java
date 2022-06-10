@@ -22,7 +22,7 @@ public class Web {
     public void transferBoard(Board board, String name) {
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(LoadBoard.saveBoardToJson(board)))
-                .uri(URI.create("http://localhost:8081/transferBoard"))
+                .uri(URI.create("http://localhost:8080/transferBoard"))
                 .setHeader("User-Agent", "Roborally Client")
                 .header("Content-Type", "application/json")
                 .build();
