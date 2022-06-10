@@ -17,7 +17,7 @@ import static javafx.scene.paint.Color.RED;
 public class LaserView {
     /**
      * Creates the view for the conveyorBelts, which is differentiated by the different directions
-     * and the two different conveyor belts (Green and Blue)
+     * and the two different conveyor belts (Green and Blue).
      * @param spaceView is SpaceView object and updates the view for the specific space
      * @param fa takes the FieldAction object to determine the heading, which is also later used in Space-view
      */
