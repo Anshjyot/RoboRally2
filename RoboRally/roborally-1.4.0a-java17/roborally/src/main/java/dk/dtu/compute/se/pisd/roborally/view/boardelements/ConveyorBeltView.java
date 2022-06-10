@@ -1,8 +1,9 @@
-package dk.dtu.compute.se.pisd.roborally.view;
+package dk.dtu.compute.se.pisd.roborally.view.boardelements;
 
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.ConveyorBelt;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.FieldAction;
 import dk.dtu.compute.se.pisd.roborally.model.Heading;
+import dk.dtu.compute.se.pisd.roborally.view.SpaceView;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;

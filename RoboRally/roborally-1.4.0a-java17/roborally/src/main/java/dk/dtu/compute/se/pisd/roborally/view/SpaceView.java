@@ -27,16 +27,16 @@ import dk.dtu.compute.se.pisd.roborally.model.boardelements.*;
 import dk.dtu.compute.se.pisd.roborally.model.Player;
 import dk.dtu.compute.se.pisd.roborally.model.Space;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.Laser;
+import dk.dtu.compute.se.pisd.roborally.view.boardelements.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import org.jetbrains.annotations.NotNull;
-import javafx.scene.text.*;
+
 import java.util.List;
 
 
@@ -77,26 +77,7 @@ public class SpaceView extends StackPane implements ViewObserver {
             if (this.getStyleableNode() instanceof Canvas) {
                 this.getChildren().clear();
             }
-
-            Player player = space.getPlayer();
-            if (player != null) {
-                String imageName = "Robot" + player.getRobot() + ".png";
-                Image robot = new Image(imageName,35,35,true,true);
-                ImageView viewRobot = new ImageView(robot);
-
-                viewRobot.setRotate((90 * player.getHeading().ordinal()) % 360);
-                Canvas canvas = new Canvas(SpaceView.SPACE_WIDTH, SpaceView.SPACE_WIDTH);
-                GraphicsContext gc = canvas.getGraphicsContext2D();
-                gc.setStroke(Color.BLUEVIOLET);
-                gc.setLineWidth(1);
-                gc.strokeText(String.valueOf(player.getNoCheckpointReached()),
-                        SpaceView.SPACE_WIDTH * 0.8, SpaceView.SPACE_WIDTH * 0.8);
-
-                this.getChildren().add(canvas);
-                gc.setStroke(Color.YELLOW);
-                gc.setLineWidth(1);
-                this.getChildren().add(viewRobot);
-            }
+            RobotView.drawRobot(this,space);
         }
 
         /**

@@ -29,8 +29,6 @@ public class AppController {
         this.roboRally = roboRally;
     }
 
-    // TODO most methods missing here!
-
     //probably shouldn't be static.
     static void gameFinished(String winnerName) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
