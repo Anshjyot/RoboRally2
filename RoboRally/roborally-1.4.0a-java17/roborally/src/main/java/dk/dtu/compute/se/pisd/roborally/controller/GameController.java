@@ -320,7 +320,6 @@ public class GameController {
         }
     }
 
-    // TODO: V2
     public void moveForward(@NotNull Player player) {
         Space space = player.getSpace();
         if (player != null && player.board == board && space != null && !player.isRebooting()) {
@@ -341,8 +340,6 @@ public class GameController {
         }
     }
 
-   // getWalls = null // ingen vægge
-
     public void moveToSpace(@NotNull Player player, @NotNull Space space, @NotNull Heading heading) throws ImpossibleMoveException {
         assert board.getNeighbour(player.getSpace(), heading) == space; // valid move or not
         Player other = space.getPlayer();
@@ -359,7 +356,6 @@ public class GameController {
         player.setSpace(space);
     }
 
-    // TODO: V2
     // Move forward twice in current facing direction
     public void doubleForward(@NotNull Player player) {
         moveForward(player);
