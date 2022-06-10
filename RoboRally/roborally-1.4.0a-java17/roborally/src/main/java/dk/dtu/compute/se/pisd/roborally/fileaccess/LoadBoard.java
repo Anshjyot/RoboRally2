@@ -135,12 +135,10 @@ public class LoadBoard {
     }
 
     public static Board loadBoardFromJson(String json) {
-        System.out.println(json);
         GsonBuilder simpleBuilder = new GsonBuilder().
                 registerTypeAdapter(FieldAction.class, new Adapter<FieldAction>()).setPrettyPrinting();
         Gson gson = simpleBuilder.create();
-        //JsonObject test = gson.fromJson(json, JsonObject.class);
-        //System.out.println(test.get("positions"));
+
         JsonReader reader = gson.newJsonReader(new StringReader(json));
         BoardTemplate template = gson.fromJson(reader, BoardTemplate.class);
         Board result;
@@ -171,7 +169,6 @@ public class LoadBoard {
 
             }
         }
-        System.out.println("Board er: " + result.getPlayersNumber());
         startpointCount = 0;
         return result;
     }
