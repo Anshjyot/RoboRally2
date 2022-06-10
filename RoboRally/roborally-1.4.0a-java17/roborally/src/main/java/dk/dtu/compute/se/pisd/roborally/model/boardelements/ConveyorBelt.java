@@ -38,7 +38,9 @@ public class ConveyorBelt extends FieldAction {
     private Heading heading;
     private int speed;
 
-    public int getSpeed(){return speed;}
+    public int getSpeed() {
+        return speed;
+    }
 
     public Heading getHeading() {
         return heading;
@@ -52,7 +54,10 @@ public class ConveyorBelt extends FieldAction {
 
     @Override
     public boolean doAction(@NotNull GameController gameController, @NotNull Space space) {
-            for (int i = 0; speed>=i; i++) {
+
+
+        switch (speed) {
+            case 1:
                 Space target = gameController.board.getNeighbour(space, this.heading);
                 if (target != null) {
                     try {
@@ -61,8 +66,18 @@ public class ConveyorBelt extends FieldAction {
 
                     }
                 }
-            }
+                break;
+            case 2:
+                Space target2 = gameController.board.getNeighbour(gameController.board.getNeighbour(space, this.heading), this.heading);
+                if (target2 != null) {
+                    try {
+                        gameController.moveToSpace(space.getPlayer(), target2, heading);
+                    } catch (GameController.ImpossibleMoveException e) {
 
+                    }
+                }
+                break;
+        }
         return true;
     }
 }
