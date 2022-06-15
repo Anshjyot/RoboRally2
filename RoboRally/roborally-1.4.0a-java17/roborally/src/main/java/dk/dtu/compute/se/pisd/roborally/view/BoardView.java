@@ -40,7 +40,6 @@ import java.io.FileNotFoundException;
  * ...
  *
  * @author Ekkart Kindler, ekki@dtu.dk
- *
  */
 public class
 BoardView extends VBox implements ViewObserver {
@@ -54,7 +53,7 @@ BoardView extends VBox implements ViewObserver {
 
     private Label statusLabel;
 
-    //private SpaceEventHandler spaceEventHandler;
+    private SpaceEventHandler spaceEventHandler;
 
     public BoardView(@NotNull GameController gameController) throws FileNotFoundException {
         board = gameController.board;
@@ -69,7 +68,7 @@ BoardView extends VBox implements ViewObserver {
 
         spaces = new SpaceView[board.width][board.height];
 
-        //spaceEventHandler = new SpaceEventHandler(gameController);
+        spaceEventHandler = new SpaceEventHandler(gameController);
 
         for (int x = 0; x < board.width; x++) {
             for (int y = 0; y < board.height; y++) {
@@ -77,7 +76,7 @@ BoardView extends VBox implements ViewObserver {
                 SpaceView spaceView = new SpaceView(space);
                 spaces[x][y] = spaceView;
                 mainBoardPane.add(spaceView, x, y);
-                //spaceView.setOnMouseClicked(spaceEventHandler);
+                spaceView.setOnMouseClicked(spaceEventHandler);
             }
         }
 
@@ -95,7 +94,7 @@ BoardView extends VBox implements ViewObserver {
 
     // XXX this handler and its uses should eventually be deleted! This is just to help test the
     //     behaviour of the game by being able to explicitly move the players on the board!
-        /* private class SpaceEventHandler implements EventHandler<MouseEvent> {
+    private class SpaceEventHandler implements EventHandler<MouseEvent> {
 
         final public GameController gameController;
 
@@ -117,6 +116,6 @@ BoardView extends VBox implements ViewObserver {
                     event.consume();
                 }
             }
-        } */
-
+        }
     }
+}

@@ -20,6 +20,7 @@
  *
  */
 package dk.dtu.compute.se.pisd.roborally.controller;
+
 import dk.dtu.compute.se.pisd.roborally.RESTfulAPI.Web;
 import dk.dtu.compute.se.pisd.roborally.model.*;
 import dk.dtu.compute.se.pisd.roborally.model.boardelements.*;
@@ -30,7 +31,6 @@ import org.jetbrains.annotations.NotNull;
  * ...
  *
  * @author Ekkart Kindler + Nick Tahmasebi
- *
  */
 public class GameController {
 
@@ -45,6 +45,7 @@ public class GameController {
             this.heading = heading;
         }
     }
+
     final public Board board;
 
     public GameController(@NotNull Board board) {
@@ -53,7 +54,7 @@ public class GameController {
 
     //this method has been made as comment so it can be used, if we want to test
     //the game in the future.
-    /*
+
     public void moveCurrentPlayerToSpace(@NotNull Space space)  {
         if (space != null && space.board == board) {
             Player currentPlayer = board.getCurrentPlayer();
@@ -63,7 +64,7 @@ public class GameController {
                 board.setCurrentPlayer(board.getPlayer(playerNumber));
             }
         }
-    }  */
+    }
 
     // XXX: V2
     public void startProgrammingPhase() {
@@ -82,10 +83,9 @@ public class GameController {
                 }
                 for (int j = 0; j < Player.NO_CARDS; j++) {
                     CommandCardField field = player.getCardField(j);
-                    if(!player.getDamagecards().isEmpty() && player.getDamagecards().size() > j){
+                    if (!player.getDamagecards().isEmpty() && player.getDamagecards().size() > j) {
                         field.setCard(new CommandCard(player.getDamagecards().get(j)));
-                    }
-                    else{
+                    } else {
                         field.setCard(generateRandomCommandCard());
                     }
                     field.setVisible(true);
@@ -170,11 +170,7 @@ public class GameController {
                     board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
                 } else {
                     //after each register, board-elements activate.
-                    try {
-                        activateFieldAction();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    activateFieldAction();
                     winnerCheck();
                     step++;
                     if (step < Player.NO_REGISTERS) {
@@ -195,79 +191,79 @@ public class GameController {
         }
     }
 
-    private void activateFieldAction() throws InterruptedException {
+    private void activateFieldAction() {
 
-        for(int i = 0; i < board.getPlayersNumber(); i++){
+        for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
-            for(FieldAction fa : currentSpace.getActions()){
-                if(fa instanceof ConveyorBelt){
+            for (FieldAction fa : currentSpace.getActions()) {
+                if (fa instanceof ConveyorBelt) {
                     fa.doAction(this, currentSpace);
                 }
             }
         }
-        for(int i = 0; i < board.getPlayersNumber(); i++){
+        for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
-            for(FieldAction fa : currentSpace.getActions()){
-                if(fa instanceof PushPanels){
+            for (FieldAction fa : currentSpace.getActions()) {
+                if (fa instanceof PushPanels) {
                     fa.doAction(this, currentSpace);
                 }
             }
         }
-        for(int i = 0; i < board.getPlayersNumber(); i++){
+        for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
-            for(FieldAction fa : currentSpace.getActions()){
-                if(fa instanceof Gear){
+            for (FieldAction fa : currentSpace.getActions()) {
+                if (fa instanceof Gear) {
                     fa.doAction(this, currentSpace);
                 }
             }
         }
-        for(int i = 0; i < board.getPlayersNumber(); i++){
+        for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
-            for(FieldAction fa : currentSpace.getActions()){
-                if(fa instanceof Laser){
+            for (FieldAction fa : currentSpace.getActions()) {
+                if (fa instanceof Laser) {
                     fa.doAction(this, currentSpace);
                 }
             }
         }
-        for(int i = 0; i < board.getPlayersNumber(); i++){
+        for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player currentPlayer = board.getPlayer(i);
             Space currentSpace = currentPlayer.getSpace();
-            for(FieldAction fa : currentSpace.getActions()){
-                if(fa instanceof Pit){
+            for (FieldAction fa : currentSpace.getActions()) {
+                if (fa instanceof Pit) {
                     moveToRebootToken(currentPlayer);
                 }
             }
         }
         //der må være en bedre måde at gøre det på, kigger på det senere :)
-        for(int i = 0; i < board.getPlayersNumber(); i++){
+        for (int i = 0; i < board.getPlayersNumber(); i++) {
             Space currentSpace = board.getPlayer(i).getSpace();
-            for(FieldAction fa : currentSpace.getActions()){
-                if(fa instanceof Checkpoint){
+            for (FieldAction fa : currentSpace.getActions()) {
+                if (fa instanceof Checkpoint) {
                     fa.doAction(this, currentSpace);
                 }
             }
         }
     }
-    private void reboot(Space rebootSpace){
-        for(FieldAction fa : rebootSpace.getActions()){
-            if(fa instanceof Reboot){
+
+    private void reboot(Space rebootSpace) {
+        for (FieldAction fa : rebootSpace.getActions()) {
+            if (fa instanceof Reboot) {
                 fa.doAction(this, rebootSpace);
             }
-
         }
     }
 
-    private void moveToRebootToken(Player player){
+    private void moveToRebootToken(Player player) {
         player.setRebooting(true);
-        Space rebootSpace = board.getSpace(board.getRebootXY()[0],board.getRebootXY()[1]);
-        if (rebootSpace.getPlayer() != null){
-            Space target = board.getNeighbour(rebootSpace,rebootSpace.getPlayer().getHeading());
+        Space rebootSpace = board.getSpace(board.getRebootXY()[0], board.getRebootXY()[1]);
+        if (rebootSpace.getPlayer() != null) {
+            Space target = board.getNeighbour(rebootSpace, rebootSpace.getPlayer().getHeading());
             try {
-                moveToSpace(rebootSpace.getPlayer(),target,rebootSpace.getPlayer().getHeading());
+                moveToSpace(rebootSpace.getPlayer(), target, rebootSpace.getPlayer().getHeading());
             } catch (ImpossibleMoveException e) {
                 e.printStackTrace();
             }
@@ -334,14 +330,14 @@ public class GameController {
             Space target = board.getNeighbour(space, heading);
             if (target != null) {
                 try {
-                    moveToSpace(player,target,heading);
+                    moveToSpace(player, target, heading);
                 } catch (ImpossibleMoveException e) {
 
                 }
                 //target.setPlayer(player);
             }
             //if player falls out of the board, they should reboot.
-            if (board.isOutOfBoard()){
+            if (board.isOutOfBoard()) {
                 moveToRebootToken(player);
             }
         }
@@ -391,7 +387,7 @@ public class GameController {
     }
 
     // uTurn using Lambda expressions
-    public void uTurn(@NotNull Player player){
+    public void uTurn(@NotNull Player player) {
         switch (player.getHeading()) {
             case DOWN -> player.setHeading(Heading.UP);
             case RIGHT -> player.setHeading(Heading.LEFT);
@@ -401,7 +397,7 @@ public class GameController {
     }
 
     // Player rotates, then moves backwards, then rotates to ensure facing direction is correct
-    public void moveBack(@NotNull Player player){
+    public void moveBack(@NotNull Player player) {
         uTurn(player);
         moveForward(player);
         uTurn(player);
@@ -418,23 +414,25 @@ public class GameController {
             return false;
         }
     }
+
     /**
      * @author Anshjyot Singh S215806
      * spam() is used when a player hits the lasers
      * The number of spam cards that is given depends on the number of lasers hit
      */
-    public void spam(Player player){
+    public void spam(Player player) {
         player.getDamagecards().remove(Command.SPAM);
         CommandCard card = generateRandomCommandCard();
 
-        executeCommand(player,card.command);
+        executeCommand(player, card.command);
     }
 
-    public void trojanhorse(Player player){
+    public void trojanhorse(Player player) {
         player.setDamagecards(Command.SPAM);
         player.setDamagecards(Command.SPAM);
     }
-    public void worm(Player player){
+
+    public void worm(Player player) {
         player.getDamagecards().remove(Command.WORM);
         moveToRebootToken(player);
     }
@@ -454,14 +452,14 @@ public class GameController {
      * If a player has reached all checkpoint on the board, then the game finishes.
      */
 
-    public void winnerCheck(){
-        for(int i = 0; i < board.getPlayersNumber(); i++){
+    public void winnerCheck() {
+        for (int i = 0; i < board.getPlayersNumber(); i++) {
             Player currentPlayer = board.getPlayer(i);
 
-            if (currentPlayer.getNoCheckpointReached() >= board.getNoOfCheckpoints()){
-                    //there is a winner!
-                    AppController.gameFinished(currentPlayer.getName());
-                }
+            if (currentPlayer.getNoCheckpointReached() >= board.getNoOfCheckpoints()) {
+                //there is a winner!
+                AppController.gameFinished(currentPlayer.getName());
             }
         }
     }
+}
