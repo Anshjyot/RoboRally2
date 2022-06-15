@@ -170,6 +170,7 @@ public class GameController {
                     board.setCurrentPlayer(board.getPlayer(nextPlayerNumber));
                 } else {
                     //after each register, board-elements activate.
+                    //not needed
                     try {
                         activateFieldAction();
                     } catch (InterruptedException e) {
@@ -239,6 +240,8 @@ public class GameController {
             for(FieldAction fa : currentSpace.getActions()){
                 if(fa instanceof Pit){
                     moveToRebootToken(currentPlayer);
+                    currentPlayer.setRebooting(true);
+
                 }
             }
         }
