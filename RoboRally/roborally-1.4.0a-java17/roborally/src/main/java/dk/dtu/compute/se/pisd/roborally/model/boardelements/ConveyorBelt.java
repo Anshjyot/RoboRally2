@@ -53,29 +53,37 @@ public class ConveyorBelt extends FieldAction {
 
     @Override
     public boolean doAction(@NotNull GameController gameController, @NotNull Space space) {
+        Space target = gameController.board.getNeighbour(space, this.heading);
 
-
-        switch (speed) {
-            case 1:
-                Space target = gameController.board.getNeighbour(space, this.heading);
-                if (target != null) {
+        if (target != null) {
+            switch (speed) {
+                case 1:
                     try {
                         gameController.moveToSpace(space.getPlayer(), target, heading);
                     } catch (GameController.ImpossibleMoveException e) {
 
                     }
-                }
-                break;
-            case 2:
-                Space target2 = gameController.board.getNeighbour(gameController.board.getNeighbour(space, this.heading), this.heading);
-                if (target2 != null) {
-                    try {
-                        gameController.moveToSpace(space.getPlayer(), target2, heading);
-                    } catch (GameController.ImpossibleMoveException e) {
+                    break;
+                case 2:
+                    if (target.getActions().get(0) instanceof ConveyorBelt) {
+                        Heading targetHeading = ((ConveyorBelt) target.getActions().get(0)).getHeading();
 
-                    }
-                }
-                break;
+                        Space target2 = gameController.board.getNeighbour(target, targetHeading);
+                        if (target2 != null) {
+                            try {
+                                gameController.moveToSpace(space.getPlayer(), target2, targetHeading);
+                            } catch (GameController.ImpossibleMoveException e) {
+
+                            }
+                        }
+                    } else
+                        try {
+                            gameController.moveToSpace(space.getPlayer(), target, heading);
+                        } catch (GameController.ImpossibleMoveException e) {
+
+                        }
+                    break;
+            }
         }
         return true;
     }
